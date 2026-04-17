@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>悠 – Yuki Saito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F6F3;
+    --bg2: #EFEDE8;
+    --ink: #1A1A18;
+    --ink2: #3D3D39;
+    --ink3: #7A7A74;
+    --rule: #D8D5CE;
+    --accent: #2D3A2E;
+    --accent-light: #4A5E4C;
+    --white: #FAFAF8;
+    --mono: 'DM Mono', monospace;
+    --serif: 'Shippori Mincho', 'DM Serif Display', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ナビ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: rgba(247,246,243,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* セクション共通 */
+  section { padding: 100px 0; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--ink3);
+  }
+
+  /* Hero */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 60px;
+    align-items: end;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 24px;
+  }
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .hero-sub {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--ink2);
+    max-width: 520px;
+    margin-bottom: 48px;
+  }
+  .hero-cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--accent);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-block;
+    padding: 14px 32px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.25s, color 0.25s;
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--white); }
+
+  /* プロフィール写真 */
+  .photo-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--bg2);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    position: relative;
+  }
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--ink3);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  .photo-placeholder-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Profile */
+  #profile { background: var(--bg2); }
+  .profile-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .profile-name-block { position: sticky; top: 120px; }
+  .profile-name {
+    font-family: var(--serif);
+    font-size: 48px;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .profile-name-en {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--ink3);
+    text-transform: uppercase;
+  }
+  .profile-divider {
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+    margin: 24px 0;
+  }
+  .profile-tags { display: flex; flex-direction: column; gap: 8px; }
+  .profile-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--ink3);
+    text-transform: uppercase;
+  }
+  .profile-text { font-size: 15px; line-height: 2; color: var(--ink2); }
+  .profile-text p { margin-bottom: 20px; }
+  .profile-text p:last-child { margin-bottom: 0; }
+
+  /* Activities */
+  #activities { background: var(--bg); }
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--rule);
+  }
+  .activity-card {
+    background: var(--white);
+    padding: 44px 40px;
+    position: relative;
+  }
+  .activity-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink3);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+    display: block;
+  }
+  .activity-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .activity-desc {
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: var(--ink2);
+  }
+
+  /* Value */
+  #value { background: var(--accent); color: var(--white); }
+  #value .section-label { color: rgba(255,255,255,0.4); }
+  #value .section-label::after { background: rgba(255,255,255,0.3); }
+  .value-headline {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.45;
+    color: var(--white);
+    margin-bottom: 60px;
+  }
+  .value-list { display: flex; flex-direction: column; gap: 0; }
+  .value-item {
+    padding: 28px 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .value-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .value-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    padding-top: 3px;
+  }
+  .value-desc {
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* Philosophy */
+  #philosophy { background: var(--bg); }
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .philo-card { padding: 0; }
+  .philo-num {
+    font-family: var(--mono);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .philo-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .philo-text {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--ink3);
+  }
+
+  /* Services */
+  #services { background: var(--bg2); }
+  .services-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 48px;
+  }
+  .services-note {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink3);
+    text-transform: uppercase;
+  }
+  .services-list { display: flex; flex-direction: column; gap: 2px; }
+  .service-row {
+    background: var(--white);
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .service-row:hover { background: var(--bg); }
+  .service-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .service-desc {
+    font-size: 13px;
+    color: var(--ink3);
+    line-height: 1.7;
+  }
+  .service-arrow {
+    font-family: var(--mono);
+    font-size: 18px;
+    color: var(--ink3);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .service-row:hover .service-arrow { transform: translateX(4px); }
+  .services-coming {
+    margin-top: 40px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ink3);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* Contact */
+  #contact { background: var(--ink); color: var(--white); }
+  #contact .section-label { color: rgba(255,255,255,0.35); }
+  #contact .section-label::after { background: rgba(255,255,255,0.25); }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-headline {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.4;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .contact-body {
+    font-size: 14px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 20px; }
+  .form-field { display: flex; flex-direction: column; gap: 8px; }
+  .form-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .form-input, .form-textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--white);
+    padding: 14px 16px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    resize: none;
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.2); }
+  .form-input:focus, .form-textarea:focus { border-color: rgba(255,255,255,0.4); }
+  .form-textarea { min-height: 140px; }
+  .btn-white {
+    display: inline-block;
+    padding: 16px 36px;
+    background: var(--white);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    align-self: flex-start;
+  }
+  .btn-white:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* Footer */
+  .site-footer-wrap { background: #1A1A18; }
+  .site-footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 40px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-name {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+  }
+
+  /* モバイル対応 */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+    .photo-frame { max-width: 200px; aspect-ratio: 1/1; border-radius: 50%; }
+    .container { padding: 0 24px; }
+    section { padding: 72px 0; }
+    .profile-inner { grid-template-columns: 1fr; gap: 40px; }
+    .profile-name-block { position: static; }
+    .activities-grid { grid-template-columns: 1fr; }
+    .value-item { grid-template-columns: 1fr; gap: 8px; }
+    .philosophy-grid { grid-template-columns: 1fr; gap: 36px; }
+    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    .services-header { flex-direction: column; gap: 8px; }
+    .service-row { padding: 28px 24px; }
+    .site-footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  /* アニメーション */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up   { animation: fadeUp 0.7s ease both; }
+  .fade-up-2 { animation: fadeUp 0.7s 0.15s ease both; }
+  .fade-up-3 { animation: fadeUp 0.7s 0.30s ease both; }
+  .fade-up-4 { animation: fadeUp 0.7s 0.45s ease both; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+
+// ============================================================
+// ■ サービスデータ（編集ポイント）
+// ・isPublic: true  → 表示
+// ・isPublic: false → 非公開（将来公開用）
+// ・追加: 配列に { id, title, description, link, isPublic } を追記
+// ・削除: 該当オブジェクトを配列から削除
+// ・公開切替: isPublic を true / false で切り替える
+// ============================================================
+const INITIAL_SERVICES = [
+  {
+    id: 1,
+    title: "思考・意思決定の個別サポート",
+    description: "情報の取捨選択、判断基準の構築、目標設定のフレームワーク提供。オンライン1対1形式。",
+    link: "#contact",
+    isPublic: true,
+  },
+  {
+    id: 2,
+    title: "IT活用・生産性向上プログラム",
+    description: "AIツールの選定から業務フロー設計まで。個人の生産性と市場価値を引き上げる実践的支援。",
+    link: "#contact",
+    isPublic: true,
+  },
+  {
+    id: 3,
+    title: "詐欺・高額商材リテラシー講座",
+    description: "（準備中）若年層向けに、情報を正確に読む力と商材を見抜く判断力を育成するプログラム。",
+    link: "#",
+    isPublic: false, // ← false=非公開 / true にすると表示される
+  },
+];
+
+// ============================================================
+// ■ プロフィール写真（編集ポイント）
+// ・実際の写真URLに差し替えてください
+//   例: "https://lh3.googleusercontent.com/d/YOUR_FILE_ID"
+// ・null のままにするとプレースホルダーを表示
+// ============================================================
+const PHOTO_URL = null;
+
+// ============================================================
+// ■ 問い合わせ先（編集ポイント）
+// ・GAS WebApp URL に差し替えてください
+//   例: "https://script.google.com/macros/s/XXXX/exec"
+// ・空文字のままだとダミー送信（テスト用）
+// ============================================================
+const CONTACT_ENDPOINT = "";
+
+// ------------------------------------------------------------------
+// Nav
+// ------------------------------------------------------------------
+function Nav() {
+  const links = [
+    { href: "#profile",    label: "Profile" },
+    { href: "#activities", label: "Activities" },
+    { href: "#services",   label: "Services" },
+    { href: "#contact",    label: "Contact" },
+  ];
+  return (
+    <nav>
+      <a href="#hero" className="nav-logo">悠</a>
+      <ul className="nav-links">
+        {links.map(l => <li key={l.href}><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+  );
+}
+
+// ------------------------------------------------------------------
+// Hero
+// ------------------------------------------------------------------
+function Hero() {
+  return (
+    <section id="hero">
+      <div className="hero-grid">
+        <div>
+          <p className="hero-eyebrow fade-up">System Advisor / Human Engineer</p>
+          <h1 className="hero-headline fade-up-2">
+            判断できる人を<br/>増やしたい。
+          </h1>
+          <p className="hero-sub fade-up-3">
+            教育・IT・認知科学を組み合わせて、<br/>
+            若い人たちが自分の頭で考え、<br/>
+            適切な選択ができるよう支援しています。
+          </p>
+          <div className="hero-cta-group fade-up-4">
+            <a href="#contact" className="btn-primary">相談する</a>
+            <a href="#profile" className="btn-outline">詳しく見る</a>
+          </div>
+        </div>
+        <div>
+          {/* 写真エリア: PHOTO_URL を設定するか、null のままにする */}
+          <div className="photo-frame">
+            {PHOTO_URL ? (
+              <img src={images/IMG_0298_Original.JPG} alt="悠" />
+            ) : (
+              <div className="photo-placeholder">
+                <div className="photo-placeholder-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="1.5">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                  </svg>
+                </div>
+                <span>Photo</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ------------------------------------------------------------------
+// Profile
+// ------------------------------------------------------------------
+function Profile() {
+  return (
+    <section id="profile">
+      <div className="container">
+        <div className="section-label">Profile</div>
+        <div className="profile-inner">
+          <div className="profile-name-block">
+            <div className="profile-name">悠</div>
+            <div className="profile-name-en">Yu</div>
+            <div className="profile-divider" />
+            <div className="profile-tags">
+              <span className="profile-tag">教育 × IT × 認知科学</span>
+              <span className="profile-tag">System Advisor</span>
+              <span className="profile-tag">Human Engineer</span>
+              <span className="profile-tag">Kanagawa / Tokyo</span>
+            </div>
+          </div>
+          <div className="profile-text">
+            <p>
+              もともと教育事業に携わっていましたが、ある構造的な問題を感じるようになりました。
+              「価値が見えにくい商材を高額で販売する」という構造の中で、
+              本質的な支援ができているのかという疑問です。
+            </p>
+            <p>
+              短期的な売上よりも、長期的に意味のある支援を優先したい。
+              そう考え、独立という選択をしました。
+            </p>
+            <p>
+              特に10代〜30代の若い世代が、詐欺的な情報や不適切な商材に巻き込まれる場面を多く見てきました。
+              問題の根本は「判断基準を持っていないこと」にあると考えています。
+            </p>
+            <p>
+              教育・AI・認知科学の知見をもとに、
+              「正解を教える」のではなく「判断できる力をつくる」支援を行っています。
+              ITを活用することで、その人が持つ力を最大限に引き出し、
+              市場における価値を着実に高めることが目標です。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ------------------------------------------------------------------
+// Activities
+// ------------------------------------------------------------------
+function Activities() {
+  const items = [
+    {
+      num: "01",
+      title: "詐欺・不適切商材の見抜き方",
+      desc: "情報過多の時代に必要なのは、正しい情報を「選ぶ力」です。高額商材・投資詐欺・怪しいビジネス手法を構造から理解し、自分で判断できるよう支援します。",
+    },
+    {
+      num: "02",
+      title: "意思決定の構造化",
+      desc: "感情や外部プレッシャーに左右されず、自分の判断基準をつくる。認知科学の知見をもとに、思考の枠組みを整理します。",
+    },
+    {
+      num: "03",
+      title: "思考フレームワークの提供",
+      desc: "再現性のある思考パターンを身につける。問題解決・情報整理・目標設定など、場面に応じた実践的なフレームを提供します。",
+    },
+    {
+      num: "04",
+      title: "IT活用による生産性向上",
+      desc: "AIツールや自動化の仕組みを活用し、同じ時間でより多くの成果を出す方法を設計します。技術を使いこなすことで、個人としての価値を引き上げます。",
+    },
+  ];
+  return (
+    <section id="activities">
+      <div className="container">
+        <div className="section-label">Activities</div>
+      </div>
+      <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 40px" }}>
+        <div className="activities-grid">
+          {items.map(item => (
+            <div key={item.num} className="activity-card">
+              <span className="activity-num">{item.num}</span>
+              <div className="activity-title">{item.title}</div>
+              <div className="activity-desc">{item.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ------------------------------------------------------------------
+// Value
+// ------------------------------------------------------------------
+function ValueSection() {
+  const values = [
+    {
+      label: "判断力の構築",
+      desc: "「何を信じるか」ではなく「どう判断するか」を育てます。特定の答えを与えるのではなく、考える構造そのものを提供します。",
+    },
+    {
+      label: "再現可能な思考",
+      desc: "一度身につければ繰り返し使える思考フレームを設計します。状況が変わっても応用できる力が目標です。",
+    },
+    {
+      label: "ITによる価値向上",
+      desc: "ツールを活用することで、アウトプットの質・量・速度を高めます。技術は目的ではなく、あなたの力を拡張する手段です。",
+    },
+    {
+      label: "適正な対価を得る力",
+      desc: "能力・価値・成果が正当に評価される状態をつくる支援。煽りではなく、地に足のついた価値向上のプロセスです。",
+    },
+  ];
+  return (
+    <section id="value">
+      <div className="container">
+        <div className="section-label">Value</div>
+        <p className="value-headline">
+          「わかった」ではなく、<br/>
+          「使える」を目指す。
+        </p>
+        <div className="value-list">
+          {values.map(v => (
+            <div key={v.label} className="value-item">
+              <div className="value-label">{v.label}</div>
+              <div className="value-desc">{v.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ------------------------------------------------------------------
+// Philosophy
+// ------------------------------------------------------------------
+function Philosophy() {
+  const items = [
+    {
+      num: "01",
+      title: "正しさより、判断力",
+      text: "唯一の正解を教えることに意味はありません。状況に応じて考えられる力をつくることが、長期的に役立つ支援だと考えています。",
+    },
+    {
+      num: "02",
+      title: "優しさを仕組みにする",
+      text: "感情論ではなく、再現可能な構造として支援を設計します。属人的な善意ではなく、誰でも使える仕組みこそが本当の「支援」です。",
+    },
+    {
+      num: "03",
+      title: "搾取されない知識を持つ",
+      text: "情報格差が個人の損失につながる構造があります。その格差を埋めることが、若い世代への最も実質的な貢献だと考えています。",
+    },
+  ];
+  return (
+    <section id="philosophy">
+      <div className="container">
+        <div className="section-label">Philosophy</div>
+        <div className="philosophy-grid">
+          {items.map(item => (
+            <div key={item.num} className="philo-card">
+              <div className="philo-num">{item.num}</div>
+              <div className="philo-title">{item.title}</div>
+              <div className="philo-text">{item.text}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ------------------------------------------------------------------
+// Services
+// ------------------------------------------------------------------
+function Services() {
+  const [services] = useState(() => {
+    // localStorageから状態を復元（初回はINITIAL_SERVICESを使用）
+    try {
+      const saved = localStorage.getItem("yu_services");
+      return saved ? JSON.parse(saved) : INITIAL_SERVICES;
+    } catch {
+      return INITIAL_SERVICES;
+    }
+  });
+
+  const publicServices = services.filter(s => s.isPublic);
+  const hasHidden = services.some(s => !s.isPublic);
+
+  return (
+    <section id="services">
+      <div className="container">
+        <div className="services-header">
+          <div className="section-label" style={{ marginBottom: 0 }}>Services</div>
+          {hasHidden && <span className="services-note">+ coming soon</span>}
+        </div>
+        <div className="services-list">
+          {publicServices.map(service => (
+            <a key={service.id} href={service.link} className="service-row">
+              <div>
+                <div className="service-title">{service.title}</div>
+                <div className="service-desc">{service.description}</div>
+              </div>
+              <div className="service-arrow">→</div>
+            </a>
+          ))}
+        </div>
+        {hasHidden && (
+          <p className="services-coming">準備中のサービスがあります</p>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ------------------------------------------------------------------
+// Contact
+// ------------------------------------------------------------------
+function Contact() {
+  const [form, setForm]     = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState(null); // null | "sending" | "sent" | "error"
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.email || !form.message) {
+      setStatus("error");
+      return;
+    }
+    setStatus("sending");
+
+    // ■ 送信処理（編集ポイント）
+    // CONTACT_ENDPOINT に GAS URL を設定することで実際に送信されます
+    if (CONTACT_ENDPOINT) {
+      try {
+        await fetch(CONTACT_ENDPOINT, {
+          method: "POST",
+          mode:   "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        });
+        setStatus("sent");
+        setForm({ name: "", email: "", message: "" });
+      } catch {
+        setStatus("error");
+      }
+    } else {
+      // エンドポイント未設定時はダミー送信（デモ用）
+      setTimeout(() => {
+        setStatus("sent");
+        setForm({ name: "", email: "", message: "" });
+      }, 800);
+    }
+  };
+
+  return (
+    <section id="contact">
+      <div className="container">
+        <div className="section-label">Contact</div>
+        <div className="contact-inner">
+          <div>
+            <h2 className="contact-headline">
+              まずは、<br/>相談から。
+            </h2>
+            <p className="contact-body">
+              サービス内容のご質問、<br/>
+              具体的なご相談、どちらも歓迎です。<br/><br/>
+              正式な依頼でなくても構いません。<br/>
+              「こういうことで困っている」という段階で<br/>
+              ご連絡いただければ十分です。
+            </p>
+          </div>
+          <div>
+            {status === "sent" ? (
+              <div style={{ padding: "40px 0", color: "rgba(255,255,255,0.7)", fontFamily: "var(--mono)", fontSize: 13, letterSpacing: "0.1em" }}>
+                ✓ 送信が完了しました。<br/>
+                <span style={{ fontSize: 11, opacity: 0.5 }}>数日以内にご連絡します。</span>
+              </div>
+            ) : (
+              <div className="contact-form">
+                <div className="form-field">
+                  <label className="form-label">お名前</label>
+                  <input
+                    className="form-input"
+                    placeholder="山田 太郎"
+                    value={form.name}
+                    onChange={e => setForm({ ...form, name: e.target.value })}
+                  />
+                </div>
+                <div className="form-field">
+                  <label className="form-label">メールアドレス</label>
+                  <input
+                    className="form-input"
+                    type="email"
+                    placeholder="your@email.com"
+                    value={form.email}
+                    onChange={e => setForm({ ...form, email: e.target.value })}
+                  />
+                </div>
+                <div className="form-field">
+                  <label className="form-label">ご相談内容</label>
+                  <textarea
+                    className="form-textarea"
+                    placeholder="現状や悩んでいることを、気軽に書いてください。"
+                    value={form.message}
+                    onChange={e => setForm({ ...form, message: e.target.value })}
+                  />
+                </div>
+                {status === "error" && (
+                  <p style={{ fontFamily: "var(--mono)", fontSize: 11, color: "#ff8888" }}>
+                    入力内容を確認してください
+                  </p>
+                )}
+                <button className="btn-white" onClick={handleSubmit} disabled={status === "sending"}>
+                  {status === "sending" ? "送信中..." : "送信する"}
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ------------------------------------------------------------------
+// Footer
+// ------------------------------------------------------------------
+function Footer() {
+  return (
+    <div className="site-footer-wrap">
+      <div className="site-footer">
+        <span className="footer-name">悠 / Yu</span>
+        <span className="footer-copy">© 2025 Yu. All rights reserved.</span>
+      </div>
+    </div>
+  );
+}
+
+// ------------------------------------------------------------------
+// App
+// ------------------------------------------------------------------
+function App() {
+  return (
+    <>
+      <Nav />
+      <Hero />
+      <Profile />
+      <Activities />
+      <ValueSection />
+      <Philosophy />
+      <Services />
+      <Contact />
+      <Footer />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
