@@ -568,7 +568,7 @@ const INITIAL_SERVICES = [
 //   例: "https://lh3.googleusercontent.com/d/YOUR_FILE_ID"
 // ・null のままにするとプレースホルダーを表示
 // ============================================================
-const PHOTO_URL = null;
+const PHOTO_URL = images/IMG_0298_Original.JPG;
 
 // ============================================================
 // ■ 問い合わせ先（編集ポイント）
@@ -624,7 +624,7 @@ function Hero() {
           {/* 写真エリア: PHOTO_URL を設定するか、null のままにする */}
           <div className="photo-frame">
             {PHOTO_URL ? (
-              <img src={images/IMG_0298_Original.JPG} alt="悠" />
+              <img src={PHOTO_URL} alt="悠" />
             ) : (
               <div className="photo-placeholder">
                 <div className="photo-placeholder-icon">
