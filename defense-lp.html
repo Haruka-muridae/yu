@@ -542,7 +542,7 @@
       submitBtn.disabled = true;
       submitBtn.textContent = '送信中...';
       // ★ GASエンドポイントURLをここに設定してください ★
-      const GAS_URL = 'https://script.google.com/macros/s/XXXXXXXX/exec';
+      const GAS_URL = 'https://script.google.com/macros/s/AKfycbzpew-0QtoQKtQur-TUrrImhAWlethmycQUQUXa8wkRjjaH7LjOkwgEu2EvzDDRlJupqw/exec';
       try {
         await fetch(GAS_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, message }) });
       } catch (_) {}
