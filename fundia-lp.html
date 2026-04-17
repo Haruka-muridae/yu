@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>個別指導 | 理解できる状態をつくる、一対一の学習支援</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1714;
+      --ink-soft: #3d3832;
+      --ink-muted: #7a7269;
+      --paper: #f7f4ef;
+      --paper-warm: #efe9de;
+      --paper-mid: #e6ddd0;
+      --accent: #5c4a32;
+      --accent-light: #8a6f4e;
+      --gold: #b89a6a;
+      --gold-light: #d4b88a;
+      --line: rgba(92, 74, 50, 0.15);
+      --line-strong: rgba(92, 74, 50, 0.3);
+      --serif: 'Shippori Mincho', 'Noto Serif JP', serif;
+      --sans: 'Noto Sans JP', sans-serif;
+      --radius: 2px;
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      font-weight: 300;
+      line-height: 1.9;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.4; }
+    h4 { font-family: var(--sans); font-weight: 500; }
+
+    .serif { font-family: var(--serif); }
+    .label {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+    }
+
+    section { padding: clamp(4rem, 10vw, 7rem) 0; }
+
+    hr.ornament {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto;
+      max-width: 200px;
+    }
+
+    /* ─── HEADER / NAV ─── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem clamp(1.5rem, 5vw, 3rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(247, 244, 239, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      transition: var(--transition);
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      border: 1px solid var(--accent-light);
+      padding: 0.45rem 1.2rem;
+      text-decoration: none;
+      transition: var(--transition);
+      border-radius: var(--radius);
+    }
+
+    .nav-cta:hover {
+      background: var(--accent);
+      color: var(--paper);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-top: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -15%;
+      width: 70vmin;
+      height: 70vmin;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,154,106,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      padding: clamp(3rem, 8vw, 6rem) 0;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.2s forwards;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1.hero-headline {
+      font-size: clamp(2rem, 5.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.4s forwards;
+    }
+
+    h1.hero-headline em {
+      font-style: normal;
+      color: var(--accent);
+      position: relative;
+    }
+
+    h1.hero-headline em::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: lineGrow 0.8s 1.2s forwards;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      color: var(--ink-soft);
+      line-height: 2;
+      max-width: 540px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.6s forwards;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.8s forwards;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--paper);
+      padding: 1rem 2.2rem;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(26,23,20,0.15);
+    }
+
+    .btn-note {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.03em;
+    }
+
+    /* ─── PROBLEM ─── */
+    #problem {
+      background: var(--paper-warm);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      margin-top: 0.8rem;
+      color: var(--ink);
+    }
+
+    .checklist {
+      display: grid;
+      gap: 0;
+    }
+
+    .check-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.2rem;
+      align-items: start;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .check-item:first-child { border-top: 1px solid var(--line); }
+
+    .check-mark {
+      width: 1.6rem;
+      height: 1.6rem;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .check-mark::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .check-text {
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+
+    .check-text strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .empathy-block {
+      margin-top: 3rem;
+      padding: 2rem 2.2rem;
+      border-left: 3px solid var(--gold);
+      background: rgba(255,255,255,0.5);
+    }
+
+    .empathy-block p {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      line-height: 2;
+      color: var(--ink-soft);
+    }
+
+    /* ─── SOLUTION ─── */
+    .solution-intro {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .solution-intro h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      margin: 0.8rem 0 1.4rem;
+    }
+
+    .solution-intro p {
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      color: var(--ink-soft);
+      line-height: 2;
+    }
+
+    .three-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .solution-card {
+      background: var(--paper-warm);
+      border: 1px solid var(--line-strong);
+      padding: 2rem 1.6rem;
+      border-radius: var(--radius);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .solution-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(92,74,50,0.1);
+    }
+
+    .solution-card .icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .solution-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+    }
+
+    .solution-card p {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.8;
+    }
+
+    /* ─── FEATURES ─── */
+    #features { background: var(--paper-warm); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    .feature-list {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .feature-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.8rem;
+      align-items: start;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .feature-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .feature-num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      min-width: 3rem;
+      text-align: center;
+      padding-top: 0.2rem;
+    }
+
+    .feature-body h3 {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      margin-bottom: 0.6rem;
+      color: var(--ink);
+    }
+
+    .feature-body p {
+      font-size: clamp(0.88rem, 1.8vw, 0.95rem);
+      color: var(--ink-soft);
+      line-height: 1.9;
+    }
+
+    /* ─── COMPARISON ─── */
+    #comparison {}
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: clamp(0.82rem, 1.8vw, 0.9rem);
+      margin-top: 2rem;
+    }
+
+    .compare-table th {
+      padding: 1rem 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      font-size: 0.82rem;
+      border-bottom: 2px solid var(--line-strong);
+    }
+
+    .compare-table th:first-child { text-align: left; color: var(--ink-muted); }
+    .compare-table th:nth-child(2) { color: var(--ink-muted); text-align: center; }
+    .compare-table th:last-child {
+      color: var(--accent);
+      text-align: center;
+      background: rgba(92,74,50,0.04);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .compare-table td {
+      padding: 0.9rem 1.2rem;
+      border-bottom: 1px solid var(--line);
+      line-height: 1.6;
+      vertical-align: middle;
+    }
+
+    .compare-table td:first-child { color: var(--ink-soft); font-size: 0.88rem; }
+    .compare-table td:nth-child(2) { text-align: center; color: var(--ink-muted); }
+    .compare-table td:last-child {
+      text-align: center;
+      background: rgba(92,74,50,0.03);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+
+    .yes { color: var(--accent) !important; font-weight: 600 !important; }
+    .no { color: #b0a090 !important; }
+
+    /* ─── FLOW ─── */
+    #flow { background: var(--paper-warm); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    .flow-steps {
+      display: grid;
+      gap: 0;
+      position: relative;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 4rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .flow-step:last-child { border-bottom: none; }
+
+    .step-num-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .step-num {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      background: var(--paper);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-connector {
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--gold-light), transparent);
+      margin: 0.4rem 0;
+      flex: 1;
+    }
+
+    .flow-step:last-child .step-connector { display: none; }
+
+    .step-body {
+      padding-top: 0.5rem;
+    }
+
+    .step-body h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+
+    .step-body p {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.9;
+    }
+
+    /* ─── CONSULTATION ─── */
+    .consult-box {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--line-strong);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+    }
+
+    .consult-box h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      color: var(--accent);
+    }
+
+    .consult-list {
+      list-style: none;
+      display: grid;
+      gap: 0.7rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .consult-list li {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+    }
+
+    .consult-list li::before {
+      content: '—';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    .notice-box {
+      background: rgba(92,74,50,0.05);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.4rem;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+
+    /* ─── TARGET ─── */
+    #target {}
+
+    .target-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .target-card {
+      display: flex;
+      gap: 1rem;
+      padding: 1.5rem;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      align-items: flex-start;
+      transition: var(--transition);
+      background: var(--paper-warm);
+    }
+
+    .target-card:hover { border-color: var(--gold); }
+
+    .target-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .target-card p {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+
+    /* ─── MESSAGE ─── */
+    #message { background: var(--accent); color: var(--paper); }
+
+    #message .label { color: var(--gold-light); }
+
+    #message h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--paper);
+      margin: 0.8rem 0 2rem;
+    }
+
+    #message p {
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      color: rgba(247,244,239,0.82);
+      line-height: 2.1;
+      max-width: 580px;
+      margin-bottom: 1.4rem;
+    }
+
+    /* ─── FINAL CTA ─── */
+    #cta {
+      text-align: center;
+    }
+
+    .cta-block {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .cta-block h2 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      margin-bottom: 1.2rem;
+    }
+
+    .cta-block p {
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      color: var(--ink-soft);
+      line-height: 2;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-cta-large {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--paper);
+      padding: 1.2rem 3rem;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      border: 1px solid var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .btn-cta-large:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(26,23,20,0.2);
+    }
+
+    .cta-note {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      line-height: 1.8;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes lineGrow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 600px) {
+      .compare-table { font-size: 0.78rem; }
+      .compare-table th, .compare-table td { padding: 0.7rem 0.8rem; }
+      .consult-box { padding: 1.8rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <a class="logo" href="#">個別指導</a>
+  <a class="nav-cta" href="#cta">無料相談を予約する</a>
+</header>
+
+
+<!-- ─── ① HERO ─── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-label">
+        <span class="label">One-on-One Learning Support</span>
+      </div>
+      <h1 class="hero-headline">
+        「わかった気がする」から、<br>
+        <em>本当に理解できる</em>へ。
+      </h1>
+      <p class="hero-sub">
+        知識を覚えることではなく、思考のプロセスを身につけること。<br>
+        完全一対一の個別指導で、あなただけの学びの構造をつくります。
+      </p>
+      <div class="hero-cta-group">
+        <a class="btn-primary" href="#cta">無料相談を予約する →</a>
+        <span class="btn-note">初回相談は無料です</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── ② PROBLEM ─── -->
+<section id="problem">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">こんな経験はありませんか</span>
+      <h2>頑張っているのに、<br>なぜか成果が出ない理由</h2>
+    </div>
+
+    <div class="checklist">
+      <div class="check-item reveal">
+        <div class="check-mark"></div>
+        <p class="check-text"><strong>勉強しているのに点数が伸びない。</strong><br>時間をかけているはずなのに、テストになると思い出せない。</p>
+      </div>
+      <div class="check-item reveal">
+        <div class="check-mark"></div>
+        <p class="check-text"><strong>何をどう学べばいいか、わからない。</strong><br>やることが多すぎて、どこから手をつけていいのか迷っている。</p>
+      </div>
+      <div class="check-item reveal">
+        <div class="check-mark"></div>
+        <p class="check-text"><strong>授業ではわかった気がするのに、一人になると解けない。</strong><br>説明を聞いているときは理解できているはずなのに、実際にはできていない。</p>
+      </div>
+      <div class="check-item reveal">
+        <div class="check-mark"></div>
+        <p class="check-text"><strong>集団の授業では置いていかれる感覚がある。</strong><br>自分のペースや疑問を後回しにしてしまい、わからないまま進んでしまう。</p>
+      </div>
+    </div>
+
+    <div class="empathy-block reveal">
+      <p>
+        これらは「努力が足りない」のではありません。<br>
+        学び方の設計が、あなたに合っていないだけです。<br>
+        正しい構造で学べば、誰でも理解できる状態になれます。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── ③ SOLUTION ─── -->
+<section id="solution">
+  <div class="container">
+    <div class="solution-intro reveal">
+      <span class="label">このサービスが提供するもの</span>
+      <h2>「教わる」ではなく、<br>「理解できる状態をつくる」</h2>
+      <p>
+        一般的な指導は「知識を伝える」ことを目的にしています。<br>
+        このサービスは違います。<br>あなたが「自分で考え、理解できる力」を持つことを目的としています。
+      </p>
+    </div>
+
+    <div class="three-cols">
+      <div class="solution-card reveal">
+        <span class="icon">🧠</span>
+        <h3>思考プロセスの設計</h3>
+        <p>答えではなく、答えにたどり着くための考え方を一緒に構築します。</p>
+      </div>
+      <div class="solution-card reveal">
+        <span class="icon">🗺️</span>
+        <h3>学習方法の個別設計</h3>
+        <p>あなたの現状・目的・特性に合わせた、オーダーメイドの学習プランをつくります。</p>
+      </div>
+      <div class="solution-card reveal">
+        <span class="icon">♻️</span>
+        <h3>再現性のある学習力</h3>
+        <p>一時的な点数アップではなく、どんな分野でも自分で学べる汎用スキルを獲得します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── ④ FEATURES ─── -->
+<section id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">サービスの特徴</span>
+      <h2>5つの核となるアプローチ</h2>
+    </div>
+
+    <div class="feature-list">
+      <div class="feature-item reveal">
+        <div class="feature-num">01</div>
+        <div class="feature-body">
+          <h3>「なぜそうなるのか」を徹底的に扱う</h3>
+          <p>表面的な解法の暗記ではなく、なぜその考え方が成立するのかという根拠から理解します。表面だけ学んだ知識は、少し変化した問題に対応できません。根拠から理解した知識は、応用が利きます。</p>
+        </div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-num">02</div>
+        <div class="feature-body">
+          <h3>あなたの「わからない」の構造を特定する</h3>
+          <p>わからない原因は、語彙・概念・手順・接続など、層によって異なります。どこで止まっているのかを正確に特定し、そこから再構築することで、無駄なく理解が進みます。</p>
+        </div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-num">03</div>
+        <div class="feature-body">
+          <h3>思考の整理と言語化を支援する</h3>
+          <p>「なんとなくわかる」状態から、「人に説明できる」状態へ。頭の中が整理されることで、定着率と応用力が大きく変わります。</p>
+        </div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-num">04</div>
+        <div class="feature-body">
+          <h3>あなたのペースと目的に合わせた設計</h3>
+          <p>一人ひとりの理解スピード・得意不得意・目標に合わせてプログラムを調整します。集団授業のような「みんなに合わせる」必要はありません。</p>
+        </div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-num">05</div>
+        <div class="feature-body">
+          <h3>学び方そのものを身につける</h3>
+          <p>指導期間が終わったあとも、自分で学び続けられる状態を目指します。目的は「依存してもらうこと」ではなく、「自立してもらうこと」です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── ⑤ COMPARISON ─── -->
+<section id="comparison">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">他サービスとの違い</span>
+      <h2>何が違うのか、正直に示します</h2>
+    </div>
+
+    <div class="reveal" style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            <th>一般的な塾・集団授業</th>
+            <th>このサービス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>指導スタイル</td>
+            <td class="no">集団・画一的</td>
+            <td class="yes">完全一対一・個別最適化</td>
+          </tr>
+          <tr>
+            <td>重視すること</td>
+            <td class="no">知識の伝達・暗記</td>
+            <td class="yes">思考プロセスの習得</td>
+          </tr>
+          <tr>
+            <td>目的</td>
+            <td class="no">目先の成績向上</td>
+            <td class="yes">再現性のある学習力の獲得</td>
+          </tr>
+          <tr>
+            <td>ペース</td>
+            <td class="no">カリキュラム基準</td>
+            <td class="yes">あなたの理解に合わせる</td>
+          </tr>
+          <tr>
+            <td>対象年齢</td>
+            <td class="no">限定的（中学生など）</td>
+            <td class="yes">10代〜30代（幅広く対応）</td>
+          </tr>
+          <tr>
+            <td>指導後の自立</td>
+            <td class="no">継続依存が前提</td>
+            <td class="yes">自分で学べる状態を目標にする</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── ⑥ FLOW ─── -->
+<section id="flow">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">指導の流れ</span>
+      <h2>相談からはじまる、5つのステップ</h2>
+    </div>
+
+    <div class="flow-steps">
+      <div class="flow-step reveal">
+        <div class="step-num-wrap">
+          <div class="step-num">1</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>無料相談（初回）</h3>
+          <p>現在の状況・目標・困っていることをヒアリングします。「何が問題なのか」を一緒に言語化することから始めます。ここでの判断は不要です。まず話すだけで構いません。</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="step-num-wrap">
+          <div class="step-num">2</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>現状分析と課題の特定</h3>
+          <p>「何がわかっていて、何がわかっていないか」を構造的に整理します。単に弱点を探すのではなく、なぜそこが止まっているのかを明らかにします。</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="step-num-wrap">
+          <div class="step-num">3</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>個別学習プランの設計</h3>
+          <p>あなたの目的・ペース・生活リズムに合わせた学習プランを設計します。一般的なテンプレートではなく、あなた専用のロードマップです。</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="step-num-wrap">
+          <div class="step-num">4</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>指導の開始・継続的な調整</h3>
+          <p>学習を進めながら、理解の深まりと変化に応じてプランを柔軟に調整します。詰め込みではなく、積み上げる設計です。</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="step-num-wrap">
+          <div class="step-num">5</div>
+          <div class="step-connector" style="display:none"></div>
+        </div>
+        <div class="step-body">
+          <h3>自立した学習への移行</h3>
+          <p>最終的な目標は、指導なしでも自分で学べる状態になることです。卒業を前提として、学習力そのものを育てます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── ⑦ CONSULTATION ─── -->
+<section id="consult">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">無料相談について</span>
+      <h2>まず「話す」ことから始めてください</h2>
+    </div>
+
+    <div class="consult-box reveal">
+      <h3>初回相談でできること</h3>
+      <ul class="consult-list">
+        <li>現在の学習状況や悩みをじっくり話す</li>
+        <li>「何が問題なのか」を一緒に整理・言語化する</li>
+        <li>このサービスが自分に合うかどうかを判断する</li>
+        <li>具体的な改善の方向性について考える</li>
+      </ul>
+      <div class="notice-box">
+        <strong>📌 ご確認ください：</strong><br>
+        初回相談は無料ですが、2回目以降の相談は有料となります。<br>
+        授業（指導）は有料です。<br>
+        初回相談の場で、料金体系についても丁寧にご説明します。<br>
+        無理な勧誘は一切行いません。
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top: 2.5rem;" class="reveal">
+      <a class="btn-primary" href="#cta">無料相談を予約する →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── ⑧ TARGET ─── -->
+<section id="target">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">こんな方へ</span>
+      <h2>このサービスが向いている人</h2>
+    </div>
+
+    <div class="target-grid">
+      <div class="target-card reveal">
+        <div class="target-icon">📚</div>
+        <p>勉強は続けているのに、なかなか成果につながらないと感じている</p>
+      </div>
+      <div class="target-card reveal">
+        <div class="target-icon">🧭</div>
+        <p>何をどう学べばよいか、学習の方向性が定まっていない</p>
+      </div>
+      <div class="target-card reveal">
+        <div class="target-icon">👥</div>
+        <p>集団授業のペースが合わず、自分の疑問を持ち越してしまっている</p>
+      </div>
+      <div class="target-card reveal">
+        <div class="target-icon">💡</div>
+        <p>「わかった気がする」の先にある、本質的な理解を求めている</p>
+      </div>
+      <div class="target-card reveal">
+        <div class="target-icon">🔄</div>
+        <p>一時的な成績向上ではなく、どんな場面でも使える学習力を持ちたい</p>
+      </div>
+      <div class="target-card reveal">
+        <div class="target-icon">🗣️</div>
+        <p>学んだことを自分の言葉で説明できる、本当の理解力を身につけたい</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── ⑨ MESSAGE ─── -->
+<section id="message">
+  <div class="container">
+    <span class="label">このサービスの考え方</span>
+    <h2>「わかる」は、つくれる。</h2>
+    <p>
+      学習の困難を「能力の問題」だと考えることには、私は反対です。
+      多くの場合、問題は「方法」にあります。
+    </p>
+    <p>
+      正しい構造で、正しい順序で、自分に合ったペースで学べば、
+      誰でも理解できる状態になれます。
+    </p>
+    <p>
+      このサービスが目指すのは、知識の移植ではありません。
+      あなた自身が「考えられる人」になることです。
+    </p>
+    <p>
+      学ぶことは本来、自分の思考が広がっていく経験です。
+      その経験を、一緒につくりましょう。
+    </p>
+  </div>
+</section>
+
+
+<!-- ─── ⑩ FINAL CTA ─── -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-block">
+      <hr class="ornament" style="margin-bottom:3rem;">
+      <div class="reveal">
+        <span class="label" style="display:block; text-align:center; margin-bottom:1rem;">まずは話しましょう</span>
+        <h2>一歩目は、<br>相談するだけでいい。</h2>
+        <p>
+          「合うかどうかわからない」という段階で構いません。
+          あなたの状況をお聞きし、一緒に整理するところから始めます。
+        </p>
+        <a class="btn-cta-large" href="#">無料相談を予約する</a><br>
+        <p class="cta-note">
+          初回相談は無料 ／ 2回目以降の相談・指導は有料<br>
+          勧誘や押し売りは一切行いません
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <p>© 2025 個別指導サービス — All Rights Reserved</p>
+  </div>
+</footer>
+
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger children in groups
+  document.querySelectorAll('.checklist, .three-cols, .feature-list, .flow-steps, .target-grid').forEach(parent => {
+    const children = parent.querySelectorAll('.reveal');
+    children.forEach((child, i) => {
+      child.style.transitionDelay = `${i * 80}ms`;
+    });
+  });
+</script>
+
+</body>
+</html>
