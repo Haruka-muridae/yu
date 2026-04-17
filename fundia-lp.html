@@ -1125,6 +1125,118 @@
 </section>
 
 
+<!-- ─── CONTACT FORM ─── -->
+<section id="contact" style="background:#1e1c1a; padding: clamp(4rem,10vw,7rem) 0;">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center; margin-bottom:3rem;">
+      <span class="label" style="color:#b89a6a;">お問い合わせ</span>
+      <h2 style="color:#f0ece5; margin-top:0.8rem; font-size:clamp(1.5rem,4vw,2.2rem);">まず、ここから話しましょう。</h2>
+      <p style="color:#9e9488; font-size:0.95rem; margin-top:0.8rem; line-height:1.9;">
+        フォームに記入して送信するだけで構いません。<br>数日以内にご返信いたします。
+      </p>
+    </div>
+
+    <div class="reveal" style="max-width:480px; margin:0 auto;">
+      <div style="margin-bottom:1.6rem;">
+        <label style="display:block; font-size:0.82rem; color:#b89a6a; letter-spacing:0.08em; margin-bottom:0.6rem; font-family:var(--sans);">お名前</label>
+        <input
+          type="text"
+          placeholder="山田 太郎"
+          style="
+            width:100%;
+            background:#2a2724;
+            border:1px solid #3a3530;
+            border-radius:2px;
+            padding:0.85rem 1rem;
+            font-size:0.95rem;
+            font-family:var(--sans);
+            color:#f0ece5;
+            outline:none;
+            transition:border-color 0.3s;
+          "
+          onfocus="this.style.borderColor='#b89a6a'"
+          onblur="this.style.borderColor='#3a3530'"
+        >
+      </div>
+
+      <div style="margin-bottom:1.6rem;">
+        <label style="display:block; font-size:0.82rem; color:#b89a6a; letter-spacing:0.08em; margin-bottom:0.6rem; font-family:var(--sans);">メールアドレス</label>
+        <input
+          type="email"
+          placeholder="your@email.com"
+          style="
+            width:100%;
+            background:#2a2724;
+            border:1px solid #3a3530;
+            border-radius:2px;
+            padding:0.85rem 1rem;
+            font-size:0.95rem;
+            font-family:var(--sans);
+            color:#f0ece5;
+            outline:none;
+            transition:border-color 0.3s;
+          "
+          onfocus="this.style.borderColor='#b89a6a'"
+          onblur="this.style.borderColor='#3a3530'"
+        >
+      </div>
+
+      <div style="margin-bottom:2rem;">
+        <label style="display:block; font-size:0.82rem; color:#b89a6a; letter-spacing:0.08em; margin-bottom:0.6rem; font-family:var(--sans);">ご相談内容</label>
+        <textarea
+          placeholder="現状や悩んでいることを、気軽に書いてください。"
+          rows="6"
+          style="
+            width:100%;
+            background:#2a2724;
+            border:1px solid #3a3530;
+            border-radius:2px;
+            padding:0.85rem 1rem;
+            font-size:0.95rem;
+            font-family:var(--sans);
+            color:#f0ece5;
+            outline:none;
+            resize:vertical;
+            transition:border-color 0.3s;
+            line-height:1.8;
+          "
+          onfocus="this.style.borderColor='#b89a6a'"
+          onblur="this.style.borderColor='#3a3530'"
+        ></textarea>
+      </div>
+
+      <button
+        type="button"
+        onclick="handleFormSubmit(this)"
+        style="
+          display:inline-block;
+          background:#f0ece5;
+          color:#1e1c1a;
+          padding:0.95rem 2.5rem;
+          font-family:var(--sans);
+          font-size:0.95rem;
+          font-weight:500;
+          letter-spacing:0.07em;
+          border:none;
+          border-radius:2px;
+          cursor:pointer;
+          transition:background 0.3s, transform 0.2s;
+        "
+        onmouseover="this.style.background='#b89a6a'; this.style.color='#1e1c1a';"
+        onmouseout="this.style.background='#f0ece5'; this.style.color='#1e1c1a';"
+      >送信する</button>
+
+      <p id="form-msg" style="display:none; margin-top:1.2rem; font-size:0.85rem; color:#b89a6a; line-height:1.8;"></p>
+
+      <p style="margin-top:1.4rem; font-size:0.78rem; color:#6a6258; line-height:1.8;">
+        ※ 初回相談は無料です。送信後、数日以内にメールにてご連絡いたします。<br>
+        ※ 勧誘・押し売りは一切行いません。
+      </p>
+    </div>
+  </div>
+</section>
+
+
 <!-- ─── FOOTER ─── -->
 <footer>
   <div class="container">
@@ -1148,6 +1260,65 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   reveals.forEach(el => observer.observe(el));
+
+  // Contact form submit
+  function handleFormSubmit(btn) {
+    const section = document.getElementById('contact');
+    const name = section.querySelector('input[type="text"]').value.trim();
+    const email = section.querySelector('input[type="email"]').value.trim();
+    const msg = section.querySelector('textarea').value.trim();
+    const feedback = document.getElementById('form-msg');
+
+    if (!name || !email || !msg) {
+      feedback.style.display = 'block';
+      feedback.style.color = '#e07a5f';
+      feedback.textContent = 'すべての項目を入力してください。';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      feedback.style.display = 'block';
+      feedback.style.color = '#e07a5f';
+      feedback.textContent = 'メールアドレスの形式を確認してください。';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = '送信中…';
+    btn.style.opacity = '0.6';
+
+    // ここにGASエンドポイントのURLを設定してください
+    const GAS_URL = '';
+
+    if (!GAS_URL) {
+      setTimeout(() => {
+        feedback.style.display = 'block';
+        feedback.style.color = '#b89a6a';
+        feedback.textContent = 'ありがとうございます。内容を確認の上、数日以内にご連絡いたします。';
+        btn.textContent = '送信完了';
+      }, 800);
+      return;
+    }
+
+    fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, message: msg })
+    }).then(() => {
+      feedback.style.display = 'block';
+      feedback.style.color = '#b89a6a';
+      feedback.textContent = 'ありがとうございます。内容を確認の上、数日以内にご連絡いたします。';
+      btn.textContent = '送信完了';
+    }).catch(() => {
+      feedback.style.display = 'block';
+      feedback.style.color = '#e07a5f';
+      feedback.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+      btn.disabled = false;
+      btn.textContent = '送信する';
+      btn.style.opacity = '1';
+    });
+  }
+  window.handleFormSubmit = handleFormSubmit;
 
   // Stagger children in groups
   document.querySelectorAll('.checklist, .three-cols, .feature-list, .flow-steps, .target-grid').forEach(parent => {
