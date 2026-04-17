@@ -1263,12 +1263,13 @@
 
   // Contact form submit
   function handleFormSubmit(btn) {
-    const section = document.getElementById('contact');
-    const name = section.querySelector('input[type="text"]').value.trim();
-    const email = section.querySelector('input[type="email"]').value.trim();
-    const msg = section.querySelector('textarea').value.trim();
+    const section  = document.getElementById('contact');
+    const name     = section.querySelector('input[type="text"]').value.trim();
+    const email    = section.querySelector('input[type="email"]').value.trim();
+    const msg      = section.querySelector('textarea').value.trim();
     const feedback = document.getElementById('form-msg');
 
+    // バリデーション
     if (!name || !email || !msg) {
       feedback.style.display = 'block';
       feedback.style.color = '#e07a5f';
@@ -1285,9 +1286,10 @@
     btn.disabled = true;
     btn.textContent = '送信中…';
     btn.style.opacity = '0.6';
+    feedback.style.display = 'none';
 
-    // ここにGASエンドポイントのURLを設定してください
-    const GAS_URL = 'https://script.google.com/macros/s/AKfycby4LvF3rCtEsx63E83AYh9MQsqH9KnoWzGq19FrNLaQazHJtCdpEQjODrCKJ8kV0cE_oA/exec';
+    // ▼ デプロイ後にGASのURLを貼り付けてください
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbwCyIWgUbpBc8kCvSWiif8nvhcXz246BLXz0ZM2lFDaimP7I-bZmSatk9DLTHTt4fYxXA/exec';
 
     if (!GAS_URL) {
       setTimeout(() => {
@@ -1299,12 +1301,16 @@
       return;
     }
 
+    // URLエンコード形式で送信（no-corsでもGASに正しく届く）
+    const body = new URLSearchParams({ name, email, message: msg }).toString();
+
     fetch(GAS_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, message: msg })
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
     }).then(() => {
+      // no-corsはレスポンスが読めないため、送信できれば成功とみなす
       feedback.style.display = 'block';
       feedback.style.color = '#b89a6a';
       feedback.textContent = 'ありがとうございます。内容を確認の上、数日以内にご連絡いたします。';
