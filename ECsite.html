@@ -591,13 +591,49 @@ footer small { font-size: 0.72rem; color: #bbb; }
 </footer>
 
 <script>
-  // data-url が設定されたカードをクリックで新タブ遷移
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbySJfmbX6gObQqAIWearr59W1woVlZSkVW-Vq9qV9rXkO2-pVodT-E_ApTIxaRytDNgDQ/exec'; // ← 変更
+
+  // 商品カードのクリック処理
   document.querySelectorAll('.card[data-url]').forEach(function(card) {
     var url = card.getAttribute('data-url');
     if (url && url.trim() !== '') {
       card.addEventListener('click', function() {
         window.open(url, '_blank', 'noopener,noreferrer');
       });
+    }
+  });
+
+  // フォーム送信処理
+  document.querySelector('.form-submit').addEventListener('click', async function () {
+    const name    = document.querySelector('input[type="text"]').value.trim();
+    const email   = document.querySelector('input[type="email"]').value.trim();
+    const message = document.querySelector('textarea').value.trim();
+
+    if (!name || !email || !message) {
+      alert('すべての項目を入力してください。');
+      return;
+    }
+
+    this.textContent = '送信中...';
+    this.disabled = true;
+
+    try {
+      await fetch(GAS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      alert('送信が完了しました。24時間以内にご連絡します。');
+      document.querySelector('input[type="text"]').value  = '';
+      document.querySelector('input[type="email"]').value = '';
+      document.querySelector('textarea').value            = '';
+    } catch (err) {
+      alert('送信に失敗しました。時間をおいてお試しください。');
+    } finally {
+      this.textContent = '送信する';
+      this.disabled = false;
     }
   });
 </script>
