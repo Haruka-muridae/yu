@@ -174,16 +174,18 @@ nav {
   margin: 1.5rem auto 0;
   padding: 0 2rem 3.5rem;
 }
+
 .card {
   background: #fff;
   border-radius: 16px;
   border: 1px solid #ede8df;
   padding: 1.5rem 1.3rem 1.3rem;
   position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
-.card:hover { transform: translateY(-5px); box-shadow: 0 10px 32px rgba(245,166,35,0.12); }
 .card::before {
   content: '';
   position: absolute;
@@ -191,6 +193,24 @@ nav {
   height: 4px;
   background: linear-gradient(90deg, #f5c43a, #f5a623);
 }
+
+/* URLありカード */
+.card[data-url]:not([data-url=""]) {
+  cursor: pointer;
+}
+.card[data-url]:not([data-url=""]):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 32px rgba(245,166,35,0.15);
+  border-color: #f5c976;
+}
+
+/* URLなしカード */
+.card:not([data-url]):hover,
+.card[data-url=""]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
 .card-icon {
   width: 44px; height: 44px;
   border-radius: 12px;
@@ -198,6 +218,7 @@ nav {
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 1rem;
   font-size: 22px;
+  flex-shrink: 0;
 }
 .card-name {
   font-family: 'Shippori Mincho', serif;
@@ -211,15 +232,36 @@ nav {
   font-size: 0.8rem;
   color: #777;
   line-height: 1.75;
+  flex: 1;
+}
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.9rem;
+  gap: 0.5rem;
 }
 .card-tag {
-  display: inline-block;
-  margin-top: 0.9rem;
   font-size: 0.7rem;
   background: #fff3c4;
   color: #9a6800;
   border-radius: 20px;
   padding: 3px 11px;
+  flex-shrink: 0;
+}
+
+/* 「詳細を見る」ラベル — URLがあるカードのみ表示 */
+.card-link-label {
+  display: none;
+  font-size: 0.7rem;
+  color: #f5a623;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.card-link-label::after { content: ' →'; }
+.card[data-url]:not([data-url=""]) .card-link-label {
+  display: inline;
 }
 
 /* STORY SECTION */
@@ -401,17 +443,16 @@ footer small { font-size: 0.72rem; color: #bbb; }
 </nav>
 
 <section class="hero">
-  <div class="hero-badge">個人セレクト型 営業代行</div>
+  <div class="hero-badge">個人セレクト型 商品紹介</div>
   <h1>自分が話して<br><em>「これだ」</em>と思ったものを、<br>あなたに届けます。</h1>
   <p>流行や利益ではなく、自分自身が本当によいと感じたものだけをセレクト。一つひとつに自信を持っておすすめします。</p>
   <a href="#contact" class="btn-primary">商品について相談する</a>
 </section>
 
 <div class="policy-strip">
-  <div class="policy-item"><span class="policy-dot"></span>実際に自分で使ったものだけ</div>
+  <div class="policy-item"><span class="policy-dot"></span>実際に話を聞いたり、使ったものだけ</div>
   <div class="policy-item"><span class="policy-dot"></span>メリットもデメリットも正直に伝える</div>
   <div class="policy-item"><span class="policy-dot"></span>押し売り一切なし</div>
-  <div class="policy-item"><span class="policy-dot"></span>継続的なサポートあり</div>
 </div>
 
 <div class="section-header">
@@ -420,42 +461,72 @@ footer small { font-size: 0.72rem; color: #bbb; }
   <p class="section-sub">以下はすべて、自分自身が「よい」と判断したものだけです。ラインナップは随時更新されます。</p>
 </div>
 
+<!--
+  =====================================================
+  商品カード 設定方法
+  ─────────────────────────────────────────────────────
+  data-url="https://..."  ← リンク先URLを入力
+  data-url=""             ← 空のままにするとリンクなし
+  =====================================================
+-->
 <div class="cards-grid">
-  <div class="card">
+
+  <div class="card" data-url="https://example.com/product-a">
     <div class="card-icon">☕</div>
     <div class="card-name">商品名 A</div>
     <div class="card-desc">実際に使って感じたことを正直にお伝えします。ここに商品の特徴や使い心地などの説明が入ります。</div>
-    <span class="card-tag">おすすめ度 ★★★★★</span>
+    <div class="card-bottom">
+      <span class="card-tag">おすすめ度 ★★★★★</span>
+      <span class="card-link-label">詳細を見る</span>
+    </div>
   </div>
-  <div class="card">
+
+  <div class="card" data-url="https://example.com/product-b">
     <div class="card-icon">📦</div>
     <div class="card-name">商品名 B</div>
     <div class="card-desc">使って驚いたポイントや、どんな人に向いているかなどをわかりやすくご紹介します。</div>
-    <span class="card-tag">おすすめ度 ★★★★☆</span>
+    <div class="card-bottom">
+      <span class="card-tag">おすすめ度 ★★★★☆</span>
+      <span class="card-link-label">詳細を見る</span>
+    </div>
   </div>
-  <div class="card">
+
+  <div class="card" data-url="https://example.com/product-c">
     <div class="card-icon">🌿</div>
     <div class="card-name">商品名 C</div>
     <div class="card-desc">他の商品との違いや、自分が使い続けている理由など、率直な言葉でお伝えします。</div>
-    <span class="card-tag">おすすめ度 ★★★★★</span>
+    <div class="card-bottom">
+      <span class="card-tag">おすすめ度 ★★★★★</span>
+      <span class="card-link-label">詳細を見る</span>
+    </div>
   </div>
-  <div class="card">
+
+  <div class="card" data-url="">
     <div class="card-icon">✨</div>
     <div class="card-name">商品名 D</div>
     <div class="card-desc">デメリットも包み隠さずお伝えします。それでもおすすめできると感じたものだけを掲載しています。</div>
-    <span class="card-tag">おすすめ度 ★★★★☆</span>
+    <div class="card-bottom">
+      <span class="card-tag">おすすめ度 ★★★★☆</span>
+      <span class="card-link-label">詳細を見る</span>
+    </div>
   </div>
-  <div class="card">
+
+  <div class="card" data-url="https://example.com/product-e">
     <div class="card-icon">🎯</div>
     <div class="card-name">商品名 E</div>
     <div class="card-desc">自分の生活が変わったと感じた一品。使う前と後でどんな変化があったかをお話しします。</div>
-    <span class="card-tag">おすすめ度 ★★★★★</span>
+    <div class="card-bottom">
+      <span class="card-tag">おすすめ度 ★★★★★</span>
+      <span class="card-link-label">詳細を見る</span>
+    </div>
   </div>
+
   <div class="card" style="border: 2px dashed #ede8df; background: #fafaf8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 180px;">
     <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">＋</div>
     <div class="card-name" style="font-size: 0.88rem; color: #bbb;">随時追加中</div>
     <div class="card-desc" style="font-size: 0.75rem; color: #ccc;">気になる商品があればお気軽にご相談ください</div>
   </div>
+
 </div>
 
 <section class="story">
@@ -518,6 +589,18 @@ footer small { font-size: 0.72rem; color: #bbb; }
   <span class="logo">YUKI'S SELECT</span>
   <small>© 2025 Yuki's Select. All rights reserved.</small>
 </footer>
+
+<script>
+  // data-url が設定されたカードをクリックで新タブ遷移
+  document.querySelectorAll('.card[data-url]').forEach(function(card) {
+    var url = card.getAttribute('data-url');
+    if (url && url.trim() !== '') {
+      card.addEventListener('click', function() {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      });
+    }
+  });
+</script>
 
 </body>
 </html>
