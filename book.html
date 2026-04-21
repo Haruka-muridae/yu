@@ -317,7 +317,130 @@ const PAGES = [
       <span class="tag">Figma</span>
     `
   },
+  // --- ページ 1（左）：表紙・導入 ---
+  {
+    side: "left",
+    html: `
+      <h1>正負の数の世界へようこそ</h1>
+      <div class="divider"></div>
+      <p>
+        これまで皆さんは、「0」や「1, 2, 3...」といった数を使ってきました。<br>
+        しかし、私たちの身の回りには「0より小さい数」も存在しています。
+      </p>
+      <p>
+        この本では、新しい数の仲間である「負の数」について、一緒に楽しく学んでいきましょう！ページをめくって、新しい世界を覗いてみてください。
+      </p>
+    `
+  },
 
+  // --- ページ 2（右）：正の数と負の数 ---
+  {
+    side: "right",
+    html: `
+      <h2>1. 正の数と負の数とは？</h2>
+      <div class="divider"></div>
+      <p>
+        冬の寒い日、天気予報で「明日の最低気温は<strong>マイナス3℃</strong>でしょう」と聞くことはありませんか？
+      </p>
+      <p>
+        このように、0より小さい数を表すときに使うのが <strong>負の符号「-」（マイナス）</strong> です。<br>
+        反対に、0より大きい数には <strong>正の符号「+」（プラス）</strong> をつけます。
+      </p>
+      <div style="background-color: #f9f9f9; padding: 10px; border-radius: 5px; margin-top: 15px;">
+        <span class="tag">正の数</span> 0より大きい数（例：+5, +3.2）<br><br>
+        <span class="tag">負の数</span> 0より小さい数（例：-3, -1.5）
+      </div>
+    `
+  },
+
+  // --- ページ 3（左）：数直線 ---
+  {
+    side: "left",
+    html: `
+      <h2>2. 数直線で見てみよう</h2>
+      <div class="divider"></div>
+      <p>
+        数を直線の上に並べたものを<strong>数直線（すうちょくせん）</strong>と呼びます。
+      </p>
+      <p>
+        基準となる「0」の点を<strong>原点（げんてん）</strong>といいます。<br>
+        原点より<strong>右側</strong>が正の数、<strong>左側</strong>が負の数です。
+      </p>
+      <ul>
+        <li>右へ行くほど数は大きくなる</li>
+        <li>左へ行くほど数は小さくなる</li>
+      </ul>
+      <p>
+        負の数を知ることで、これまで0で止まっていた数直線が、左側へも無限に広がるようになりました！
+      </p>
+    `
+  },
+
+  // --- ページ 4（右）：絶対値 ---
+  {
+    side: "right",
+    html: `
+      <h2>3. 絶対値（ぜったいち）</h2>
+      <div class="divider"></div>
+      <p>
+        数直線上で、ある数が<strong>原点（0）からどれだけ離れているか</strong>を表す距離を、その数の<strong>絶対値</strong>といいます。
+      </p>
+      <p>
+        距離を表すものなので、絶対に0以上の数になります（マイナスにはなりません）。
+      </p>
+      <div style="background-color: #eef7ff; padding: 10px; border-radius: 5px; margin-top: 15px;">
+        <p><strong>【例】</strong></p>
+        <ul>
+          <li>「+5」の絶対値は <strong>5</strong></li>
+          <li>「-3」の絶対値は <strong>3</strong></li>
+          <li>「0」の絶対値は <strong>0</strong></li>
+        </ul>
+      </div>
+    `
+  },
+
+  // --- ページ 5（左）：数の大小 ---
+  {
+    side: "left",
+    html: `
+      <h2>4. 数の大小関係</h2>
+      <div class="divider"></div>
+      <p>
+        数直線では、<strong>右にある数ほど大きく、左にある数ほど小さく</strong>なります。<br>
+        ここで、負の数同士を比べるときは少し注意が必要です！
+      </p>
+      <p>
+        たとえば、「-2」と「-5」では、数直線上では「-2」の方が右にあるため、<strong>-2 の方が大きい</strong>ことになります。
+      </p>
+      <div style="background-color: #fff3cd; padding: 10px; border-radius: 5px; margin-top: 15px;">
+        <p><strong>💡 大切なポイント</strong></p>
+        <p>負の数は、絶対値が大きい（数字の部分が大きい）ほど、実際の数は<strong>小さく</strong>なります。</p>
+      </div>
+    `
+  },
+
+  // --- ページ 6（右）：まとめ ---
+  {
+    side: "right",
+    html: `
+      <h1>まとめ</h1>
+      <div class="divider"></div>
+      <p>
+        ここまで「正負の数」の基本について学びました。重要なポイントをおさらいしましょう。
+      </p>
+      <ol style="line-height: 1.8;">
+        <li>0より小さい数が<strong>負の数</strong></li>
+        <li>原点(0)からの距離が<strong>絶対値</strong></li>
+        <li>負の数は、絶対値が大きいほど<strong>小さい</strong></li>
+      </ol>
+      <p>
+        次の章では、この新しい数を使った「たし算」や「ひき算」に挑戦してみましょう！
+      </p>
+      <div style="text-align: right; margin-top: 20px;">
+        <span class="tag" style="background-color: #007bff; color: white;">次の章へ進む ▶</span>
+      </div>
+    `
+  }
   // --- ページ 3（左）---
   {
     side: "left",
