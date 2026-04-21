@@ -90,6 +90,116 @@
 
   .nav-cta:hover { background: var(--sage) !important; }
 
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--charcoal);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile drawer */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: rgba(250,248,245,0.98);
+    backdrop-filter: blur(16px);
+    z-index: 99;
+    padding: 1.5rem 2rem 2rem;
+    border-bottom: 1px solid var(--light-gray);
+    flex-direction: column;
+    gap: 0;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+
+  .mobile-nav.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .mobile-nav a {
+    display: block;
+    padding: 1rem 0;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.05rem;
+    color: var(--charcoal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--light-gray);
+    transition: color 0.2s;
+  }
+
+  .mobile-nav a:last-child { border-bottom: none; }
+  .mobile-nav a:hover { color: var(--sage-dark); }
+
+  .mobile-nav .mobile-cta {
+    margin-top: 1.2rem;
+    background: var(--sage-dark);
+    color: white !important;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 2rem;
+    border-bottom: none !important;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  /* Mobile sticky bottom CTA */
+  .mobile-sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 98;
+    padding: 0.8rem 1rem;
+    background: white;
+    border-top: 1px solid var(--light-gray);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    gap: 0.6rem;
+  }
+
+  .mobile-sticky-cta a {
+    flex: 1;
+    text-align: center;
+    padding: 0.85rem 0.5rem;
+    border-radius: 2rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .sticky-call {
+    background: var(--sage-dark);
+    color: white;
+  }
+
+  .sticky-form {
+    background: var(--cream);
+    color: var(--sage-dark);
+    border: 1.5px solid var(--sage-light);
+  }
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -857,6 +967,152 @@
     transform: translateY(0);
   }
 
+  /* ══════════════════════════════════════════
+     RESPONSIVE — TABLET (≤ 1024px)
+  ══════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    nav { padding: 1rem 2rem; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 6rem 2.5rem 3rem; }
+    .hero-right { height: 340px; }
+    .hero-image-wrapper::before { background: linear-gradient(to bottom, var(--warm-white) 0%, transparent 40%); }
+
+    .features { padding: 5rem 2.5rem; }
+    .feature-grid { grid-template-columns: 1fr 1fr; }
+
+    .flow { padding: 5rem 2.5rem; }
+    .flow-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .flow-steps::before { display: none; }
+
+    .services { padding: 5rem 2.5rem; }
+
+    .recruit { padding: 5rem 2.5rem; }
+    .recruit-inner { grid-template-columns: 1fr; gap: 3rem; }
+
+    .testimonials { padding: 5rem 2.5rem; }
+    .testimonial-grid { grid-template-columns: 1fr 1fr; }
+
+    .cta-section { padding: 5rem 2.5rem; }
+
+    footer { padding: 3rem 2.5rem 2rem; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+
+  /* ══════════════════════════════════════════
+     RESPONSIVE — MOBILE (≤ 640px)
+  ══════════════════════════════════════════ */
+  @media (max-width: 640px) {
+    /* Nav */
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-nav { display: flex; }
+
+    /* Hero */
+    .hero { grid-template-columns: 1fr; padding-top: 64px; }
+    .hero-left {
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .hero-tag {
+      justify-content: center;
+      font-size: 0.65rem;
+    }
+    .hero-title { font-size: clamp(1.9rem, 7vw, 2.5rem); }
+    .hero-sub { font-size: 0.88rem; max-width: 100%; margin-left: auto; margin-right: auto; }
+    .hero-actions { justify-content: center; flex-direction: column; align-items: center; }
+    .btn-primary, .btn-outline { width: 100%; max-width: 320px; text-align: center; }
+    .hero-stats { justify-content: center; gap: 1.5rem; }
+    .hero-right { height: 280px; }
+    .nurse-svg { width: 55%; }
+
+    /* Startup badge */
+    .startup-badge { font-size: 0.62rem; }
+
+    /* Sections common */
+    .features,
+    .flow,
+    .services,
+    .testimonials,
+    .cta-section { padding: 4rem 1.2rem; }
+    .recruit { padding: 4rem 1.2rem; }
+
+    .section-header { margin-bottom: 3rem; }
+    .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+
+    /* Features */
+    .feature-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .feature-card { padding: 1.8rem; }
+
+    /* Flow */
+    .flow-steps {
+      grid-template-columns: 1fr;
+      gap: 0;
+      position: relative;
+    }
+    .flow-steps::before { display: none; }
+    .flow-step {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      text-align: left;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--light-gray);
+      position: relative;
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .step-circle {
+      width: 52px;
+      height: 52px;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin: 0;
+    }
+    .flow-step-content { flex: 1; }
+    .step-title { font-size: 0.95rem; }
+
+    /* Services */
+    .services-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .service-item { padding: 1.5rem; gap: 1rem; }
+    .service-icon { font-size: 1.6rem; min-width: 36px; }
+
+    /* Recruit */
+    .recruit::before { font-size: 6rem; }
+    .recruit-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .recruit-left .section-header { text-align: center; }
+    .benefits { grid-template-columns: 1fr; gap: 0.6rem; }
+    .recruit-card { padding: 1.8rem; }
+    .position-name { font-size: 0.82rem; }
+
+    /* Testimonials */
+    .testimonial-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .testimonial-card { padding: 1.8rem; }
+
+    /* CTA */
+    .cta-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+    .cta-sub { font-size: 0.88rem; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .btn-white, .btn-ghost {
+      width: 100%;
+      max-width: 320px;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer { padding: 3rem 1.2rem 6rem; }
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+      font-size: 0.72rem;
+    }
+
+    /* Mobile sticky CTA */
+    .mobile-sticky-cta { display: flex; }
+  }
+
   /* ── BADGE ── */
   .startup-badge {
     display: inline-flex;
@@ -892,7 +1148,25 @@
     <li><a href="#recruit">採用情報</a></li>
     <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#features" class="mobile-link">特徴</a>
+  <a href="#services" class="mobile-link">サービス</a>
+  <a href="#flow" class="mobile-link">ご利用の流れ</a>
+  <a href="#recruit" class="mobile-link">採用情報</a>
+  <a href="#contact" class="mobile-cta mobile-link">無料相談・お問い合わせ</a>
+</div>
+
+<!-- Mobile Sticky Bottom CTA -->
+<div class="mobile-sticky-cta">
+  <a href="tel:0120-XXX-XXX" class="sticky-call">📞 無料電話相談</a>
+  <a href="#contact" class="sticky-form">WEB相談予約</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1067,23 +1341,31 @@
   <div class="flow-steps">
     <div class="flow-step reveal">
       <div class="step-circle">1</div>
+      <div class="flow-step-content">
       <h4 class="step-title">無料相談・お問い合わせ</h4>
       <p class="step-text">電話・WEBフォームよりお気軽にご連絡ください。専門スタッフが丁寧にご説明します。</p>
+      </div>
     </div>
     <div class="flow-step reveal">
       <div class="step-circle">2</div>
+      <div class="flow-step-content">
       <h4 class="step-title">主治医への指示書依頼</h4>
       <p class="step-text">医師より「訪問看護指示書」を発行いただきます。手続きのサポートも承ります。</p>
+      </div>
     </div>
     <div class="flow-step reveal">
       <div class="step-circle">3</div>
+      <div class="flow-step-content">
       <h4 class="step-title">ケアプランの作成</h4>
       <p class="step-text">ご本人・ご家族・ケアマネージャーと連携し、最適なケアプランを一緒に設計します。</p>
+      </div>
     </div>
     <div class="flow-step reveal">
       <div class="step-circle">4</div>
+      <div class="flow-step-content">
       <h4 class="step-title">訪問看護の開始</h4>
       <p class="step-text">経験豊富な看護師が定期的に訪問。継続的にプランを見直しながらサポートします。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1287,7 +1569,7 @@
 <script>
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const delay = entry.target.dataset.delay || 0;
         setTimeout(() => {
@@ -1311,6 +1593,23 @@
     } else {
       nav.style.boxShadow = 'none';
     }
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+
+  // Close mobile nav on link click
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
   });
 </script>
 </body>
