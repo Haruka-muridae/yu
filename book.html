@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Book Site</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper: #fdf8f0;
+      --paper-shadow: #e8e0d0;
+      --ink: #1a1410;
+      --ink-muted: #6b5f52;
+      --accent: #8b3a2a;
+      --spine: #c4a882;
+      --page-w: 340px;
+      --page-h: 480px;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #2c2420;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Sans JP', sans-serif;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    /* ========== BOOK ========== */
+    .book-wrap {
+      perspective: 2000px;
+    }
+
+    .book {
+      position: relative;
+      width: calc(var(--page-w) * 2 + 6px);
+      height: var(--page-h);
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* 左側の固定ページ */
+    .book-left {
+      width: var(--page-w);
+      height: var(--page-h);
+      background: var(--paper);
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px 0 0 4px;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.4);
+      flex-shrink: 0;
+    }
+
+    /* 綴じ目 */
+    .spine {
+      width: 6px;
+      background: linear-gradient(to right, #a08060, var(--spine), #a08060);
+      flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    }
+
+    /* ページスタック（右側） */
+    .pages-stack {
+      position: relative;
+      width: var(--page-w);
+      height: var(--page-h);
+      transform-style: preserve-3d;
+      flex-shrink: 0;
+    }
+
+    /* 各ページ */
+    .page {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transform-origin: left center;
+      transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+      cursor: pointer;
+    }
+
+    .page.flipped {
+      transform: rotateY(-180deg);
+    }
+
+    .page-front,
+    .page-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .page-back {
+      transform: rotateY(180deg);
+      border-radius: 4px 0 0 4px;
+    }
+
+    .page-front {
+      border-radius: 0 4px 4px 0;
+      box-shadow: inset -4px 0 12px rgba(0,0,0,0.08), 2px 0 8px rgba(0,0,0,0.3);
+    }
+
+    /* ページの端の影（めくれ感） */
+    .page:not(.flipped) .page-front::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 30px;
+      height: 100%;
+      background: linear-gradient(to left, rgba(0,0,0,0.06), transparent);
+      pointer-events: none;
+    }
+
+    /* ========== コンテンツ共通 ========== */
+    .page-content {
+      width: 100%;
+      height: 100%;
+      padding: 2rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ページ番号 */
+    .page-number {
+      position: absolute;
+      bottom: 1rem;
+      font-size: 11px;
+      color: var(--ink-muted);
+      font-family: 'Shippori Mincho', serif;
+      letter-spacing: 0.05em;
+    }
+    .page-number.left  { left: 1.5rem; }
+    .page-number.right { right: 1.5rem; }
+
+    /* ========== ナビゲーション ========== */
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.7);
+      padding: 0.5rem 1.25rem;
+      border-radius: 2px;
+      cursor: pointer;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border-color: rgba(255,255,255,0.5);
+    }
+    .nav-btn:disabled {
+      opacity: 0.2;
+      cursor: default;
+    }
+
+    .nav-indicator {
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      font-family: 'Shippori Mincho', serif;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    /* ========== ユーザー定義コンテンツのデフォルトスタイル ========== */
+    .page-content h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    .page-content h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      margin-top: 1.2rem;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--paper-shadow);
+    }
+    .page-content p {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.9;
+      margin-bottom: 0.8rem;
+    }
+    .page-content img {
+      max-width: 100%;
+      border-radius: 2px;
+      margin: 0.5rem 0;
+    }
+    .page-content ul {
+      padding-left: 1.2rem;
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 2;
+    }
+    .page-content a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+    }
+    .page-content .tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      background: var(--paper-shadow);
+      color: var(--ink-muted);
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin: 2px;
+    }
+    .page-content .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="book-wrap">
+  <div class="book" id="book">
+
+    <!-- ==============================
+         左側の固定エリア（偶数ページ表示用）
+         ============================== -->
+    <div class="book-left">
+      <div class="page-content" id="left-display">
+        <!-- JavaScriptが自動で内容をここに表示 -->
+      </div>
+    </div>
+
+    <div class="spine"></div>
+
+    <!-- ==============================
+         ページスタック（右側）
+         ============================== -->
+    <div class="pages-stack" id="pages-stack">
+      <!-- JavaScriptがページを自動生成 -->
+    </div>
+
+  </div>
+</div>
+
+<!-- ナビゲーション -->
+<nav class="nav">
+  <button class="nav-btn" id="prev-btn" onclick="prevPage()">← 前へ</button>
+  <span class="nav-indicator" id="nav-indicator"></span>
+  <button class="nav-btn" id="next-btn" onclick="nextPage()">次へ →</button>
+</nav>
+
+
+<script>
+// ================================================================
+//  ★★★ ここにページの内容を書いてください ★★★
+//
+//  各ページは { side: "left" or "right", html: "..." } で定義します。
+//  本は見開きなので、左ページと右ページが交互になります。
+//  ページ番号は自動でつきます。
+// ================================================================
+
+const PAGES = [
+
+  // --- ページ 1（左）---
+  {
+    side: "left",
+    html: `
+      <h1>はじめに</h1>
+      <div class="divider"></div>
+      <p>
+        このサイトへようこそ。<br>
+        本のようにページをめくりながら、さまざまなコンテンツをお楽しみください。
+      </p>
+      <p>
+        各ページには自由にHTMLを記述できます。
+        文章、画像、リンクなど何でも配置可能です。
+      </p>
+    `
+  },
+
+  // --- ページ 2（右）---
+  {
+    side: "right",
+    html: `
+      <h1>プロフィール</h1>
+      <div class="divider"></div>
+      <p>名前：山田 太郎</p>
+      <p>
+        Webデザイナー／フロントエンドエンジニアとして活動しています。
+        美しいUIと使いやすいUXを追求することが好きです。
+      </p>
+      <h2>スキル</h2>
+      <span class="tag">HTML</span>
+      <span class="tag">CSS</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">Figma</span>
+    `
+  },
+
+  // --- ページ 3（左）---
+  {
+    side: "left",
+    html: `
+      <h1>作品集</h1>
+      <div class="divider"></div>
+      <h2>Project A</h2>
+      <p>ECサイトのリニューアル。レスポンシブデザインとパフォーマンス改善を担当しました。</p>
+      <h2>Project B</h2>
+      <p>社内管理ツールのUI設計。ユーザーインタビューをもとにフローを最適化しました。</p>
+    `
+  },
+
+  // --- ページ 4（右）---
+  {
+    side: "right",
+    html: `
+      <h1>ブログ</h1>
+      <div class="divider"></div>
+      <h2>最近の記事</h2>
+      <ul>
+        <li><a href="#">CSSアニメーションの使い方</a></li>
+        <li><a href="#">GitHub Pagesで無料公開する方法</a></li>
+        <li><a href="#">フォント選びのコツ</a></li>
+      </ul>
+      <p style="margin-top:1rem">更新頻度：月2〜3回</p>
+    `
+  },
+
+  // --- ページ 5（左）---
+  {
+    side: "left",
+    html: `
+      <h1>お問い合わせ</h1>
+      <div class="divider"></div>
+      <p>お仕事のご依頼やご質問はこちらからどうぞ。</p>
+      <p>
+        メール：<a href="mailto:hello@example.com">hello@example.com</a>
+      </p>
+      <p>
+        X（旧Twitter）：<a href="#">@yourhandle</a>
+      </p>
+      <p>
+        GitHub：<a href="#">github.com/yourname</a>
+      </p>
+    `
+  },
+
+  // ★ ページを増やしたいときはここにコピーして追加してください ★
+  // {
+  //   side: "right",
+  //   html: `<h1>新しいページ</h1><p>内容をここに書く</p>`
+  // },
+
+];
+
+// ================================================================
+//  以下はシステムコード（通常は編集不要）
+// ================================================================
+
+let currentFlip = 0; // めくったページ数
+const totalPages = PAGES.length;
+
+function buildBook() {
+  const stack = document.getElementById('pages-stack');
+
+  // 右側ページ（奇数インデックス = 右ページ）を積み上げる
+  const rightPages = PAGES.filter((_, i) => i % 2 === 1);
+
+  rightPages.forEach((pageDef, i) => {
+    const div = document.createElement('div');
+    div.className = 'page';
+    div.style.zIndex = rightPages.length - i;
+
+    // 表（右ページの内容）
+    const front = document.createElement('div');
+    front.className = 'page-front';
+    front.innerHTML = `
+      <div class="page-content">${pageDef.html}</div>
+      <span class="page-number right">${(i + 1) * 2}</span>
+    `;
+
+    // 裏（次の左ページの内容）
+    const back = document.createElement('div');
+    back.className = 'page-back';
+    const nextLeftIndex = (i + 1) * 2; // 次の左ページのPAGES内インデックス
+    const nextLeftHtml = PAGES[nextLeftIndex] ? PAGES[nextLeftIndex].html : '';
+    back.innerHTML = `
+      <div class="page-content">${nextLeftHtml}</div>
+      <span class="page-number left">${(i + 1) * 2 + 1}</span>
+    `;
+
+    div.appendChild(front);
+    div.appendChild(back);
+    div.addEventListener('click', () => { if (!div.classList.contains('flipped')) nextPage(); });
+    stack.appendChild(div);
+  });
+
+  // 最初の左ページを表示
+  showLeftPage(0);
+  updateNav();
+}
+
+function showLeftPage(pageIndex) {
+  const leftDisplay = document.getElementById('left-display');
+  const leftDef = PAGES[pageIndex];
+  if (leftDef) {
+    leftDisplay.innerHTML = `
+      ${leftDef.html}
+      <span class="page-number left">${pageIndex + 1}</span>
+    `;
+  } else {
+    leftDisplay.innerHTML = '';
+  }
+}
+
+function nextPage() {
+  const pages = document.querySelectorAll('.page');
+  if (currentFlip < pages.length) {
+    pages[currentFlip].classList.add('flipped');
+    pages[currentFlip].style.zIndex = currentFlip + 1;
+    currentFlip++;
+    // めくった後、左側に次の内容を表示
+    const nextLeftIndex = currentFlip * 2;
+    showLeftPage(nextLeftIndex);
+    updateNav();
+  }
+}
+
+function prevPage() {
+  const pages = document.querySelectorAll('.page');
+  if (currentFlip > 0) {
+    currentFlip--;
+    pages[currentFlip].classList.remove('flipped');
+    pages[currentFlip].style.zIndex = pages.length - currentFlip;
+    const prevLeftIndex = currentFlip * 2;
+    showLeftPage(prevLeftIndex);
+    updateNav();
+  }
+}
+
+function updateNav() {
+  const indicator = document.getElementById('nav-indicator');
+  const visibleLeft = currentFlip * 2 + 1;
+  const visibleRight = visibleLeft + 1;
+  if (visibleRight <= totalPages) {
+    indicator.textContent = `${visibleLeft} – ${visibleRight}`;
+  } else {
+    indicator.textContent = `${visibleLeft}`;
+  }
+  document.getElementById('prev-btn').disabled = currentFlip === 0;
+  const pages = document.querySelectorAll('.page');
+  document.getElementById('next-btn').disabled = currentFlip >= pages.length;
+}
+
+buildBook();
+</script>
+
+</body>
+</html>
