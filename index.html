@@ -39,7 +39,6 @@
     overflow-x: hidden;
   }
 
-  /* ナビ */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -73,7 +72,6 @@
   }
   .nav-links a:hover { color: var(--ink); }
 
-  /* セクション共通 */
   section { padding: 100px 0; }
   .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
   .section-label {
@@ -96,7 +94,6 @@
     background: var(--ink3);
   }
 
-  /* Hero */
   #hero {
     min-height: 90vh;
     display: flex;
@@ -172,7 +169,6 @@
   }
   .btn-outline:hover { background: var(--ink); color: var(--white); }
 
-  /* プロフィール写真 */
   .photo-frame {
     width: 100%;
     aspect-ratio: 3/4;
@@ -211,7 +207,6 @@
     justify-content: center;
   }
 
-  /* Profile */
   #profile { background: var(--bg2); }
   .profile-inner {
     display: grid;
@@ -252,7 +247,6 @@
   .profile-text p { margin-bottom: 20px; }
   .profile-text p:last-child { margin-bottom: 0; }
 
-  /* Activities */
   #activities { background: var(--bg); }
   .activities-grid {
     display: grid;
@@ -286,7 +280,6 @@
     color: var(--ink2);
   }
 
-  /* Value */
   #value { background: var(--accent); color: var(--white); }
   #value .section-label { color: rgba(255,255,255,0.4); }
   #value .section-label::after { background: rgba(255,255,255,0.3); }
@@ -321,7 +314,6 @@
     color: rgba(255,255,255,0.85);
   }
 
-  /* Philosophy */
   #philosophy { background: var(--bg); }
   .philosophy-grid {
     display: grid;
@@ -349,7 +341,6 @@
     color: var(--ink3);
   }
 
-  /* Services */
   #services { background: var(--bg2); }
   .services-header {
     display: flex;
@@ -405,6 +396,114 @@
     color: var(--ink3);
     text-align: center;
     text-transform: uppercase;
+  }
+
+  /* ============================================================
+     SNS / My hobby is... セクション
+  ============================================================ */
+  #sns-hobby { background: var(--bg); }
+
+  .sns-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .sns-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px 28px 24px;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    min-height: 160px;
+  }
+  .sns-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .sns-card:hover {
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+  }
+  .sns-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .sns-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .sns-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .sns-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--ink3);
+    transition: fill 0.2s;
+  }
+  .sns-card:hover .sns-icon svg {
+    fill: var(--accent);
+  }
+
+  .sns-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    background: var(--bg2);
+    padding: 4px 8px;
+    border-radius: 2px;
+  }
+
+  .sns-card-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .sns-card-handle {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink3);
+    letter-spacing: 0.06em;
+  }
+
+  .sns-card-arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 24px;
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--rule);
+    transition: color 0.2s, transform 0.2s;
+  }
+  .sns-card:hover .sns-card-arrow {
+    color: var(--accent);
+    transform: translate(3px, -3px);
   }
 
   /* Contact */
@@ -471,7 +570,6 @@
   }
   .btn-white:hover { opacity: 0.85; transform: translateY(-1px); }
 
-  /* Footer */
   .site-footer-wrap { background: #1A1A18; }
   .site-footer {
     max-width: 900px;
@@ -495,7 +593,6 @@
     text-transform: uppercase;
   }
 
-  /* モバイル対応 */
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
@@ -512,9 +609,12 @@
     .services-header { flex-direction: column; gap: 8px; }
     .service-row { padding: 28px 24px; }
     .site-footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+    .sns-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  }
+  @media (max-width: 480px) {
+    .sns-grid { grid-template-columns: 1fr; }
   }
 
-  /* アニメーション */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -530,14 +630,6 @@
 <script type="text/babel">
 const { useState } = React;
 
-// ============================================================
-// ■ サービスデータ（編集ポイント）
-// ・isPublic: true  → 表示
-// ・isPublic: false → 非公開（将来公開用）
-// ・追加: 配列に { id, title, description, link, isPublic } を追記
-// ・削除: 該当オブジェクトを配列から削除
-// ・公開切替: isPublic を true / false で切り替える
-// ============================================================
 const INITIAL_SERVICES = [
   {
     id: 1,
@@ -558,32 +650,144 @@ const INITIAL_SERVICES = [
     title: "詐欺対策指導・ヒアリング",
     description: "若年層をターゲットにした搾取ビジネスから距離を取ろう。",
     link: "https://haruka-muridae.github.io/yu/defense-lp.html",
-    isPublic: true, // ← false=非公開 / true にすると表示される
+    isPublic: true,
   },
   {
     id: 4,
     title: "SELECT SHOP",
     description: "オススメ商品を並べています。気になったらどうぞ。",
     link: "https://haruka-muridae.github.io/yu/ECsite.html",
-    isPublic: true, // ← false=非公開 / true にすると表示される
+    isPublic: true,
   },
 ];
 
-// ============================================================
-// ■ プロフィール写真（編集ポイント）
-// ・実際の写真URLに差し替えてください
-//   例: "https://lh3.googleusercontent.com/d/YOUR_FILE_ID"
-// ・null のままにするとプレースホルダーを表示
-// ============================================================
 const PHOTO_URL = "images/IMG_0298_Original.JPG";
 
-// ============================================================
-// ■ 問い合わせ先（編集ポイント）
-// ・GAS WebApp URL に差し替えてください
-//   例: "https://script.google.com/macros/s/XXXX/exec"
-// ・空文字のままだとダミー送信（テスト用）
-// ============================================================
 const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbzPvdlNeGnFQitisl4OtohGt60L3JDwQXuFoEIPJpgeFWMN6qZFma8cpMHuPHesDH-fzw/exec";
+
+// ============================================================
+// ■ SNS / My hobby is... リンクデータ（編集ポイント）
+//
+// 各フィールド:
+//   id       … 一意なID（変えないこと）
+//   type     … "x" | "instagram" | "note" | "novel" | "youtube" | "other"
+//   title    … カードに表示するタイトル
+//   handle   … ハンドル名や補足テキスト（任意）
+//   tag      … カード右上のタグラベル
+//   url      … リンク先URL（"#" のままだと未設定扱い）
+//   isPublic … true=表示 / false=非表示
+//
+// 追加: 配列に新しいオブジェクトを追記するだけ
+// 削除: 対象オブジェクトを削除するだけ
+// 非公開: isPublic: false にする
+// ============================================================
+const SNS_LINKS = [
+  {
+    id: "line",
+    type: "line",
+    title: "LINE",
+    handle: "友だち追加はこちら",    // ← 表示テキストを変更
+    tag: "Contact",
+    url: "https://line.me/ti/p/bivqtgD_6a",                        // ← LINE公式アカウントURLまたは友だち追加リンクに変更
+    isPublic: true,
+  },
+  {
+    id: "x",
+    type: "x",
+    title: "X (Twitter)",
+    handle: "@your_handle",         // ← ハンドル名に変更
+    tag: "SNS",
+    url: "https://x.com/haruka_muridae?s=21",                        // ← URLに変更
+    isPublic: true,
+  },
+  {
+    id: "instagram",
+    type: "instagram",
+    title: "Instagram",
+    handle: "@your_handle",         // ← ハンドル名に変更
+    tag: "SNS",
+    url: "https://www.instagram.com/mash.haru?igsh=b2xxNTdwbHpzazVu&utm_source=qr",                        // ← URLに変更
+    isPublic: true,
+  },
+  {
+    id: "note",
+    type: "note",
+    title: "note",
+    handle: "記事を書いています",
+    tag: "Writing",
+    url: "#",                        // ← URLに変更
+    isPublic: true,
+  },
+  {
+    id: "novel",
+    type: "novel",
+    title: "小説サイト",
+    handle: "カクヨム / 作品一覧",   // ← サイト名・作品名などに変更
+    tag: "Novel",
+    url: "#",                        // ← URLに変更
+    isPublic: true,
+  },
+  {
+    id: "youtube",
+    type: "youtube",
+    title: "YouTube",
+    handle: "チャンネル名",          // ← チャンネル名に変更
+    tag: "Video",
+    url: "#",                        // ← URLに変更
+    isPublic: true,
+  },
+  // ↓ その他SNSや追加リンクの例
+  // {
+  //   id: "threads",
+  //   type: "other",
+  //   title: "Threads",
+  //   handle: "@your_handle",
+  //   tag: "SNS",
+  //   url: "https://www.threads.net/@your_handle",
+  //   isPublic: false,
+  // },
+];
+
+// ------------------------------------------------------------------
+// SVGアイコン
+// ------------------------------------------------------------------
+const icons = {
+  x: (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.745l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+  ),
+  instagram: (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+    </svg>
+  ),
+  note: (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm3 3h12v2H6V8zm0 4h8v2H6v-2z"/>
+    </svg>
+  ),
+  novel: (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+    </svg>
+  ),
+  youtube: (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    </svg>
+  ),
+  line: (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.13.031-.195.031-.185 0-.36-.09-.466-.24l-2.388-3.23v2.843c0 .346-.282.629-.629.629-.346 0-.629-.283-.629-.629V8.108c0-.27.173-.51.43-.595.06-.023.127-.033.195-.033.184 0 .358.09.465.24l2.389 3.23V8.108c0-.345.282-.63.629-.63.346 0 .629.285.629.63v4.771zm-5.741 0c0 .346-.282.629-.631.629-.345 0-.627-.283-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.283-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .346-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+    </svg>
+  ),
+  other: (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    </svg>
+  ),
+};
 
 // ------------------------------------------------------------------
 // Nav
@@ -593,6 +797,7 @@ function Nav() {
     { href: "#profile",    label: "Profile" },
     { href: "#activities", label: "Activities" },
     { href: "#services",   label: "Services" },
+    { href: "#sns-hobby",  label: "Links" },
     { href: "#contact",    label: "Contact" },
   ];
   return (
@@ -628,7 +833,6 @@ function Hero() {
           </div>
         </div>
         <div>
-          {/* 写真エリア: PHOTO_URL を設定するか、null のままにする */}
           <div className="photo-frame">
             {PHOTO_URL ? (
               <img src={PHOTO_URL} alt="悠" />
@@ -831,7 +1035,6 @@ function Philosophy() {
 // ------------------------------------------------------------------
 function Services() {
   const [services] = useState(() => {
-    // localStorageから状態を復元（初回はINITIAL_SERVICESを使用）
     try {
       const saved = localStorage.getItem("yu_services");
       return saved ? JSON.parse(saved) : INITIAL_SERVICES;
@@ -870,11 +1073,51 @@ function Services() {
 }
 
 // ------------------------------------------------------------------
+// SNS / My hobby is...
+// ------------------------------------------------------------------
+function SnsHobby() {
+  const publicLinks = SNS_LINKS.filter(l => l.isPublic);
+
+  return (
+    <section id="sns-hobby">
+      <div className="container">
+        <div className="section-label">SNS / My hobby is...</div>
+        <div className="sns-grid">
+          {publicLinks.map(link => (
+            <a
+              key={link.id}
+              href={link.url}
+              className="sns-card"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="sns-card-top">
+                <div className="sns-icon">
+                  {icons[link.type] || icons.other}
+                </div>
+                <span className="sns-tag">{link.tag}</span>
+              </div>
+              <div>
+                <div className="sns-card-title">{link.title}</div>
+                {link.handle && (
+                  <div className="sns-card-handle">{link.handle}</div>
+                )}
+              </div>
+              <div className="sns-card-arrow">↗</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ------------------------------------------------------------------
 // Contact
 // ------------------------------------------------------------------
 function Contact() {
   const [form, setForm]     = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState(null); // null | "sending" | "sent" | "error"
+  const [status, setStatus] = useState(null);
 
   const handleSubmit = async () => {
     if (!form.name || !form.email || !form.message) {
@@ -883,8 +1126,6 @@ function Contact() {
     }
     setStatus("sending");
 
-    // ■ 送信処理（編集ポイント）
-    // CONTACT_ENDPOINT に GAS URL を設定することで実際に送信されます
     if (CONTACT_ENDPOINT) {
       try {
         await fetch(CONTACT_ENDPOINT, {
@@ -899,7 +1140,6 @@ function Contact() {
         setStatus("error");
       }
     } else {
-      // エンドポイント未設定時はダミー送信（デモ用）
       setTimeout(() => {
         setStatus("sent");
         setForm({ name: "", email: "", message: "" });
@@ -1004,6 +1244,7 @@ function App() {
       <ValueSection />
       <Philosophy />
       <Services />
+      <SnsHobby />
       <Contact />
       <Footer />
     </>
