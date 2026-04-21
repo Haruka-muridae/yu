@@ -1234,7 +1234,7 @@ async function submitForm() {
   // 送信中
   btn.disabled = true;
   btn.textContent = '▶ SENDING...';
-  showMsg('loading', '[PROCESS] スプレッドシートに記録中...');
+  showMsg('loading', '[PROCESS] 問い合わせ送信中...');
 
   try {
     await fetch(GAS_URL, {
