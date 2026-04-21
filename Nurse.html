@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareLink訪問看護 | あなたの暮らしに、寄り添う医療を。</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Shippori+Mincho:wght@400;700&family=DM+Serif+Display:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #8aab96;
+    --sage-light: #c8ddd1;
+    --sage-dark: #4a7a5c;
+    --cream: #f7f3ee;
+    --warm-white: #faf8f5;
+    --charcoal: #2c2c2c;
+    --mid-gray: #6b6b6b;
+    --light-gray: #e8e4df;
+    --accent-terracotta: #c4785a;
+    --accent-gold: #c9a96e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Serif JP', serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(250, 248, 245, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--sage-dark);
+    letter-spacing: 0.03em;
+  }
+
+  .nav-logo span {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.75rem;
+    display: block;
+    color: var(--mid-gray);
+    letter-spacing: 0.15em;
+    margin-top: -2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--mid-gray);
+    letter-spacing: 0.08em;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--sage-dark); }
+
+  .nav-cta {
+    background: var(--sage-dark) !important;
+    color: white !important;
+    padding: 0.6rem 1.4rem;
+    border-radius: 2rem;
+    transition: background 0.3s !important;
+  }
+
+  .nav-cta:hover { background: var(--sage) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--sage-dark);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--sage-dark);
+  }
+
+  .hero-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+    line-height: 1.55;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 1.8rem;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--sage-dark);
+    position: relative;
+  }
+
+  .hero-title em::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0; right: 0;
+    height: 3px;
+    background: var(--sage-light);
+    border-radius: 2px;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--mid-gray);
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .btn-primary {
+    background: var(--sage-dark);
+    color: white;
+    padding: 1rem 2.2rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(74,122,92,0.25);
+  }
+
+  .btn-primary:hover {
+    background: var(--sage);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(74,122,92,0.35);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--charcoal);
+    padding: 1rem 2.2rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border: 1.5px solid var(--light-gray);
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--sage-dark);
+    color: var(--sage-dark);
+  }
+
+  .hero-stats {
+    margin-top: 3rem;
+    display: flex;
+    gap: 2.5rem;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .stat {
+    border-left: 2px solid var(--sage-light);
+    padding-left: 1rem;
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--sage-dark);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--mid-gray);
+    margin-top: 0.3rem;
+    line-height: 1.5;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-wrapper {
+    position: absolute;
+    inset: 0;
+    animation: fadeIn 1s 0.2s ease both;
+  }
+
+  .hero-image-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--warm-white) 0%, transparent 30%);
+    z-index: 1;
+  }
+
+  .hero-bg-shape {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 110%;
+    height: 110%;
+    background: linear-gradient(135deg, var(--sage-light) 0%, #d4e8dc 50%, #e8f0ea 100%);
+    border-radius: 40% 60% 60% 40% / 50% 50% 50% 50%;
+    animation: morphBlob 12s ease-in-out infinite;
+  }
+
+  @keyframes morphBlob {
+    0%, 100% { border-radius: 40% 60% 60% 40% / 50% 50% 50% 50%; }
+    33% { border-radius: 60% 40% 40% 60% / 45% 55% 55% 45%; }
+    66% { border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%; }
+  }
+
+  .hero-illustration {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* SVG Illustration */
+  .nurse-svg {
+    width: 65%;
+    max-width: 380px;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 8rem 5rem;
+    background: var(--cream);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .section-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: var(--warm-white);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid transparent;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    border-color: var(--sage-light);
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--sage-light), var(--sage));
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+  }
+
+  .feature-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--charcoal);
+  }
+
+  .feature-text {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--mid-gray);
+  }
+
+  .feature-num {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem;
+    color: var(--sage-light);
+    opacity: 0.5;
+    line-height: 1;
+  }
+
+  /* ── FLOW ── */
+  .flow {
+    padding: 8rem 5rem;
+    background: var(--warm-white);
+  }
+
+  .flow-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 4rem;
+    position: relative;
+  }
+
+  .flow-steps::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--sage-light), var(--sage-light), transparent);
+  }
+
+  .flow-step {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .step-circle {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--sage-dark);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 20px rgba(74,122,92,0.3);
+  }
+
+  .step-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--charcoal);
+  }
+
+  .step-text {
+    font-size: 0.82rem;
+    line-height: 1.8;
+    color: var(--mid-gray);
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 8rem 5rem;
+    background: var(--charcoal);
+    color: white;
+  }
+
+  .services .section-title { color: white; }
+  .services .section-tag { color: var(--sage-light); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .service-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.2rem;
+    padding: 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .service-item:hover {
+    background: rgba(138,171,150,0.15);
+    border-color: var(--sage);
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    min-width: 50px;
+    line-height: 1;
+  }
+
+  .service-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+
+  .service-text {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── RECRUIT ── */
+  .recruit {
+    padding: 8rem 5rem;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .recruit::before {
+    content: 'RECRUIT';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'DM Serif Display', serif;
+    font-size: 14rem;
+    color: var(--sage-light);
+    opacity: 0.15;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .recruit-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .recruit-left .section-header {
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .recruit-body {
+    font-size: 0.92rem;
+    line-height: 2.1;
+    color: var(--mid-gray);
+    margin-bottom: 2rem;
+  }
+
+  .benefits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .benefit {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--charcoal);
+  }
+
+  .benefit::before {
+    content: '✓';
+    color: var(--sage-dark);
+    font-weight: 700;
+    font-family: 'Jost', sans-serif;
+  }
+
+  .recruit-card {
+    background: var(--warm-white);
+    border-radius: 2rem;
+    padding: 3rem;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.07);
+  }
+
+  .recruit-card h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--charcoal);
+  }
+
+  .positions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .position-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    background: var(--cream);
+    border-radius: 0.8rem;
+    transition: background 0.3s;
+  }
+
+  .position-row:hover { background: var(--sage-light); }
+
+  .position-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+
+  .position-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    background: var(--sage-dark);
+    color: white;
+  }
+
+  /* ── TESTIMONIAL ── */
+  .testimonials {
+    padding: 8rem 5rem;
+    background: var(--warm-white);
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .testimonial-card {
+    background: var(--cream);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '\201C';
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 5rem;
+    color: var(--sage-light);
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-size: 0.88rem;
+    line-height: 2;
+    color: var(--mid-gray);
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sage-light), var(--sage));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .author-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+
+  .author-role {
+    font-size: 0.75rem;
+    color: var(--mid-gray);
+    margin-top: 0.2rem;
+    font-family: 'Jost', sans-serif;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 8rem 5rem;
+    background: linear-gradient(135deg, var(--sage-dark) 0%, #3d6b4f 100%);
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width: 50%;
+    height: 200%;
+    background: rgba(255,255,255,0.04);
+    transform: rotate(-15deg);
+  }
+
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    right: -10%;
+    width: 50%;
+    height: 200%;
+    background: rgba(255,255,255,0.03);
+    transform: rotate(-15deg);
+  }
+
+  .cta-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-sub {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 2;
+    max-width: 500px;
+    margin: 0 auto 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-white {
+    background: white;
+    color: var(--sage-dark);
+    padding: 1.1rem 2.5rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  .btn-white:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: white;
+    padding: 1.1rem 2.5rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    transition: all 0.3s;
+  }
+
+  .btn-ghost:hover {
+    border-color: white;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.5);
+    padding: 4rem 5rem 2.5rem;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand .nav-logo {
+    display: block;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .footer-brand p {
+    font-size: 0.82rem;
+    line-height: 1.9;
+  }
+
+  .footer-col h4 {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage-light);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .footer-col a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+
+  .footer-col a:hover { color: white; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── BADGE ── */
+  .startup-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-terracotta));
+    color: white;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 2rem;
+    margin-bottom: 1.2rem;
+    display: inline-block;
+    animation: fadeUp 0.8s ease both;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    CareLink
+    <span>訪問看護ステーション</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#features">特徴</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#flow">ご利用の流れ</a></li>
+    <li><a href="#recruit">採用情報</a></li>
+    <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="startup-badge">✦ New Care Model 2024</div>
+    <div class="hero-tag">訪問看護ステーション CareLink</div>
+    <h1 class="hero-title">
+      あなたの<em>暮らし</em>に、<br>
+      寄り添う医療を。<br>
+      <span style="font-size:0.65em; color: var(--mid-gray); font-weight:400;">いつでも、どこでも、その人らしく。</span>
+    </h1>
+    <p class="hero-sub">
+      CareLinKは、テクノロジーと人の温かさを融合させた<br>
+      新しい訪問看護のかたちを提案します。<br>
+      自宅での療養・回復を、専門チームが24時間サポートします。
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">無料相談を予約する</a>
+      <a href="#services" class="btn-outline">サービスを見る</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">利用者満足度</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24h</div>
+        <div class="stat-label">365日対応</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">専門看護師</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-wrapper">
+      <div class="hero-bg-shape"></div>
+      <div class="hero-illustration">
+        <svg class="nurse-svg" viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background circle -->
+          <circle cx="150" cy="190" r="140" fill="rgba(255,255,255,0.6)" />
+          
+          <!-- Body -->
+          <rect x="105" y="200" width="90" height="110" rx="20" fill="#4a7a5c"/>
+          <!-- Uniform white detail -->
+          <rect x="130" y="200" width="40" height="110" rx="5" fill="rgba(255,255,255,0.15)"/>
+          
+          <!-- Cross on uniform -->
+          <rect x="143" y="225" width="14" height="4" rx="2" fill="white"/>
+          <rect x="148" y="220" width="4" height="14" rx="2" fill="white"/>
+          
+          <!-- Head -->
+          <circle cx="150" cy="170" r="38" fill="#f5d5b8"/>
+          
+          <!-- Hair -->
+          <ellipse cx="150" cy="138" rx="38" ry="18" fill="#3d2a1a"/>
+          <rect x="112" y="138" width="8" height="28" rx="4" fill="#3d2a1a"/>
+          <rect x="180" y="138" width="8" height="28" rx="4" fill="#3d2a1a"/>
+          
+          <!-- Nurse cap -->
+          <rect x="120" y="128" width="60" height="18" rx="6" fill="white"/>
+          <rect x="133" y="125" width="34" height="8" rx="4" fill="white"/>
+          <rect x="143" y="124" width="5" height="5" rx="1" fill="#c4785a"/>
+          <rect x="152" y="124" width="5" height="5" rx="1" fill="#c4785a"/>
+          
+          <!-- Eyes -->
+          <circle cx="138" cy="170" r="5" fill="#3d2a1a"/>
+          <circle cx="162" cy="170" r="5" fill="#3d2a1a"/>
+          <circle cx="140" cy="168" r="2" fill="white"/>
+          <circle cx="164" cy="168" r="2" fill="white"/>
+          
+          <!-- Smile -->
+          <path d="M 140 182 Q 150 192 160 182" stroke="#c4785a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          
+          <!-- Arms -->
+          <rect x="75" y="210" width="32" height="16" rx="8" fill="#4a7a5c" transform="rotate(20, 91, 218)"/>
+          <rect x="193" y="210" width="32" height="16" rx="8" fill="#4a7a5c" transform="rotate(-20, 209, 218)"/>
+          
+          <!-- Hands -->
+          <circle cx="78" cy="234" r="12" fill="#f5d5b8"/>
+          <circle cx="222" cy="234" r="12" fill="#f5d5b8"/>
+          
+          <!-- Medical bag in left hand -->
+          <rect x="52" y="240" width="38" height="28" rx="6" fill="#c9a96e"/>
+          <rect x="62" y="237" width="18" height="6" rx="3" fill="#b8966a"/>
+          <line x1="71" y1="245" x2="71" y2="261" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="63" y1="253" x2="79" y2="253" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          
+          <!-- Tablet in right hand -->
+          <rect x="210" y="225" width="28" height="36" rx="4" fill="#e8e4df"/>
+          <rect x="213" y="228" width="22" height="26" rx="2" fill="#c8ddd1"/>
+          <line x1="218" y1="235" x2="230" y2="235" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="218" y1="240" x2="230" y2="240" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="218" y1="245" x2="226" y2="245" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          
+          <!-- Legs -->
+          <rect x="115" y="305" width="28" height="55" rx="12" fill="#3a5c45"/>
+          <rect x="157" y="305" width="28" height="55" rx="12" fill="#3a5c45"/>
+          
+          <!-- Shoes -->
+          <ellipse cx="129" cy="360" rx="18" ry="10" fill="#2c2c2c"/>
+          <ellipse cx="171" cy="360" rx="18" ry="10" fill="#2c2c2c"/>
+          
+          <!-- Floating hearts / particles -->
+          <circle cx="60" cy="120" r="6" fill="rgba(196,120,90,0.3)" />
+          <circle cx="240" cy="100" r="4" fill="rgba(138,171,150,0.4)" />
+          <circle cx="255" cy="160" r="8" fill="rgba(201,169,110,0.25)" />
+          <circle cx="45" cy="200" r="5" fill="rgba(138,171,150,0.35)" />
+          
+          <!-- Small plus icons -->
+          <text x="42" y="145" font-size="18" fill="rgba(74,122,92,0.4)" font-family="sans-serif">+</text>
+          <text x="245" y="260" font-size="14" fill="rgba(196,120,90,0.4)" font-family="sans-serif">+</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-header reveal">
+    <span class="section-tag">Why CareLink</span>
+    <h2 class="section-title">従来の訪問看護を、<br>アップデートする。</h2>
+  </div>
+  <div class="feature-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon">🏥</div>
+      <div class="feature-num">01</div>
+      <h3 class="feature-title">多職種連携システム</h3>
+      <p class="feature-text">医師・PT・OT・STとリアルタイムで情報を共有。デジタルプラットフォームを活用し、ケアの質と連携スピードを大幅に向上させます。</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">📱</div>
+      <div class="feature-num">02</div>
+      <h3 class="feature-title">デジタル記録・報告</h3>
+      <p class="feature-text">専用アプリで訪問記録をリアルタイム入力。ご家族への報告もアプリから即座に共有。離れた場所からも大切な方の状態を確認できます。</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">⏰</div>
+      <div class="feature-num">03</div>
+      <h3 class="feature-title">24時間365日サポート</h3>
+      <p class="feature-text">夜間・休日も経験豊富な看護師が対応。緊急時も迅速に駆けつけ、安心して在宅療養を続けられる環境をつくります。</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">💚</div>
+      <div class="feature-num">04</div>
+      <h3 class="feature-title">個別最適化ケアプラン</h3>
+      <p class="feature-text">データと対話を重ねて、お一人おひとりに最適なケアプランを設計。生活の質（QOL）を高めることを最優先に考えます。</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🎓</div>
+      <div class="feature-num">05</div>
+      <h3 class="feature-title">高水準の専門スタッフ</h3>
+      <p class="feature-text">認定看護師・専門看護師を多数在籍。継続的な研修制度で常にスキルをアップデートした、高い専門性を持つチームが対応します。</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🔒</div>
+      <div class="feature-num">06</div>
+      <h3 class="feature-title">安心のセキュリティ</h3>
+      <p class="feature-text">医療情報は最高レベルで暗号化・管理。プライバシーを守りながら、必要な関係者だけと安全に情報共有できる仕組みを実現。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow" id="flow">
+  <div class="section-header reveal">
+    <span class="section-tag">How It Works</span>
+    <h2 class="section-title">ご利用の流れ</h2>
+  </div>
+  <div class="flow-steps">
+    <div class="flow-step reveal">
+      <div class="step-circle">1</div>
+      <h4 class="step-title">無料相談・お問い合わせ</h4>
+      <p class="step-text">電話・WEBフォームよりお気軽にご連絡ください。専門スタッフが丁寧にご説明します。</p>
+    </div>
+    <div class="flow-step reveal">
+      <div class="step-circle">2</div>
+      <h4 class="step-title">主治医への指示書依頼</h4>
+      <p class="step-text">医師より「訪問看護指示書」を発行いただきます。手続きのサポートも承ります。</p>
+    </div>
+    <div class="flow-step reveal">
+      <div class="step-circle">3</div>
+      <h4 class="step-title">ケアプランの作成</h4>
+      <p class="step-text">ご本人・ご家族・ケアマネージャーと連携し、最適なケアプランを一緒に設計します。</p>
+    </div>
+    <div class="flow-step reveal">
+      <div class="step-circle">4</div>
+      <h4 class="step-title">訪問看護の開始</h4>
+      <p class="step-text">経験豊富な看護師が定期的に訪問。継続的にプランを見直しながらサポートします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header reveal">
+    <span class="section-tag">Our Services</span>
+    <h2 class="section-title">提供サービス</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-item reveal">
+      <div class="service-icon">🩺</div>
+      <div>
+        <h4 class="service-title">医療処置・病状観察</h4>
+        <p class="service-text">バイタル測定・点滴管理・褥瘡ケア・カテーテル管理など、医師の指示のもとで専門的な医療処置を提供します。</p>
+      </div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-icon">🤲</div>
+      <div>
+        <h4 class="service-title">リハビリテーション支援</h4>
+        <p class="service-text">理学療法士・作業療法士と連携し、自宅での機能回復・維持をサポート。日常生活動作の改善を目指します。</p>
+      </div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-icon">🧠</div>
+      <div>
+        <h4 class="service-title">精神科訪問看護</h4>
+        <p class="service-text">精神疾患をお持ちの方の生活支援・服薬管理・メンタルヘルスケア。専門看護師が心に寄り添います。</p>
+      </div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-icon">🌿</div>
+      <div>
+        <h4 class="service-title">ターミナルケア・緩和ケア</h4>
+        <p class="service-text">人生の最終章を自宅で過ごしたい方へ。ご本人とご家族の両方を支える、丁寧なエンドオブライフケアを提供します。</p>
+      </div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-icon">👶</div>
+      <div>
+        <h4 class="service-title">小児訪問看護</h4>
+        <p class="service-text">医療的ケア児のご自宅での生活を専門スタッフがサポート。ご家族の不安に寄り添いながら、安心の在宅生活を実現します。</p>
+      </div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-icon">💊</div>
+      <div>
+        <h4 class="service-title">服薬管理・栄養支援</h4>
+        <p class="service-text">正確な服薬管理と栄養状態のモニタリング。薬剤師・管理栄養士と連携した包括的な健康管理をサポートします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header reveal">
+    <span class="section-tag">Voices</span>
+    <h2 class="section-title">ご利用者の声</h2>
+  </div>
+  <div class="testimonial-grid">
+    <div class="testimonial-card reveal">
+      <p class="testimonial-text">退院後、自宅での生活が不安でしたが、看護師さんが毎日のように来てくださり、本当に心強かったです。アプリで記録を共有してもらえるので、遠方の家族も安心していました。</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👩</div>
+        <div>
+          <div class="author-name">田中 恵子様（利用者ご家族）</div>
+          <div class="author-role">神奈川県 / 脳梗塞後の在宅療養</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <p class="testimonial-text">以前の事業所より訪問時間が柔軟で、仕事の合間に立ち会えるようになりました。担当看護師さんと直接メッセージが送れるのも、新しいサービスだと感じました。</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👨</div>
+        <div>
+          <div class="author-name">鈴木 健一様（利用者ご家族）</div>
+          <div class="author-role">東京都 / 在宅酸素療法</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <p class="testimonial-text">ケアマネとの連携がとてもスムーズで、情報共有のラグがなくなりました。チーム全体で患者さんを支えている実感があります。一緒に働けてよかったと思っています。</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👩‍⚕️</div>
+        <div>
+          <div class="author-name">山本 看護師（スタッフ）</div>
+          <div class="author-role">認定看護師 / 入職2年目</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECRUIT -->
+<section class="recruit" id="recruit">
+  <div class="recruit-inner">
+    <div class="recruit-left">
+      <div class="section-header">
+        <span class="section-tag">Join Our Team</span>
+        <h2 class="section-title">訪問看護の<br>未来を、一緒に。</h2>
+      </div>
+      <p class="recruit-body">
+        CareLinKは、医療×テクノロジーで訪問看護を変えようとするスタートアップチームです。「もっといいケアを、もっと多くの人へ」という思いを持つ看護師・医療専門職の方を歓迎します。
+      </p>
+      <div class="benefits">
+        <div class="benefit">週3日〜勤務可能</div>
+        <div class="benefit">充実した研修制度</div>
+        <div class="benefit">テレワーク対応</div>
+        <div class="benefit">インセンティブ制度</div>
+        <div class="benefit">スタートアップSO付与</div>
+        <div class="benefit">フレキシブル勤務</div>
+      </div>
+      <a href="#contact" class="btn-primary">採用情報を見る・応募する</a>
+    </div>
+    <div class="recruit-right reveal">
+      <div class="recruit-card">
+        <h3>現在の募集職種</h3>
+        <div class="positions">
+          <div class="position-row">
+            <div class="position-name">訪問看護師（正社員・パート）</div>
+            <span class="position-tag">OPEN</span>
+          </div>
+          <div class="position-row">
+            <div class="position-name">精神科訪問看護師</div>
+            <span class="position-tag">OPEN</span>
+          </div>
+          <div class="position-row">
+            <div class="position-name">理学療法士 / 作業療法士</div>
+            <span class="position-tag">OPEN</span>
+          </div>
+          <div class="position-row">
+            <div class="position-name">ケアマネジャー（在宅事業部）</div>
+            <span class="position-tag">OPEN</span>
+          </div>
+          <div class="position-row">
+            <div class="position-name">医療事務・コーディネーター</div>
+            <span class="position-tag">OPEN</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2 class="cta-title">まずは、お気軽にご相談ください。</h2>
+  <p class="cta-sub">「どんなサービスが必要か分からない」「介護保険の手続きが不安」そんなご相談も大歓迎です。専門スタッフが丁寧にお答えします。</p>
+  <div class="cta-buttons">
+    <a href="tel:0120-XXX-XXX" class="btn-white">📞 0120-XXX-XXX（無料）</a>
+    <a href="#" class="btn-ghost">WEBフォームで相談する →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo">CareLink <span>訪問看護ステーション</span></div>
+      <p>医療とテクノロジーで、<br>在宅ケアのあたりまえを変える。<br>東京・神奈川を中心に展開中。</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">医療処置・観察</a></li>
+        <li><a href="#">リハビリ支援</a></li>
+        <li><a href="#">精神科看護</a></li>
+        <li><a href="#">ターミナルケア</a></li>
+        <li><a href="#">小児訪問看護</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">会社概要</a></li>
+        <li><a href="#">スタッフ紹介</a></li>
+        <li><a href="#">採用情報</a></li>
+        <li><a href="#">ブログ・コラム</a></li>
+        <li><a href="#">プレスリリース</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">よくある質問</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">プライバシーポリシー</a></li>
+        <li><a href="#">利用規約</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 CareLink Inc. All rights reserved.</span>
+    <span>東京都 〇〇区 〇〇1-2-3 / 指定訪問看護事業者 第XXXXXXX号</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.dataset.delay = (i % 3) * 100;
+    observer.observe(el);
+  });
+
+  // Smooth nav background
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.06)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>
