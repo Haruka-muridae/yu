@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS CONSULTING — ベンダーフリーITコンサルティング</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #020408;
+    --bg2: #050d15;
+    --green: #00ff88;
+    --green2: #00cc66;
+    --cyan: #00e5ff;
+    --red: #ff2d55;
+    --white: #e8f4f8;
+    --muted: #4a6070;
+    --border: #0d2030;
+    --card-bg: #040c14;
+    --mono: 'Share Tech Mono', monospace;
+    --display: 'Rajdhani', sans-serif;
+    --jp: 'Noto Sans JP', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--jp);
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* Scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.04) 2px,
+      rgba(0,0,0,0.04) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* === CANVAS BACKGROUND === */
+  #bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    opacity: 0.15;
+  }
+
+  .content { position: relative; z-index: 1; }
+
+  /* === HEADER === */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: rgba(2,4,8,0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .logo {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 4px;
+    color: var(--green);
+    text-shadow: 0 0 20px rgba(0,255,136,0.5);
+  }
+
+  .logo span { color: var(--cyan); }
+
+  nav { display: flex; gap: 36px; align-items: center; }
+
+  nav a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--green); }
+
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 9px 20px;
+    border: 1px solid var(--green);
+    color: var(--green);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--green);
+    transform: translateX(-100%);
+    transition: transform 0.2s;
+    z-index: -1;
+  }
+
+  .nav-cta:hover { color: var(--bg); }
+  .nav-cta:hover::before { transform: translateX(0); }
+
+  /* === HERO === */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-tag::before {
+    content: '>';
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(48px, 8vw, 110px);
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 .line1 { color: var(--white); }
+  .hero h1 .line2 {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--green);
+    text-shadow: 0 0 40px rgba(0,255,136,0.2);
+  }
+  .hero h1 .line3 { color: var(--green); text-shadow: 0 0 40px rgba(0,255,136,0.4); }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 300;
+    margin: 36px 0;
+    max-width: 500px;
+    line-height: 1.8;
+    border-left: 2px solid var(--green);
+    padding-left: 20px;
+  }
+
+  .hero-actions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    background: var(--green);
+    color: var(--bg);
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+
+  .btn-primary:hover {
+    background: var(--cyan);
+    box-shadow: 0 0 30px rgba(0,229,255,0.4);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border: 1px solid var(--muted);
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--white); color: var(--white); }
+
+  /* Hero stats */
+  .hero-stats {
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .stat-item {
+    text-align: right;
+    padding: 16px;
+    border-right: 2px solid var(--green);
+    opacity: 0;
+    animation: fadeInRight 0.6s forwards;
+  }
+
+  .stat-item:nth-child(1) { animation-delay: 0.8s; }
+  .stat-item:nth-child(2) { animation-delay: 1.0s; }
+  .stat-item:nth-child(3) { animation-delay: 1.2s; }
+
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .stat-num {
+    font-family: var(--display);
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--green);
+    text-shadow: 0 0 20px rgba(0,255,136,0.4);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .scroll-hint span {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--green), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.1); }
+  }
+
+  /* === SECTION BASE === */
+  section { padding: 100px 48px; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--green);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::before { content: '//'; color: var(--muted); }
+
+  .section-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 60px);
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 560px;
+  }
+
+  /* === PROBLEM SECTION === */
+  .problem { background: var(--bg2); }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .terminal-box {
+    background: #000;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    font-family: var(--mono);
+  }
+
+  .terminal-bar {
+    background: #0a1a25;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.red { background: #ff3b30; }
+  .dot.yellow { background: #ffcc00; }
+  .dot.green { background: #00cc44; }
+
+  .terminal-title {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-left: 8px;
+  }
+
+  .terminal-body { padding: 24px; font-size: 12px; line-height: 2; }
+
+  .t-cmd { color: var(--green); }
+  .t-err { color: var(--red); }
+  .t-warn { color: #ffcc00; }
+  .t-ok { color: var(--cyan); }
+  .t-comment { color: var(--muted); }
+
+  .pain-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .pain-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .pain-item:hover { border-color: var(--red); }
+
+  .pain-icon {
+    font-family: var(--mono);
+    font-size: 18px;
+    color: var(--red);
+    width: 40px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .pain-text h4 {
+    font-family: var(--display);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--white);
+  }
+
+  .pain-text p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  /* === SERVICES === */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 60px;
+    border: 1px solid var(--border);
+  }
+
+  .service-card {
+    background: var(--card-bg);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover { background: #060f1a; }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    opacity: 0.6;
+  }
+
+  .service-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+
+  .service-card p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+  .service-tag {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cyan);
+    border: 1px solid rgba(0,229,255,0.3);
+    padding: 4px 10px;
+    letter-spacing: 1px;
+  }
+
+  /* === METHODOLOGY === */
+  .method { background: var(--bg2); }
+
+  .method-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    position: relative;
+  }
+
+  .method-steps::before {
+    content: '';
+    position: absolute;
+    top: 32px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--green), var(--cyan), var(--green), transparent);
+  }
+
+  .step {
+    padding: 0 24px 40px;
+    position: relative;
+    text-align: center;
+  }
+
+  .step-num {
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--green);
+    margin: 0 auto 24px;
+    background: var(--bg2);
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+
+  .step:hover .step-num {
+    background: var(--green);
+    color: var(--bg);
+    box-shadow: 0 0 30px rgba(0,255,136,0.4);
+  }
+
+  .step h4 {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+
+  .step p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  /* === PRICING === */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .price-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 40px 32px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .price-card.featured {
+    border-color: var(--green);
+    box-shadow: 0 0 40px rgba(0,255,136,0.1), inset 0 0 40px rgba(0,255,136,0.02);
+  }
+
+  .price-card.featured::before {
+    content: 'RECOMMENDED';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 4px 16px;
+  }
+
+  .price-card:hover:not(.featured) { border-color: var(--muted); }
+
+  .price-tier {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--green);
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+  }
+
+  .price-amount {
+    font-family: var(--display);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-amount span { font-size: 18px; color: var(--muted); }
+
+  .price-period {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    letter-spacing: 1px;
+  }
+
+  .price-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 24px;
+  }
+
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+  .price-features li {
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+  }
+
+  .price-features li::before {
+    content: '→';
+    color: var(--green);
+    font-size: 12px;
+  }
+
+  .price-btn {
+    display: block;
+    text-align: center;
+    margin-top: 32px;
+    padding: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+
+  .price-card.featured .price-btn {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--bg);
+    font-weight: 700;
+  }
+
+  .price-btn:hover { border-color: var(--green); color: var(--green); }
+  .price-card.featured .price-btn:hover { background: var(--cyan); border-color: var(--cyan); color: var(--bg); }
+
+  /* === CONTACT === */
+  .contact { background: var(--bg2); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 60px;
+    align-items: start;
+  }
+
+  .contact-info-box {
+    border: 1px solid var(--border);
+    padding: 32px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .contact-info-box::before {
+    content: attr(data-label);
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    background: var(--bg2);
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--green);
+    letter-spacing: 2px;
+    padding: 0 8px;
+  }
+
+  .contact-info-box p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .contact-info-box strong {
+    display: block;
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .form-group { margin-bottom: 20px; }
+
+  .form-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--green);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .form-control {
+    width: 100%;
+    background: #000;
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  .form-control:focus { border-color: var(--green); }
+  .form-control::placeholder { color: var(--muted); }
+
+  .form-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--green);
+    border: none;
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: crosshair;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+
+  .form-submit:hover { background: var(--cyan); box-shadow: 0 0 30px rgba(0,229,255,0.4); }
+
+  /* === FOOTER === */
+  footer {
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .footer-right {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-align: right;
+    letter-spacing: 1px;
+  }
+
+  /* === GLITCH ANIMATION === */
+  @keyframes glitch {
+    0%, 90%, 100% { clip-path: none; transform: none; }
+    91% { clip-path: inset(10% 0 80% 0); transform: translate(-3px, 0); }
+    93% { clip-path: inset(60% 0 30% 0); transform: translate(3px, 0); }
+    95% { clip-path: inset(40% 0 50% 0); transform: translate(-3px, 0); }
+    97% { clip-path: none; transform: none; }
+  }
+
+  .glitch {
+    position: relative;
+    display: inline-block;
+  }
+
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0; top: 0;
+    color: var(--cyan);
+    animation: glitch 6s infinite;
+    opacity: 0.5;
+  }
+
+  /* Fade in animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === HAMBURGER === */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+    z-index: 200;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--green);
+    transition: all 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+
+    header { padding: 16px 20px; }
+
+    nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2,4,8,0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      z-index: 150;
+    }
+
+    nav.open { display: flex; }
+
+    nav a { font-size: 16px; letter-spacing: 3px; }
+
+    .nav-cta { font-size: 14px; padding: 14px 32px; }
+
+    .hamburger { display: flex; }
+
+    /* Hero */
+    .hero { padding: 100px 20px 80px; }
+
+    .hero-tag { font-size: 9px; letter-spacing: 2px; }
+
+    .hero h1 {
+      font-size: clamp(38px, 12vw, 64px);
+      letter-spacing: -1px;
+    }
+
+    .hero-sub { font-size: 14px; margin: 24px 0; }
+
+    .hero-stats { display: none; }
+
+    .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; }
+
+    .btn-primary, .btn-secondary {
+      font-size: 11px;
+      padding: 14px 24px;
+      justify-content: center;
+    }
+
+    /* Sections */
+    section { padding: 60px 20px; }
+
+    /* Problem */
+    .problem-grid { grid-template-columns: 1fr; gap: 32px; }
+
+    .terminal-body { font-size: 11px; padding: 16px; line-height: 1.8; }
+
+    /* Services */
+    .services-grid { grid-template-columns: 1fr; }
+
+    .service-card { padding: 28px 20px; }
+
+    /* Method */
+    .method-steps { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
+
+    .method-steps::before { display: none; }
+
+    .step { padding: 0 8px; }
+
+    /* Contact */
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+
+    .contact-info-box { padding: 20px; }
+
+    /* Footer */
+    footer {
+      padding: 32px 20px;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .footer-right { text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .method-steps { grid-template-columns: 1fr; }
+
+    .hero h1 { font-size: clamp(34px, 13vw, 52px); }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<div class="content">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">NX<span>.</span>CONSULT</div>
+    <nav id="main-nav">
+      <a href="#problem" onclick="closeNav()">課題</a>
+      <a href="#services" onclick="closeNav()">サービス</a>
+      <a href="#method" onclick="closeNav()">プロセス</a>
+      <a href="#contact" class="nav-cta" onclick="closeNav()">相談を始める</a>
+    </nav>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">VENDOR-FREE // INDEPENDENT IT CONSULTING</div>
+    <h1>
+      <div class="line1 glitch" data-text="あなただけの">あなただけの</div>
+      <div class="line2">最適解を、</div>
+      <div class="line3">導き出す。</div>
+    </h1>
+    <p class="hero-sub">
+      特定ベンダーに縛られない、完全中立のITコンサルティング。<br>
+      あなたのビジネスに本当に必要なテクノロジーを、<br>
+      利害関係なく提案します。
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">▶ 無料相談を予約する</a>
+      <a href="#services" class="btn-secondary">サービス詳細を見る →</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">0</div>
+        <div class="stat-label">VENDOR CONTRACTS</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100<span style="font-size:20px;color:var(--green)">%</span></div>
+        <div class="stat-label">NEUTRAL ADVICE</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">POSSIBILITIES</div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem" id="problem">
+    <div class="section-label">PROBLEM STATEMENT</div>
+    <h2 class="section-title">こんな<span style="color:var(--red)">悩み</span>、ありませんか？</h2>
+    <p class="section-desc">多くの企業が、ベンダー主導のIT提案によって本来不要なコストを払い続けています。</p>
+
+    <div class="problem-grid fade-in">
+      <div class="pain-list">
+        <div class="pain-item">
+          <div class="pain-icon">!</div>
+          <div class="pain-text">
+            <h4>提案が特定製品に偏っている</h4>
+            <p>コンサルタントが特定ベンダーと提携しており、本当に最適なソリューションより「売れる製品」を勧められる。</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">!</div>
+          <div class="pain-text">
+            <h4>IT戦略が場当たり的になっている</h4>
+            <p>個別のツール導入を繰り返した結果、システム間が連携せず、運用コストが積み上がっている。</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">!</div>
+          <div class="pain-text">
+            <h4>DXを進めたいが何から始めるか不明</h4>
+            <p>「デジタル化」「AI活用」の言葉は聞くが、自社に何が本当に必要か整理できていない。</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">!</div>
+          <div class="pain-text">
+            <h4>社内にIT専門人材がいない</h4>
+            <p>経営層とエンジニアの橋渡し役がおらず、IT投資の効果が経営判断に繋がっていない。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="terminal-box">
+        <div class="terminal-bar">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+          <div class="terminal-title">vendor_analysis.sh</div>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-cmd">$ </span><span class="t-ok">scan --target=your_current_vendor</span></div>
+          <div style="margin-top:12px">
+            <span class="t-comment"># Checking vendor independence...</span>
+          </div>
+          <div><span class="t-err">[ERR] Conflict of interest detected</span></div>
+          <div><span class="t-err">[ERR] Commission-based recommendations found</span></div>
+          <div><span class="t-warn">[WARN] 3 unnecessary licenses identified</span></div>
+          <div><span class="t-warn">[WARN] Overkill infrastructure detected</span></div>
+          <div style="margin-top:12px">
+            <span class="t-comment"># Running cost analysis...</span>
+          </div>
+          <div><span class="t-err">[ERR] ¥2,400,000/yr overpayment detected</span></div>
+          <div style="margin-top:12px">
+            <span class="t-comment"># Checking strategic alignment...</span>
+          </div>
+          <div><span class="t-err">[ERR] No business goal mapping found</span></div>
+          <div><span class="t-err">[ERR] ROI undefined for 68% of IT spend</span></div>
+          <div style="margin-top:16px">
+            <span class="t-comment">━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+          </div>
+          <div><span class="t-cmd">$ </span><span class="t-ok">recommend --fix</span></div>
+          <div style="margin-top:8px">
+            <span class="t-ok">[OK] Solution: NX.CONSULT</span>
+          </div>
+          <div><span class="t-ok">[OK] Vendor-free advice: ENABLED</span></div>
+          <div><span class="t-ok">[OK] Your interest: PRIORITY=1</span></div>
+          <div style="margin-top:8px">
+            <span class="t-cmd">$ </span><span style="color:var(--white);animation:blink 1s step-end infinite">█</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label">SERVICES</div>
+    <h2 class="section-title">提供する<span style="color:var(--cyan)">サービス</span></h2>
+    <p class="section-desc">あなたのビジネスフェーズと課題に合わせた、完全オーダーメイドのITコンサルティング。</p>
+
+    <div class="services-grid fade-in">
+      <div class="service-card">
+        <div class="service-num">01 //</div>
+        <span class="service-icon">⬡</span>
+        <h3>IT戦略策定</h3>
+        <p>経営目標から逆算したIT戦略を設計。現状アーキテクチャの診断から中長期ロードマップまでをゼロベースで構築します。</p>
+        <div class="service-tag">STRATEGY DESIGN</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02 //</div>
+        <span class="service-icon">◈</span>
+        <h3>システム選定支援</h3>
+        <p>ERP・CRM・クラウド基盤などの選定において、ベンダー利害を排除した純粋な要件定義とRFP作成・評価を行います。</p>
+        <div class="service-tag">VENDOR EVALUATION</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03 //</div>
+        <span class="service-icon">◉</span>
+        <h3>DX推進コンサル</h3>
+        <p>AI・データ活用・業務自動化の具体的な導入計画を策定。技術論だけでなく、組織変革・人材育成まで一貫して伴走します。</p>
+        <div class="service-tag">DX TRANSFORMATION</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04 //</div>
+        <span class="service-icon">▣</span>
+        <h3>ITコスト最適化</h3>
+        <p>現行のIT投資を可視化し、重複・過剰スペック・ベンダーロックインを特定。コスト削減と機能強化を同時に実現します。</p>
+        <div class="service-tag">COST OPTIMIZATION</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05 //</div>
+        <span class="service-icon">⬟</span>
+        <h3>PMO・プロジェクト管理</h3>
+        <p>大規模システム刷新のプロジェクト管理を支援。ベンダーマネジメント、品質管理、リスク管理を客観的立場から実施します。</p>
+        <div class="service-tag">PROJECT GOVERNANCE</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- METHODOLOGY -->
+  <section class="method" id="method">
+    <div class="section-label">PROCESS</div>
+    <h2 class="section-title">コンサルティング<span style="color:var(--green)">プロセス</span></h2>
+    <p class="section-desc">あなたの課題を深く理解することから始め、実行可能な解決策を共に構築します。</p>
+
+    <div class="method-steps fade-in">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>ヒアリング診断</h4>
+        <p>現状のIT環境、経営課題、組織体制を詳細にヒアリング。課題の本質を特定します。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>現状分析・可視化</h4>
+        <p>システム構成・コスト・リスクを定量的に分析。改善ポテンシャルを数値化します。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>戦略立案・提案</h4>
+        <p>複数の選択肢をトレードオフ込みで提示。意思決定に必要な情報を透明に共有します。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>実行支援・伴走</h4>
+        <p>導入後も継続して効果測定・改善提案を実施。成果が出るまで責任を持って伴走します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-label">CONTACT</div>
+    <h2 class="section-title">まず、<span style="color:var(--green)">話してみましょう</span></h2>
+    <p class="section-desc">初回相談は無料です。お気軽にご連絡ください。</p>
+
+    <div class="contact-grid fade-in">
+      <div>
+        <div class="contact-info-box" data-label="PHILOSOPHY">
+          <strong>なぜベンダーフリーなのか</strong>
+          <p>特定ベンダーとの契約・コミッション・リベートを一切受け取らないことを経営方針として掲げています。あなたの利益だけを最大化することが、私たちの唯一のミッションです。</p>
+        </div>
+        <div class="contact-info-box" data-label="RESPONSE TIME">
+          <strong>レスポンスタイム</strong>
+          <p>お問い合わせから<strong style="color:var(--green);font-size:14px">24時間以内</strong>に返信いたします。初回無料相談（60分）の日程調整も併せて行います。</p>
+        </div>
+        <div class="contact-info-box" data-label="NDA / CONFIDENTIALITY">
+          <strong>秘密保持について</strong>
+          <p>ご要望に応じてNDAを締結いたします。お話しいただいた内容は厳重に管理し、第三者への開示は一切行いません。</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="form-group">
+          <label class="form-label">お名前 / 会社名</label>
+          <input type="text" class="form-control" placeholder="山田 太郎 / 株式会社Example">
+        </div>
+        <div class="form-group">
+          <label class="form-label">メールアドレス</label>
+          <input type="email" class="form-control" placeholder="taro@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">相談の種類</label>
+          <select class="form-control" style="cursor:crosshair">
+            <option value="" style="background:#000">選択してください</option>
+            <option style="background:#000">IT戦略策定</option>
+            <option style="background:#000">システム選定支援</option>
+            <option style="background:#000">DX推進</option>
+            <option style="background:#000">ITコスト最適化</option>
+            <option style="background:#000">セキュリティ</option>
+            <option style="background:#000">その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">現在の課題・ご相談内容</label>
+          <textarea class="form-control" rows="5" placeholder="現状のIT課題や、達成したいゴールについてお聞かせください。どんな些細なことでも構いません。"></textarea>
+        </div>
+        <button class="form-submit">▶ 無料相談を申し込む</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <div style="font-size:16px;font-family:var(--display);color:var(--green);margin-bottom:6px;font-weight:700">NX.CONSULT</div>
+      <div>© 2025 NEXUS CONSULTING. All rights reserved.</div>
+    </div>
+    <div class="footer-right">
+      <div>VENDOR_CONTRACTS: 0</div>
+      <div>BIAS: NULL</div>
+      <div>YOUR_INTEREST: PRIORITY_1</div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// === HAMBURGER MENU ===
+function toggleNav() {
+  const nav = document.getElementById('main-nav');
+  const btn = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+function closeNav() {
+  document.getElementById('main-nav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  initMatrix();
+});
+
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?アイウエオカキクケコサシスセソタチツテトナニヌネノ';
+const fontSize = 13;
+let columns, drops;
+
+function initMatrix() {
+  columns = Math.floor(canvas.width / fontSize);
+  drops = new Array(columns).fill(1);
+}
+
+initMatrix();
+
+function drawMatrix() {
+  ctx.fillStyle = 'rgba(2,4,8,0.05)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.font = `${fontSize}px 'Share Tech Mono'`;
+
+  for (let i = 0; i < drops.length; i++) {
+    const char = chars[Math.floor(Math.random() * chars.length)];
+    const progress = drops[i] / (canvas.height / fontSize);
+    
+    if (progress > 0.9) {
+      ctx.fillStyle = '#00ff88';
+    } else if (progress > 0.7) {
+      ctx.fillStyle = 'rgba(0,255,136,0.6)';
+    } else {
+      ctx.fillStyle = 'rgba(0,255,136,0.15)';
+    }
+    
+    ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+}
+
+setInterval(drawMatrix, 45);
+
+// === FADE IN ON SCROLL ===
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// === TYPING EFFECT FOR HERO TAG ===
+const tag = document.querySelector('.hero-tag');
+const tagText = tag.textContent;
+tag.textContent = '';
+let ti = 0;
+const typeTag = () => {
+  if (ti < tagText.length) {
+    tag.textContent += tagText[ti++];
+    setTimeout(typeTag, 40);
+  }
+};
+setTimeout(typeTag, 500);
+</script>
+</body>
+</html>
