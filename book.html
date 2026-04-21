@@ -501,63 +501,129 @@ const PAGES = [
 //  自動で演習問題（100ページ分）を生成して追加するプログラム
 // ================================================================
 
-function generateMathProblems(numProblems) {
-  for (let i = 1; i <= numProblems; i++) {
-    // -10 から 10 までのランダムな数値を2つ作る
-    let a = Math.floor(Math.random() * 21) - 10;
-    let b = Math.floor(Math.random() * 21) - 10;
+// ================================================================
+//  自動で演習問題（1ページ5問）を生成して追加するプログラム
+// ================================================================
+
+function generateMathProblems(numPages) {
+  // 1. 最大公約数を求める関数（約分に使います）
+  function gcd(a, b) {
+    a = Math.abs(a); b = Math.abs(b);
+    return b === 0 ? a : gcd(b, a % b);
+  }
+
+  // 2. 分数データを作る関数（整数の場合は分母を1にします）
+  function makeRational(n, d) {
+    if (d === 0) d = 1; // 安全策
+    if (d < 0) { n = -n; d = -d; } // 分母のマイナスは分子に移動
+    let g = gcd(n, d);
+    return { n: n / g, d: d / g }; // 約分して返す
+  }
+
+  // 3. ランダムな数（整数 または 分数）を生成する関数
+  function getRandomRat(allowZero) {
+    let n = Math.floor(Math.random() * 19) - 9; // -9 〜 9のランダム
+    if (!allowZero && n === 0) n = 1; // 0を許容しない場合（割り算のうしろ等）は1にする
+    let isFrac = Math.random() < 0.4; // 40%の確率で分数になる
+    let d = isFrac ? Math.floor(Math.random() * 8) + 2 : 1; // 分母は 2〜9 または 1
+    return makeRational(n, d);
+  }
+
+  // 4. 数値を画面表示用のHTMLデザインに変換する関数
+  function formatRat(r, addParenIfNegative) {
+    if (r.n === 0) return "0";
+    let sign = r.n < 0 ? "-" : "";
+    let num = Math.abs(r.n);
+    let str = "";
     
-    // 足し算、引き算、掛け算をランダムに選ぶ
-    let operators = ['+', '-', '×'];
-    let op = operators[Math.floor(Math.random() * operators.length)];
+    if (r.d === 1) {
+      str = sign + num; // 整数の場合
+    } else {
+      // 分数の場合（CSSを使って上下に数字を並べ、真ん中に線を引く）
+      str = sign + `<span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.75em; margin: 0 4px; line-height:1.2;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">${num}</span><span>${r.d}</span></span>`;
+    }
+    
+    if (r.n < 0 && addParenIfNegative) {
+      return `(${str})`; // マイナスの数にはカッコをつける
+    }
+    return str;
+  }
 
-    // 答えを計算する
-    let ans;
-    if (op === '+') ans = a + b;
-    if (op === '-') ans = a - b;
-    if (op === '×') ans = a * b;
+  // ここからページを生成するループ
+  for (let page = 1; page <= numPages; page++) {
+    let questionsHTML = "";
+    let answersHTML = "";
 
-    // マイナスの数には見やすくカッコ( )をつける
-    let strA = a < 0 ? `(${a})` : `${a}`;
-    let strB = b < 0 ? `(${b})` : `${b}`;
+    // 1ページにつき 5問 作成
+    for (let i = 1; i <= 5; i++) {
+      let a = getRandomRat(true);
+      let b = getRandomRat(false); // 0割りエラーを防ぐため、bは絶対に0にならないようにする
 
-    // 左ページ：問題
+      let operators = ['+', '-', '×', '÷'];
+      let op = operators[Math.floor(Math.random() * operators.length)];
+
+      let ansRat;
+      // 分数の四則演算ロジック（通分や掛け算・割り算の計算）
+      if (op === '+') {
+        ansRat = makeRational(a.n * b.d + b.n * a.d, a.d * b.d);
+      } else if (op === '-') {
+        ansRat = makeRational(a.n * b.d - b.n * a.d, a.d * b.d);
+      } else if (op === '×') {
+        ansRat = makeRational(a.n * b.n, a.d * b.d);
+      } else if (op === '÷') {
+        ansRat = makeRational(a.n * b.d, a.d * b.n);
+      }
+
+      // 式を文字列（HTML）化する
+      let strA = formatRat(a, false); // 最初の数はマイナスでもカッコなしが多い
+      let strB = formatRat(b, true);  // 演算子の直後のマイナス数にはカッコ( )をつける
+      let ansStr = formatRat(ansRat, false);
+
+      // 問題文の行を作成（ズレないように Flexbox を使用）
+      questionsHTML += `
+        <div style="font-size: 18px; margin-top: 20px; display: flex; align-items: center;">
+          <span style="width: 35px; font-weight: bold; color: var(--accent);">(${i})</span> 
+          ${strA} <span style="margin: 0 8px;">${op}</span> ${strB} <span style="margin: 0 8px;">=</span>
+        </div>
+      `;
+
+      // 解答の行を作成
+      answersHTML += `
+        <div style="font-size: 18px; margin-top: 20px; display: flex; align-items: center;">
+          <span style="width: 35px; font-weight: bold; color: var(--accent);">(${i})</span> 
+          <span style="color: #8b3a2a; font-weight:bold;">${ansStr}</span>
+        </div>
+      `;
+    }
+
+    // 左ページ：5つの問題を追加
     PAGES.push({
       side: "left",
       html: `
-        <h1>演習問題 ${i}</h1>
+        <h1>演習問題 ${page}</h1>
         <div class="divider"></div>
-        <p>次の計算をしなさい。</p>
-        <div style="font-size: 32px; text-align: center; margin-top: 60px; font-weight: bold; letter-spacing: 0.1em;">
-          ${strA} ${op} ${strB} = ?
+        <div style="margin-top: 15px;">
+          ${questionsHTML}
         </div>
       `
     });
 
-    // 右ページ：解答
+    // 右ページ：5つの答えを追加
     PAGES.push({
       side: "right",
       html: `
-        <h1>第${i}問の答え</h1>
+        <h1>問題 ${page} の答え</h1>
         <div class="divider"></div>
-        <p>答え合わせをしましょう。</p>
-        <div style="font-size: 32px; text-align: center; margin-top: 60px; font-weight: bold; letter-spacing: 0.1em; color: #8b3a2a;">
-          ${ans}
+        <div style="margin-top: 15px;">
+          ${answersHTML}
         </div>
-        <p style="text-align: center; margin-top: 20px;">
-          式：${strA} ${op} ${strB}
-        </p>
       `
     });
   }
 }
 
-// ここで指定した数だけ問題が作られます
-// 50を指定すると、左(問題)・右(答え)で合計100ページ追加されます。
-generateMathProblems(50);
-
-// ※ この関数のあとに let currentFlip = 0; や buildBook(); が続くようにしてください。
-
+// 20ページ分作成する（1ページ5問なので、これで合計100問になります）
+generateMathProblems(100);
   
 // ================================================================
 //  以下はシステムコード（通常は編集不要）
