@@ -1167,29 +1167,29 @@
       <div>
         <div class="form-group">
           <label class="form-label">お名前 / 会社名</label>
-          <input type="text" class="form-control" placeholder="山田 太郎 / 株式会社Example">
+          <input id="f-name" type="text" class="form-control" placeholder="山田 太郎 / 株式会社Example">
         </div>
         <div class="form-group">
           <label class="form-label">メールアドレス</label>
-          <input type="email" class="form-control" placeholder="taro@example.com">
+          <input id="f-email" type="email" class="form-control" placeholder="taro@example.com">
         </div>
         <div class="form-group">
           <label class="form-label">相談の種類</label>
-          <select class="form-control" style="cursor:crosshair">
+          <select id="f-type" class="form-control" style="cursor:crosshair">
             <option value="" style="background:#000">選択してください</option>
             <option style="background:#000">IT戦略策定</option>
             <option style="background:#000">システム選定支援</option>
             <option style="background:#000">DX推進</option>
             <option style="background:#000">ITコスト最適化</option>
-            <option style="background:#000">セキュリティ</option>
             <option style="background:#000">その他</option>
           </select>
         </div>
         <div class="form-group">
           <label class="form-label">現在の課題・ご相談内容</label>
-          <textarea class="form-control" rows="5" placeholder="現状のIT課題や、達成したいゴールについてお聞かせください。どんな些細なことでも構いません。"></textarea>
+          <textarea id="f-message" class="form-control" rows="5" placeholder="現状のIT課題や、達成したいゴールについてお聞かせください。どんな些細なことでも構いません。"></textarea>
         </div>
-        <button class="form-submit">▶ 無料相談を申し込む</button>
+        <button id="form-submit-btn" class="form-submit" onclick="submitForm()">▶ 無料相談を申し込む</button>
+        <div id="form-msg" style="margin-top:16px;font-family:var(--mono);font-size:12px;display:none;padding:12px 16px;border:1px solid;letter-spacing:1px;"></div>
       </div>
     </div>
   </section>
@@ -1210,6 +1210,74 @@
 </div>
 
 <script>
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxEkEztBUdMiHvnKuPMnfcBOPIj61KBfNAZ7RjkiChPY6AVRGxYQHwLRMUeAlwkZtPn-Q/exec';
+
+async function submitForm() {
+  const name    = document.getElementById('f-name').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const type    = document.getElementById('f-type').value;
+  const message = document.getElementById('f-message').value.trim();
+  const btn     = document.getElementById('form-submit-btn');
+  const msg     = document.getElementById('form-msg');
+
+  // バリデーション
+  if (!name || !email || !type || !message) {
+    showMsg('error', '[ERR] すべての項目を入力してください');
+    return;
+  }
+  const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailReg.test(email)) {
+    showMsg('error', '[ERR] 正しいメールアドレスを入力してください');
+    return;
+  }
+
+  // 送信中
+  btn.disabled = true;
+  btn.textContent = '▶ SENDING...';
+  showMsg('loading', '[PROCESS] スプレッドシートに記録中...');
+
+  try {
+    await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, type, message })
+    });
+
+    // no-corsでは成功/失敗が判定できないため、送信完了として扱う
+    showMsg('success', '[OK] 送信完了 — 24時間以内にご連絡いたします');
+    btn.textContent = '▶ 送信完了';
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-email').value = '';
+    document.getElementById('f-type').value = '';
+    document.getElementById('f-message').value = '';
+
+  } catch (err) {
+    showMsg('error', '[ERR] 送信に失敗しました。お手数ですが再度お試しください。');
+    btn.disabled = false;
+    btn.textContent = '▶ 無料相談を申し込む';
+  }
+}
+
+function showMsg(type, text) {
+  const el = document.getElementById('form-msg');
+  el.style.display = 'block';
+  el.textContent = text;
+  if (type === 'success') {
+    el.style.color = 'var(--green)';
+    el.style.borderColor = 'var(--green)';
+    el.style.background = 'rgba(0,255,136,0.05)';
+  } else if (type === 'error') {
+    el.style.color = 'var(--red)';
+    el.style.borderColor = 'var(--red)';
+    el.style.background = 'rgba(255,45,85,0.05)';
+  } else {
+    el.style.color = 'var(--cyan)';
+    el.style.borderColor = 'var(--cyan)';
+    el.style.background = 'rgba(0,229,255,0.05)';
+  }
+}
+
 // === HAMBURGER MENU ===
 function toggleNav() {
   const nav = document.getElementById('main-nav');
