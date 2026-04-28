@@ -6,9 +6,12 @@
 <title>悠 – Yuki Saito</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<!-- 🔧 修正①: 開発用 → 本番用に変更（react.development → react.production.min） -->
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -398,9 +401,6 @@
     text-transform: uppercase;
   }
 
-  /* ============================================================
-     SNS / My hobby is... セクション
-  ============================================================ */
   #sns-hobby { background: var(--bg); }
 
   .sns-grid {
@@ -506,7 +506,6 @@
     transform: translate(3px, -3px);
   }
 
-  /* Contact */
   #contact { background: var(--ink); color: var(--white); }
   #contact .section-label { color: rgba(255,255,255,0.35); }
   #contact .section-label::after { background: rgba(255,255,255,0.25); }
@@ -630,6 +629,7 @@
 <script type="text/babel">
 const { useState } = React;
 
+// 🔧 修正④: localStorage を廃止し、定数から直接読み込むシンプルな構造に変更
 const INITIAL_SERVICES = [
   {
     id: 1,
@@ -665,48 +665,32 @@ const PHOTO_URL = "images/IMG_0298_Original.JPG";
 
 const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbzPvdlNeGnFQitisl4OtohGt60L3JDwQXuFoEIPJpgeFWMN6qZFma8cpMHuPHesDH-fzw/exec";
 
-// ============================================================
-// ■ SNS / My hobby is... リンクデータ（編集ポイント）
-//
-// 各フィールド:
-//   id       … 一意なID（変えないこと）
-//   type     … "x" | "instagram" | "note" | "novel" | "youtube" | "other"
-//   title    … カードに表示するタイトル
-//   handle   … ハンドル名や補足テキスト（任意）
-//   tag      … カード右上のタグラベル
-//   url      … リンク先URL（"#" のままだと未設定扱い）
-//   isPublic … true=表示 / false=非表示
-//
-// 追加: 配列に新しいオブジェクトを追記するだけ
-// 削除: 対象オブジェクトを削除するだけ
-// 非公開: isPublic: false にする
-// ============================================================
 const SNS_LINKS = [
   {
     id: "line",
     type: "line",
     title: "LINE",
-    handle: "友だち追加はこちら",    // ← 表示テキストを変更
+    handle: "友だち追加はこちら",
     tag: "Contact",
-    url: "https://line.me/ti/p/bivqtgD_6a",                        // ← LINE公式アカウントURLまたは友だち追加リンクに変更
+    url: "https://line.me/ti/p/bivqtgD_6a",
     isPublic: true,
   },
   {
     id: "x",
     type: "x",
     title: "X (Twitter)",
-    handle: "@haruka_muridae",         // ← ハンドル名に変更
+    handle: "@haruka_muridae",
     tag: "SNS",
-    url: "https://x.com/haruka_muridae?s=21",                        // ← URLに変更
+    url: "https://x.com/haruka_muridae?s=21",
     isPublic: true,
   },
   {
     id: "instagram",
     type: "instagram",
     title: "Instagram",
-    handle: "@mash.haru",         // ← ハンドル名に変更
+    handle: "@mash.haru",
     tag: "SNS",
-    url: "https://www.instagram.com/mash.haru?igsh=b2xxNTdwbHpzazVu&utm_source=qr",                        // ← URLに変更
+    url: "https://www.instagram.com/mash.haru?igsh=b2xxNTdwbHpzazVu&utm_source=qr",
     isPublic: true,
   },
   {
@@ -715,42 +699,29 @@ const SNS_LINKS = [
     title: "note",
     handle: "少しでも世のお役に立てればと思って記事を書いてます",
     tag: "Writing",
-    url: "https://note.com/koto_haruka",                        // ← URLに変更
+    url: "https://note.com/koto_haruka",
     isPublic: true,
   },
   {
     id: "ひとりぼっち、ふたりきり",
     type: "novel",
     title: "小説サイト",
-    handle: "小説家になろう",   // ← サイト名・作品名などに変更
+    handle: "小説家になろう",
     tag: "Novel",
-    url: "https://ncode.syosetu.com/n5878lp/",                        // ← URLに変更
+    url: "https://ncode.syosetu.com/n5878lp/",
     isPublic: true,
   },
   {
     id: "youtube",
     type: "youtube",
     title: "YouTube",
-    handle: "チャンネル名",          // ← チャンネル名に変更
+    handle: "チャンネル名",
     tag: "Video",
-    url: "#",                        // ← URLに変更
+    url: "#",
     isPublic: false,
   },
-  // ↓ その他SNSや追加リンクの例
-  // {
-  //   id: "threads",
-  //   type: "other",
-  //   title: "Threads",
-  //   handle: "@your_handle",
-  //   tag: "SNS",
-  //   url: "https://www.threads.net/@your_handle",
-  //   isPublic: false,
-  // },
 ];
 
-// ------------------------------------------------------------------
-// SVGアイコン
-// ------------------------------------------------------------------
 const icons = {
   x: (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -789,9 +760,6 @@ const icons = {
   ),
 };
 
-// ------------------------------------------------------------------
-// Nav
-// ------------------------------------------------------------------
 function Nav() {
   const links = [
     { href: "#profile",    label: "Profile" },
@@ -810,9 +778,6 @@ function Nav() {
   );
 }
 
-// ------------------------------------------------------------------
-// Hero
-// ------------------------------------------------------------------
 function Hero() {
   return (
     <section id="hero">
@@ -854,9 +819,6 @@ function Hero() {
   );
 }
 
-// ------------------------------------------------------------------
-// Profile
-// ------------------------------------------------------------------
 function Profile() {
   return (
     <section id="profile">
@@ -898,9 +860,6 @@ function Profile() {
   );
 }
 
-// ------------------------------------------------------------------
-// Activities
-// ------------------------------------------------------------------
 function Activities() {
   const items = [
     {
@@ -944,9 +903,6 @@ function Activities() {
   );
 }
 
-// ------------------------------------------------------------------
-// Value
-// ------------------------------------------------------------------
 function ValueSection() {
   const values = [
     {
@@ -987,9 +943,6 @@ function ValueSection() {
   );
 }
 
-// ------------------------------------------------------------------
-// Philosophy
-// ------------------------------------------------------------------
 function Philosophy() {
   const items = [
     {
@@ -1026,21 +979,10 @@ function Philosophy() {
   );
 }
 
-// ------------------------------------------------------------------
-// Services
-// ------------------------------------------------------------------
+// 🔧 修正④: localStorage を廃止。INITIAL_SERVICES を直接使用
 function Services() {
-  const [services] = useState(() => {
-    try {
-      const saved = localStorage.getItem("yu_services");
-      return saved ? JSON.parse(saved) : INITIAL_SERVICES;
-    } catch {
-      return INITIAL_SERVICES;
-    }
-  });
-
-  const publicServices = services.filter(s => s.isPublic);
-  const hasHidden = services.some(s => !s.isPublic);
+  const publicServices = INITIAL_SERVICES.filter(s => s.isPublic);
+  const hasHidden = INITIAL_SERVICES.some(s => !s.isPublic);
 
   return (
     <section id="services">
@@ -1068,9 +1010,6 @@ function Services() {
   );
 }
 
-// ------------------------------------------------------------------
-// SNS / My hobby is...
-// ------------------------------------------------------------------
 function SnsHobby() {
   const publicLinks = SNS_LINKS.filter(l => l.isPublic);
 
@@ -1108,18 +1047,37 @@ function SnsHobby() {
   );
 }
 
-// ------------------------------------------------------------------
-// Contact
-// ------------------------------------------------------------------
+// 🔧 修正③: Honeypotによるスパム対策を追加
 function Contact() {
-  const [form, setForm]     = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "", _hp: "" });
   const [status, setStatus] = useState(null);
 
   const handleSubmit = async () => {
+    // ボット判定: honeypotフィールドに値があれば送信しない
+    if (form._hp) {
+      setStatus("sent"); // ボットには成功に見せる（サイレント拒否）
+      return;
+    }
+
+    // 入力バリデーション
     if (!form.name || !form.email || !form.message) {
       setStatus("error");
       return;
     }
+
+    // メールアドレス形式チェック
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      setStatus("error");
+      return;
+    }
+
+    // 文字数制限チェック
+    if (form.name.length > 100 || form.message.length > 2000) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
 
     if (CONTACT_ENDPOINT) {
@@ -1128,17 +1086,18 @@ function Contact() {
           method: "POST",
           mode:   "no-cors",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
+          // honeypotフィールド(_hp)はサーバーに送らない
+          body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
         });
         setStatus("sent");
-        setForm({ name: "", email: "", message: "" });
+        setForm({ name: "", email: "", message: "", _hp: "" });
       } catch {
         setStatus("error");
       }
     } else {
       setTimeout(() => {
         setStatus("sent");
-        setForm({ name: "", email: "", message: "" });
+        setForm({ name: "", email: "", message: "", _hp: "" });
       }, 800);
     }
   };
@@ -1168,6 +1127,16 @@ function Contact() {
               </div>
             ) : (
               <div className="contact-form">
+                {/* 🔧 修正③: Honeypotフィールド（ボット対策・人間には見えない） */}
+                <div style={{ display: "none" }} aria-hidden="true">
+                  <input
+                    tabIndex="-1"
+                    autoComplete="off"
+                    value={form._hp}
+                    onChange={e => setForm({ ...form, _hp: e.target.value })}
+                  />
+                </div>
+
                 <div className="form-field">
                   <label className="form-label">お名前</label>
                   <input
@@ -1198,7 +1167,7 @@ function Contact() {
                 </div>
                 {status === "error" && (
                   <p style={{ fontFamily: "var(--mono)", fontSize: 11, color: "#ff8888" }}>
-                    入力内容を確認してください
+                    入力内容を確認してください（メールアドレスの形式・必須項目をご確認ください）
                   </p>
                 )}
                 <button className="btn-white" onClick={handleSubmit} disabled={status === "sending"}>
@@ -1213,9 +1182,6 @@ function Contact() {
   );
 }
 
-// ------------------------------------------------------------------
-// Footer
-// ------------------------------------------------------------------
 function Footer() {
   return (
     <div className="site-footer-wrap">
@@ -1227,9 +1193,6 @@ function Footer() {
   );
 }
 
-// ------------------------------------------------------------------
-// App
-// ------------------------------------------------------------------
 function App() {
   return (
     <>
