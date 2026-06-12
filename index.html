@@ -111,10 +111,6 @@
 
   /* ── Links（SNS / 発信） ── */
   #sns-hobby { background: var(--bg); }
-  .sns-block { margin-bottom: 48px; }
-  .sns-block:last-child { margin-bottom: 0; }
-  .sns-block-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
-  .sns-block-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
   .sns-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .sns-card { display: flex; flex-direction: column; justify-content: space-between; padding: 28px 28px 24px; background: var(--white); border: 1px solid var(--rule); text-decoration: none; color: inherit; position: relative; overflow: hidden; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s; min-height: 160px; }
   .sns-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
@@ -317,10 +313,10 @@ const INITIAL_TIMELINE = [
 ];
 
 const INITIAL_SERVICES = [
-  { id: 1, title: "個別オンライン指導（10～30歳対象）", description: "オンライン1対1形式。あなたに合う勉強方法を一緒に見つけよう。", link: "https://haruka-muridae.github.io/yu/fundia-lp.html", isPublic: true },
-  { id: 2, title: "IT活用・生産性向上プログラム", description: "AIツールの選定から業務フロー設計まで。個人の生産性と市場価値を引き上げる実践的支援。", link: "https://haruka-muridae.github.io/yu/ITconsal.html", isPublic: true },
-  { id: 3, title: "詐欺対策指導・ヒアリング", description: "若年層をターゲットにした搾取ビジネスから距離を取ろう。", link: "https://haruka-muridae.github.io/yu/defense-lp.html", isPublic: true },
-  { id: 4, title: "SELECT SHOP", description: "オススメ商品を並べています。気になったらどうぞ。", link: "https://haruka-muridae.github.io/yu/ECsite.html", isPublic: true },
+  { id: 1, title: "個別オンライン指導（10～30歳対象）", description: "オンラインの1対1で、あなたに合った学び方を一緒に見つけていきます。", link: "https://haruka-muridae.github.io/yu/fundia-lp.html", isPublic: true },
+  { id: 2, title: "IT活用・生産性向上プログラム", description: "AIツールの選定から日々の業務の組み立てまで。AIを使いこなし、できることの幅を広げます。", link: "https://haruka-muridae.github.io/yu/ITconsal.html", isPublic: true },
+  { id: 3, title: "詐欺対策指導・ヒアリング", description: "怪しい話やうまい儲け話を見抜き、自分で判断するための知識と視点をお渡しします。", link: "https://haruka-muridae.github.io/yu/defense-lp.html", isPublic: true },
+  { id: 4, title: "SELECT SHOP", description: "おすすめの品を並べています。気になるものがあればどうぞ。", link: "https://haruka-muridae.github.io/yu/ECsite.html", isPublic: true },
 ];
 
 const PHOTO_URL = "images/IMG_0298_Original.JPG";
@@ -351,7 +347,7 @@ function Nav() {
     { href: "#services",   label: "Services" },
     { href: "#profile",    label: "Profile" },
     { href: "#approach",   label: "Approach" },
-    { href: "#sns-hobby",  label: "Links" },
+    { href: "#sns-hobby",  label: "SNS/Links" },
     { href: "#contact",    label: "Contact" },
   ];
   return (
@@ -369,9 +365,9 @@ function Hero() {
     <section id="hero">
       <div className="hero-grid">
         <div>
-          <p className="hero-eyebrow fade-up">System Advisor / Human Engineer</p>
+          <p className="hero-eyebrow fade-up">Human Engineer</p>
           <h1 className="hero-headline fade-up-2">優しさを<br/>社会実装したい</h1>
-          <p className="hero-sub fade-up-3">教育・IT・認知科学を組み合わせて、<br/>若い人たちが自分の頭で考え、<br/>適切な選択ができるよう支援しています。</p>
+          <p className="hero-sub fade-up-3">認知心理学とAIで、<br/>人が自分らしく学び、考え、<br/>可能性を発揮できる社会へ。</p>
           <div className="hero-cta-group fade-up-4">
             <a href="#contact" className="btn-primary">相談する</a>
             <a href="#profile" className="btn-outline">詳しく見る</a>
@@ -410,17 +406,17 @@ function Profile() {
             <div className="profile-name-en">Yuki Saito</div>
             <div className="profile-divider" />
             <div className="profile-tags">
-              <span className="profile-tag">教育 × IT × 認知科学</span>
-              <span className="profile-tag">System Advisor</span>
+              <span className="profile-tag">優しさの社会実装</span>
+              <span className="profile-tag">認知心理学 × AI</span>
               <span className="profile-tag">Human Engineer</span>
               <span className="profile-tag">Kanagawa / Tokyo</span>
             </div>
           </div>
           <div className="profile-text">
-            <p>もともと教育事業に携わっていましたが、ある構造的な問題を感じるようになりました。<br />それは「価値が見えにくい商材を高額で販売する」という構造の中で、本質的な支援ができているのかという疑問です。</p>
-            <p>そんな問いを出発点に、短期的な売上よりも、長期的に意味のある支援を優先したい。<br />そう考え、独立という選択をしました。</p>
-            <p>特に10代から30代の若年層が、詐欺的な情報や不適切な商材、個人の成長を阻害する環境に巻き込まれる場面を数多く見てきました。<br />その根本的な原因は、「適切な判断基準を持っていないこと」にあると考えています。</p>
-            <p>教育・AI・認知科学の知見をもとに、「正解を教える」のではなく「判断できる力をつくる」支援を行っています。<br />ITを活用し、能力育成をすることで、その人が持つ力を最大限に引き出し、市場における価値を着実に高めることが目標です。</p>
+            <p>教育の現場に立つなかで、人生を大きく左右しているのは能力そのものよりも、その人が置かれた環境や、持っている判断の基準なのだと感じるようになりました。</p>
+            <p>だからこそ、誰もが自分らしく学び、自分の頭で考え、自分で選び取っていける——そんな社会をつくりたいと思っています。</p>
+            <p>そのための手段が、認知心理学とAIです。人がどう考え、どう学ぶのかという理解をもとに、AIの力で一人ひとりの可能性を引き出していきます。</p>
+            <p>正解を渡すのではなく、自分で考え、判断し、行動できる力を育てる。それが、私にとって「優しさを社会実装する」ということの中身です。</p>
           </div>
         </div>
       </div>
@@ -430,9 +426,9 @@ function Profile() {
 
 function Philosophy() {
   const items = [
-    { num: "01", title: "正しさより、判断力", text: "唯一の正解を教えることに意味はありません。状況に応じて考えられる力をつくることが、長期的に役立つ支援だと考えています。" },
-    { num: "02", title: "優しさを仕組みにする", text: "感情論ではなく、再現可能な構造として支援を設計します。属人的な善意ではなく、誰でも使える仕組みこそが本当の「支援」です。" },
-    { num: "03", title: "搾取されない知識を持つ", text: "情報格差が個人の損失につながる構造があります。その格差を埋めることが、若い世代への最も実質的な貢献だと考えています。" },
+    { num: "01", title: "正しさより、判断力", text: "唯一の正解を教えることはしません。状況が変わっても自分で考え、選べる力こそが、その人の支えになると考えています。" },
+    { num: "02", title: "優しさを仕組みにする", text: "属人的な善意で終わらせず、誰にでも届く再現可能な仕組みとして支援を設計します。優しさは、デザインできるものだと考えています。" },
+    { num: "03", title: "人を、手段より先に", text: "認知心理学もAIも、それ自体が目的ではありません。技術より先に、その人の可能性を見つめることを大切にしています。" },
   ];
   return (
     <section id="philosophy">
@@ -454,10 +450,10 @@ function Philosophy() {
 
 function Approach() {
   const items = [
-    { label: "判断力をつくる", desc: "高額商材・投資詐欺・怪しいビジネス手法を構造から理解し、感情や外部プレッシャーに流されず、自分で判断できる基準を育てます。" },
-    { label: "再現できる思考をわたす", desc: "問題解決・情報整理・目標設定など、場面に応じて何度でも使える思考フレームを提供します。状況が変わっても応用できる力が目標です。" },
-    { label: "ITで価値を引き上げる", desc: "AIツールや自動化の仕組みを活用し、同じ時間でより多くの成果を出す方法を設計します。技術はあなたの力そのものを拡張する手段です。" },
-    { label: "適正な対価を得る力を育てる", desc: "能力・価値・成果が正当に評価される状態をつくる支援です。煽りではなく、地に足のついた価値向上のプロセスを重視します。" },
+    { label: "自分で考える力を育てる", desc: "認知心理学の知見をもとに、感情や周囲の空気に流されず、自分の基準で考え判断できる土台をつくります。" },
+    { label: "再現できる思考をわたす", desc: "一度きりの正解ではなく、場面が変わっても使い回せる思考のフレームを身につけてもらいます。" },
+    { label: "AIで、できることを広げる", desc: "AIに使われるのではなく、使いこなす側へ。一人でできることの範囲を大きく広げます。" },
+    { label: "自分らしさを、強みに変える", desc: "その人だけの興味や特性を、社会のなかで発揮できる形へと育てていきます。" },
   ];
   return (
     <section id="approach">
@@ -552,37 +548,26 @@ function Timeline() {
 }
 
 function SnsHobby() {
-  const connectLinks = SNS_LINKS.filter(l => l.isPublic && l.group === "connect");
-  const followLinks = SNS_LINKS.filter(l => l.isPublic && l.group === "follow");
-  const renderCard = (link) => (
-    <a key={link.id} href={link.url} className="sns-card" target="_blank" rel="noopener noreferrer">
-      <div className="sns-card-top">
-        <div className="sns-icon">{icons[link.type] || icons.other}</div>
-        <span className="sns-tag">{link.tag}</span>
-      </div>
-      <div>
-        <div className="sns-card-title">{link.title}</div>
-        {link.handle && <div className="sns-card-handle">{link.handle}</div>}
-      </div>
-      <div className="sns-card-arrow">↗</div>
-    </a>
-  );
+  const publicLinks = SNS_LINKS.filter(l => l.isPublic);
   return (
     <section id="sns-hobby">
       <div className="container">
         <div className="section-label">Links</div>
-        {connectLinks.length > 0 && (
-          <div className="sns-block">
-            <div className="sns-block-label">連絡・発信</div>
-            <div className="sns-grid">{connectLinks.map(renderCard)}</div>
-          </div>
-        )}
-        {followLinks.length > 0 && (
-          <div className="sns-block">
-            <div className="sns-block-label">SNS・趣味</div>
-            <div className="sns-grid">{followLinks.map(renderCard)}</div>
-          </div>
-        )}
+        <div className="sns-grid">
+          {publicLinks.map(link => (
+            <a key={link.id} href={link.url} className="sns-card" target="_blank" rel="noopener noreferrer">
+              <div className="sns-card-top">
+                <div className="sns-icon">{icons[link.type] || icons.other}</div>
+                <span className="sns-tag">{link.tag}</span>
+              </div>
+              <div>
+                <div className="sns-card-title">{link.title}</div>
+                {link.handle && <div className="sns-card-handle">{link.handle}</div>}
+              </div>
+              <div className="sns-card-arrow">↗</div>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );
