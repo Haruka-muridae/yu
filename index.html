@@ -54,8 +54,40 @@
   .profile-text p { margin-bottom: 20px; }
   .profile-text p:last-child { margin-bottom: 0; }
 
-  /* ── Highlight Achievements ── */
-  #highlights { background: var(--bg); }
+  /* ── Philosophy（理念 = なぜやるか） ── */
+  #philosophy { background: var(--bg); }
+  .philosophy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .philo-card { padding: 0; }
+  .philo-num { font-family: var(--mono); font-size: 48px; font-weight: 300; color: var(--rule); line-height: 1; margin-bottom: 24px; }
+  .philo-title { font-family: var(--serif); font-size: 18px; color: var(--ink); margin-bottom: 12px; }
+  .philo-text { font-size: 13px; line-height: 1.9; color: var(--ink3); }
+
+  /* ── Approach（取り組み = どう支援するか / 旧 Activities + Value を統合） ── */
+  #approach { background: var(--accent); color: var(--white); }
+  #approach .section-label { color: rgba(255,255,255,0.4); }
+  #approach .section-label::after { background: rgba(255,255,255,0.3); }
+  .value-headline { font-family: var(--serif); font-size: clamp(28px, 4vw, 44px); line-height: 1.45; color: var(--white); margin-bottom: 60px; }
+  .value-list { display: flex; flex-direction: column; gap: 0; }
+  .value-item { padding: 28px 0; border-top: 1px solid rgba(255,255,255,0.15); display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: start; }
+  .value-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .value-label { font-family: var(--serif); font-size: 18px; letter-spacing: 0.02em; color: var(--white); padding-top: 1px; }
+  .value-desc { font-size: 14.5px; line-height: 1.85; color: rgba(255,255,255,0.85); }
+
+  /* ── Services（提供サービス = 主役。前方に配置） ── */
+  #services { background: var(--bg); }
+  .services-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 48px; }
+  .services-note { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--ink3); text-transform: uppercase; }
+  .services-list { display: flex; flex-direction: column; gap: 2px; }
+  .service-row { background: var(--white); padding: 36px 40px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; cursor: pointer; transition: background 0.2s; text-decoration: none; color: inherit; }
+  .service-row:hover { background: var(--bg2); }
+  .service-title { font-family: var(--serif); font-size: 20px; color: var(--ink); margin-bottom: 8px; }
+  .service-desc { font-size: 13px; color: var(--ink3); line-height: 1.7; }
+  .service-arrow { font-family: var(--mono); font-size: 18px; color: var(--ink3); transition: transform 0.2s; flex-shrink: 0; }
+  .service-row:hover .service-arrow { transform: translateX(4px); }
+  .services-coming { margin-top: 40px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--ink3); text-align: center; text-transform: uppercase; }
+
+  /* ── Results（数字の実績） ── */
+  #highlights { background: var(--bg2); }
   .highlights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--rule); }
   .highlight-card { background: var(--white); padding: 44px 40px; display: flex; flex-direction: column; gap: 12px; }
   .highlight-figure { display: flex; align-items: baseline; gap: 4px; }
@@ -64,7 +96,7 @@
   .highlight-title { font-family: var(--serif); font-size: 16px; color: var(--ink); line-height: 1.5; }
   .highlight-desc { font-size: 12.5px; line-height: 1.85; color: var(--ink3); }
 
-  /* ── Timeline ── */
+  /* ── Timeline（経歴 = 全件） ── */
   #timeline { background: var(--bg2); }
   .timeline-list { position: relative; padding-left: 28px; }
   .timeline-list::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--rule); }
@@ -77,39 +109,12 @@
   .timeline-title { font-family: var(--serif); font-size: 18px; color: var(--ink); margin-bottom: 8px; line-height: 1.4; }
   .timeline-desc { font-size: 13.5px; line-height: 1.9; color: var(--ink2); }
 
-  #activities { background: var(--bg); }
-  .activities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--rule); }
-  .activity-card { background: var(--white); padding: 44px 40px; position: relative; }
-  .activity-num { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.1em; margin-bottom: 24px; display: block; }
-  .activity-title { font-family: var(--serif); font-size: 20px; color: var(--ink); margin-bottom: 16px; line-height: 1.4; }
-  .activity-desc { font-size: 13.5px; line-height: 1.9; color: var(--ink2); }
-  #value { background: var(--accent); color: var(--white); }
-  #value .section-label { color: rgba(255,255,255,0.4); }
-  #value .section-label::after { background: rgba(255,255,255,0.3); }
-  .value-headline { font-family: var(--serif); font-size: clamp(28px, 4vw, 44px); line-height: 1.45; color: var(--white); margin-bottom: 60px; }
-  .value-list { display: flex; flex-direction: column; gap: 0; }
-  .value-item { padding: 28px 0; border-top: 1px solid rgba(255,255,255,0.15); display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start; }
-  .value-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.15); }
-  .value-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); padding-top: 3px; }
-  .value-desc { font-size: 14.5px; line-height: 1.85; color: rgba(255,255,255,0.85); }
-  #philosophy { background: var(--bg); }
-  .philosophy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-  .philo-card { padding: 0; }
-  .philo-num { font-family: var(--mono); font-size: 48px; font-weight: 300; color: var(--rule); line-height: 1; margin-bottom: 24px; }
-  .philo-title { font-family: var(--serif); font-size: 18px; color: var(--ink); margin-bottom: 12px; }
-  .philo-text { font-size: 13px; line-height: 1.9; color: var(--ink3); }
-  #services { background: var(--bg2); }
-  .services-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 48px; }
-  .services-note { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--ink3); text-transform: uppercase; }
-  .services-list { display: flex; flex-direction: column; gap: 2px; }
-  .service-row { background: var(--white); padding: 36px 40px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; cursor: pointer; transition: background 0.2s; text-decoration: none; color: inherit; }
-  .service-row:hover { background: var(--bg); }
-  .service-title { font-family: var(--serif); font-size: 20px; color: var(--ink); margin-bottom: 8px; }
-  .service-desc { font-size: 13px; color: var(--ink3); line-height: 1.7; }
-  .service-arrow { font-family: var(--mono); font-size: 18px; color: var(--ink3); transition: transform 0.2s; flex-shrink: 0; }
-  .service-row:hover .service-arrow { transform: translateX(4px); }
-  .services-coming { margin-top: 40px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--ink3); text-align: center; text-transform: uppercase; }
+  /* ── Links（SNS / 発信） ── */
   #sns-hobby { background: var(--bg); }
+  .sns-block { margin-bottom: 48px; }
+  .sns-block:last-child { margin-bottom: 0; }
+  .sns-block-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+  .sns-block-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
   .sns-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .sns-card { display: flex; flex-direction: column; justify-content: space-between; padding: 28px 28px 24px; background: var(--white); border: 1px solid var(--rule); text-decoration: none; color: inherit; position: relative; overflow: hidden; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s; min-height: 160px; }
   .sns-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
@@ -152,7 +157,6 @@
     section { padding: 72px 0; }
     .profile-inner { grid-template-columns: 1fr; gap: 40px; }
     .profile-name-block { position: static; }
-    .activities-grid { grid-template-columns: 1fr; }
     .highlights-grid { grid-template-columns: 1fr; }
     .value-item { grid-template-columns: 1fr; gap: 8px; }
     .philosophy-grid { grid-template-columns: 1fr; gap: 36px; }
@@ -188,7 +192,6 @@ const INITIAL_HIGHLIGHTS = [
     title: "担当生徒の成績向上",
     description: "個別指導を通じて、担当したすべての生徒の成績向上を実現。",
   },
- 
   {
     id: 2,
     num: "90",
@@ -213,47 +216,41 @@ const INITIAL_TIMELINE = [
     title: "認知心理学との出会い",
     description: "人間の認知メカニズムや心の働きに関心を持つ。",
   },
-
-    {
+  {
     id: 2,
     year: "2013",
     category: "挑戦/ライフ",
     title: "空手　初段獲得",
     description: "空手の初段（黒帯）を取得。",
   },
-
-   {
+  {
     id: 3,
     year: "2015",
     category: "学び/ルーツ",
     title: "ディープラーニングと出会う",
     description: "ディープラーニングの概念に出会い、人間の認知とAI技術の交差点に関心を抱く。",
   },
-
- {
+  {
     id: 4,
     year: "2020",
     category: "仕事/指導",
     title: "空手講師として20名規模の教室運営に従事",
     description: "幼稚園児から中学生まで幅広い年齢層の生徒20名以上を対象とした空手教室の運営・指導に従事。",
   },
-
- {
+  {
     id: 5,
     year: "2021",
     category: "仕事/指導",
     title: "塾講師としての指導を開始し、担当生徒の成績向上100%を達成",
     description: "塾講師として生徒への学習指導をスタート。一人ひとりの課題に寄り添った指導を行い、担当した全生徒の成績向上（達成率100%）を実現。",
   },
- 
-{
+  {
     id: 6,
     year: "2021",
     category: "IT/テスト",
     title: "Webサービス向けAPIテスト対応",
     description: "WebサービスのAPI品質保証を目的とした、C言語、Java、PythonによるAPIテストを実行。",
   },
-
   {
     id: 7,
     year: "2021",
@@ -261,7 +258,6 @@ const INITIAL_TIMELINE = [
     title: "Pythonを用いた取得データの整形化対応",
     description: "各種実証実験等の未加工データに対し、Pythonを用いてクレンジングおよび整形処理を実施。",
   },
-
   {
     id: 8,
     year: "2021",
@@ -269,7 +265,6 @@ const INITIAL_TIMELINE = [
     title: "農業IoT向けドローン実証実験の環境整備",
     description: "自治体導入を見据えたAPIの実証実験用フィールド（自社借上農地）の整備および維持管理を完遂。",
   },
-
   {
     id: 9,
     year: "2022",
@@ -277,7 +272,6 @@ const INITIAL_TIMELINE = [
     title: "自治体向け導入APIの品質評価および仕様改善提案",
     description: "テスト実行中に検知した仕様上の不備に対し、後続工程を考慮した代替案や小規模な要件定義を提示。",
   },
-
   {
     id: 10,
     year: "2022",
@@ -285,7 +279,6 @@ const INITIAL_TIMELINE = [
     title: "月間50億円規模の報酬計算基幹システムの導入支援",
     description: "月間総額約50億円の報酬計算を支える基幹システムの導入において、複雑な組織構造や報酬ロジックの要件定義から運用までを支援。",
   },
-
   {
     id: 11,
     year: "2022",
@@ -293,7 +286,6 @@ const INITIAL_TIMELINE = [
     title: "会員向けWebサイトおよびマイページのUX設計・UI改善",
     description: "基幹システムと連動するWebフロントエンドにおいて、複雑な報酬体系をエンドユーザーが直感的に理解できるUXを考慮したワイヤーフレームを作成。",
   },
-
   {
     id: 12,
     year: "2022",
@@ -301,7 +293,6 @@ const INITIAL_TIMELINE = [
     title: "インボイス制度施行に伴う基幹システムおよびWebフロントの刷新",
     description: "複雑な税制要件を整理し、法改正に完全準拠するための計算ロジック仕様定義とテストを実施。",
   },
-
   {
     id: 13,
     year: "2023",
@@ -309,7 +300,6 @@ const INITIAL_TIMELINE = [
     title: "外部SaaS導入による教室運営業務のプロセス可視化とBPR",
     description: "紙やアナログ管理が中心だった業務プロセスを可視化し、外部SaaSの比較検討から導入・オンボーディングまでを主導。",
   },
-
   {
     id: 14,
     year: "2023",
@@ -317,7 +307,6 @@ const INITIAL_TIMELINE = [
     title: "認知科学に基づく教室運営と心理的・戦略的支援",
     description: "教室長として認知科学に基づいた指導設計を導入し、担当教室の高校志願校合格率89％および冬期講習申込数前年比160%を達成。",
   },
-
   {
     id: 15,
     year: "2024",
@@ -338,12 +327,12 @@ const PHOTO_URL = "images/IMG_0298_Original.JPG";
 const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbzPvdlNeGnFQitisl4OtohGt60L3JDwQXuFoEIPJpgeFWMN6qZFma8cpMHuPHesDH-fzw/exec";
 
 const SNS_LINKS = [
-  { id: "line", type: "line", title: "LINE", handle: "友だち追加はこちら", tag: "Contact", url: "https://line.me/ti/p/bivqtgD_6a", isPublic: true },
-  { id: "x", type: "x", title: "X (Twitter)", handle: "@haruka_muridae", tag: "SNS", url: "https://x.com/haruka_muridae?s=21", isPublic: true },
-  { id: "instagram", type: "instagram", title: "Instagram", handle: "@mash.haru", tag: "SNS", url: "https://www.instagram.com/mash.haru?igsh=b2xxNTdwbHpzazVu&utm_source=qr", isPublic: true },
-  { id: "note", type: "note", title: "note", handle: "少しでも世のお役に立てればと思って記事を書いてます", tag: "Writing", url: "https://note.com/koto_haruka", isPublic: true },
-  { id: "novel", type: "novel", title: "小説サイト", handle: "小説家になろう", tag: "Novel", url: "https://ncode.syosetu.com/s9629j/", isPublic: true },
-  { id: "youtube", type: "youtube", title: "YouTube", handle: "チャンネル名", tag: "Video", url: "#", isPublic: false },
+  { id: "line", type: "line", title: "LINE", handle: "友だち追加はこちら", tag: "Contact", url: "https://line.me/ti/p/bivqtgD_6a", isPublic: true, group: "connect" },
+  { id: "note", type: "note", title: "note", handle: "少しでも世のお役に立てればと思って記事を書いてます", tag: "Writing", url: "https://note.com/koto_haruka", isPublic: true, group: "connect" },
+  { id: "x", type: "x", title: "X (Twitter)", handle: "@haruka_muridae", tag: "SNS", url: "https://x.com/haruka_muridae?s=21", isPublic: true, group: "follow" },
+  { id: "instagram", type: "instagram", title: "Instagram", handle: "@mash.haru", tag: "SNS", url: "https://www.instagram.com/mash.haru?igsh=b2xxNTdwbHpzazVu&utm_source=qr", isPublic: true, group: "follow" },
+  { id: "novel", type: "novel", title: "小説サイト", handle: "小説家になろう", tag: "Novel", url: "https://ncode.syosetu.com/s9629j/", isPublic: true, group: "follow" },
+  { id: "youtube", type: "youtube", title: "YouTube", handle: "チャンネル名", tag: "Video", url: "#", isPublic: false, group: "follow" },
 ];
 
 const icons = {
@@ -358,10 +347,10 @@ const icons = {
 
 function Nav() {
   const links = [
-    { href: "#profile",    label: "Profile" },
     { href: "#highlights", label: "Results" },
-    { href: "#activities", label: "Activities" },
     { href: "#services",   label: "Services" },
+    { href: "#profile",    label: "Profile" },
+    { href: "#approach",   label: "Approach" },
     { href: "#sns-hobby",  label: "Links" },
     { href: "#contact",    label: "Contact" },
   ];
@@ -439,6 +428,82 @@ function Profile() {
   );
 }
 
+function Philosophy() {
+  const items = [
+    { num: "01", title: "正しさより、判断力", text: "唯一の正解を教えることに意味はありません。状況に応じて考えられる力をつくることが、長期的に役立つ支援だと考えています。" },
+    { num: "02", title: "優しさを仕組みにする", text: "感情論ではなく、再現可能な構造として支援を設計します。属人的な善意ではなく、誰でも使える仕組みこそが本当の「支援」です。" },
+    { num: "03", title: "搾取されない知識を持つ", text: "情報格差が個人の損失につながる構造があります。その格差を埋めることが、若い世代への最も実質的な貢献だと考えています。" },
+  ];
+  return (
+    <section id="philosophy">
+      <div className="container">
+        <div className="section-label">Philosophy</div>
+        <div className="philosophy-grid">
+          {items.map(item => (
+            <div key={item.num} className="philo-card">
+              <div className="philo-num">{item.num}</div>
+              <div className="philo-title">{item.title}</div>
+              <div className="philo-text">{item.text}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Approach() {
+  const items = [
+    { label: "判断力をつくる", desc: "高額商材・投資詐欺・怪しいビジネス手法を構造から理解し、感情や外部プレッシャーに流されず、自分で判断できる基準を育てます。" },
+    { label: "再現できる思考をわたす", desc: "問題解決・情報整理・目標設定など、場面に応じて何度でも使える思考フレームを提供します。状況が変わっても応用できる力が目標です。" },
+    { label: "ITで価値を引き上げる", desc: "AIツールや自動化の仕組みを活用し、同じ時間でより多くの成果を出す方法を設計します。技術はあなたの力そのものを拡張する手段です。" },
+    { label: "適正な対価を得る力を育てる", desc: "能力・価値・成果が正当に評価される状態をつくる支援です。煽りではなく、地に足のついた価値向上のプロセスを重視します。" },
+  ];
+  return (
+    <section id="approach">
+      <div className="container">
+        <div className="section-label">Approach</div>
+        <p className="value-headline">「わかった」ではなく、<br/>「使える」「できる」を目指す。</p>
+        <div className="value-list">
+          {items.map(v => (
+            <div key={v.label} className="value-item">
+              <div className="value-label">{v.label}</div>
+              <div className="value-desc">{v.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  const publicServices = INITIAL_SERVICES.filter(s => s.isPublic);
+  const hasHidden = INITIAL_SERVICES.some(s => !s.isPublic);
+  return (
+    <section id="services">
+      <div className="container">
+        <div className="services-header">
+          <div className="section-label" style={{ marginBottom: 0 }}>Services</div>
+          {hasHidden && <span className="services-note">+ coming soon</span>}
+        </div>
+        <div className="services-list">
+          {publicServices.map(service => (
+            <a key={service.id} href={service.link} className="service-row">
+              <div>
+                <div className="service-title">{service.title}</div>
+                <div className="service-desc">{service.description}</div>
+              </div>
+              <div className="service-arrow">→</div>
+            </a>
+          ))}
+        </div>
+        {hasHidden && <p className="services-coming">新規サービス準備中</p>}
+      </div>
+    </section>
+  );
+}
+
 function Highlights() {
   return (
     <section id="highlights">
@@ -486,130 +551,38 @@ function Timeline() {
   );
 }
 
-function Activities() {
-  const items = [
-    { num: "01", title: "詐欺・不適切商材の見抜き方", desc: "情報過多の時代に必要なのは、正しい情報を「選ぶ力」です。高額商材・投資詐欺・怪しいビジネス手法を構造から理解し、自分で判断できるよう支援します。" },
-    { num: "02", title: "意思決定の構造化", desc: "感情や外部プレッシャーに左右されず、自分の判断基準をつくる。認知科学の知見をもとに、思考の枠組みを整理します。" },
-    { num: "03", title: "思考フレームワークの提供", desc: "再現性のある思考パターンを身につける。問題解決・情報整理・目標設定など、場面に応じた実践的なフレームを提供します。" },
-    { num: "04", title: "IT活用による生産性向上", desc: "AIツールや自動化の仕組みを活用し、同じ時間でより多くの成果を出す方法を設計します。技術を使いこなすことで、個人としての価値を引き上げます。" },
-  ];
-  return (
-    <section id="activities">
-      <div className="container">
-        <div className="section-label">Activities</div>
-      </div>
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 40px" }}>
-        <div className="activities-grid">
-          {items.map(item => (
-            <div key={item.num} className="activity-card">
-              <span className="activity-num">{item.num}</span>
-              <div className="activity-title">{item.title}</div>
-              <div className="activity-desc">{item.desc}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ValueSection() {
-  const values = [
-    { label: "判断力の構築", desc: "「何を信じるか」ではなく「どう判断するか」を育てます。特定の答えを与えるのではなく、考える構造そのものを提供します。" },
-    { label: "再現可能な思考", desc: "一度身につければ繰り返し使える思考フレームを設計します。状況が変わっても応用できる力が目標です。" },
-    { label: "ITによる価値向上", desc: "ツールを活用することで、アウトプットの質・量・速度を高めます。技術は目的ではなく、あなたの力を拡張する手段です。" },
-    { label: "適正な対価を得る力", desc: "能力・価値・成果が正当に評価される状態をつくる支援。煽りではなく、地に足のついた価値向上のプロセスです。" },
-  ];
-  return (
-    <section id="value">
-      <div className="container">
-        <div className="section-label">Value</div>
-        <p className="value-headline">「わかった」ではなく、<br/>「使える」「できる」を目指す。</p>
-        <div className="value-list">
-          {values.map(v => (
-            <div key={v.label} className="value-item">
-              <div className="value-label">{v.label}</div>
-              <div className="value-desc">{v.desc}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Philosophy() {
-  const items = [
-    { num: "01", title: "正しさより、判断力", text: "唯一の正解を教えることに意味はありません。状況に応じて考えられる力をつくることが、長期的に役立つ支援だと考えています。" },
-    { num: "02", title: "優しさを仕組みにする", text: "感情論ではなく、再現可能な構造として支援を設計します。属人的な善意ではなく、誰でも使える仕組みこそが本当の「支援」です。" },
-    { num: "03", title: "搾取されない知識を持つ", text: "情報格差が個人の損失につながる構造があります。その格差を埋めることが、若い世代への最も実質的な貢献だと考えています。" },
-  ];
-  return (
-    <section id="philosophy">
-      <div className="container">
-        <div className="section-label">Philosophy</div>
-        <div className="philosophy-grid">
-          {items.map(item => (
-            <div key={item.num} className="philo-card">
-              <div className="philo-num">{item.num}</div>
-              <div className="philo-title">{item.title}</div>
-              <div className="philo-text">{item.text}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Services() {
-  const publicServices = INITIAL_SERVICES.filter(s => s.isPublic);
-  const hasHidden = INITIAL_SERVICES.some(s => !s.isPublic);
-  return (
-    <section id="services">
-      <div className="container">
-        <div className="services-header">
-          <div className="section-label" style={{ marginBottom: 0 }}>Services</div>
-          {hasHidden && <span className="services-note">+ coming soon</span>}
-        </div>
-        <div className="services-list">
-          {publicServices.map(service => (
-            <a key={service.id} href={service.link} className="service-row">
-              <div>
-                <div className="service-title">{service.title}</div>
-                <div className="service-desc">{service.description}</div>
-              </div>
-              <div className="service-arrow">→</div>
-            </a>
-          ))}
-        </div>
-        {hasHidden && <p className="services-coming">新規サービス準備中</p>}
-      </div>
-    </section>
-  );
-}
-
 function SnsHobby() {
-  const publicLinks = SNS_LINKS.filter(l => l.isPublic);
+  const connectLinks = SNS_LINKS.filter(l => l.isPublic && l.group === "connect");
+  const followLinks = SNS_LINKS.filter(l => l.isPublic && l.group === "follow");
+  const renderCard = (link) => (
+    <a key={link.id} href={link.url} className="sns-card" target="_blank" rel="noopener noreferrer">
+      <div className="sns-card-top">
+        <div className="sns-icon">{icons[link.type] || icons.other}</div>
+        <span className="sns-tag">{link.tag}</span>
+      </div>
+      <div>
+        <div className="sns-card-title">{link.title}</div>
+        {link.handle && <div className="sns-card-handle">{link.handle}</div>}
+      </div>
+      <div className="sns-card-arrow">↗</div>
+    </a>
+  );
   return (
     <section id="sns-hobby">
       <div className="container">
-        <div className="section-label">SNS / My hobby is...</div>
-        <div className="sns-grid">
-          {publicLinks.map(link => (
-            <a key={link.id} href={link.url} className="sns-card" target="_blank" rel="noopener noreferrer">
-              <div className="sns-card-top">
-                <div className="sns-icon">{icons[link.type] || icons.other}</div>
-                <span className="sns-tag">{link.tag}</span>
-              </div>
-              <div>
-                <div className="sns-card-title">{link.title}</div>
-                {link.handle && <div className="sns-card-handle">{link.handle}</div>}
-              </div>
-              <div className="sns-card-arrow">↗</div>
-            </a>
-          ))}
-        </div>
+        <div className="section-label">Links</div>
+        {connectLinks.length > 0 && (
+          <div className="sns-block">
+            <div className="sns-block-label">連絡・発信</div>
+            <div className="sns-grid">{connectLinks.map(renderCard)}</div>
+          </div>
+        )}
+        {followLinks.length > 0 && (
+          <div className="sns-block">
+            <div className="sns-block-label">SNS・趣味</div>
+            <div className="sns-grid">{followLinks.map(renderCard)}</div>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -695,13 +668,12 @@ function App() {
     <>
       <Nav />
       <Hero />
-      <Profile />
       <Highlights />
-      <Timeline />
-      <Activities />
-      <ValueSection />
-      <Philosophy />
       <Services />
+      <Profile />
+      <Philosophy />
+      <Approach />
+      <Timeline />
       <SnsHobby />
       <Contact />
       <Footer />
