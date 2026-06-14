@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AIで成果を出せる人材を育てる｜企業向けAI人材育成プログラム</title>
+<meta name="description" content="AIを導入しても成果につながらない。属人化したAI活用を、組織で成果を出せる状態へ。業務改善と社内定着を重視した実践型のAI人材育成プログラム。まずは無料説明会へ。" />
+
+<link rel="canonical" href="https://example.com/" />
+<meta name="theme-color" content="#0A1628" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230A1628%22%2F%3E%3Cg%20stroke%3D%22%2322D3EE%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%3E%3Cline%20x1%3D%2220%22%20y1%3D%2222%22%20x2%3D%2232%22%20y2%3D%2241%22%2F%3E%3Cline%20x1%3D%2244%22%20y1%3D%2220%22%20x2%3D%2232%22%20y2%3D%2241%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2241%22%20r%3D%226.5%22%20fill%3D%22%2322D3EE%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2222%22%20r%3D%224.5%22%20fill%3D%22%2306B6D4%22%2F%3E%3Ccircle%20cx%3D%2244%22%20cy%3D%2220%22%20r%3D%224.5%22%20fill%3D%22%2306B6D4%22%2F%3E%3C%2Fsvg%3E" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230A1628%22%2F%3E%3Cg%20stroke%3D%22%2322D3EE%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%3E%3Cline%20x1%3D%2220%22%20y1%3D%2222%22%20x2%3D%2232%22%20y2%3D%2241%22%2F%3E%3Cline%20x1%3D%2244%22%20y1%3D%2220%22%20x2%3D%2232%22%20y2%3D%2241%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2241%22%20r%3D%226.5%22%20fill%3D%22%2322D3EE%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2222%22%20r%3D%224.5%22%20fill%3D%22%2306B6D4%22%2F%3E%3Ccircle%20cx%3D%2244%22%20cy%3D%2220%22%20r%3D%224.5%22%20fill%3D%22%2306B6D4%22%2F%3E%3C%2Fsvg%3E" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:site_name" content="企業向けAI人材育成プログラム" />
+<meta property="og:title" content="AIで成果を出せる人材を育てる｜企業向けAI人材育成プログラム" />
+<meta property="og:description" content="AIを導入しても成果につながらない。属人化したAI活用を、組織で成果を出せる状態へ。業務改善と社内定着を重視した実践型のAI人材育成プログラム。まずは無料説明会へ。" />
+<meta property="og:url" content="https://example.com/" />
+<meta property="og:image" content="https://example.com/ogp.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AIで成果を出せる人材を育てる｜企業向けAI人材育成プログラム" />
+<meta name="twitter:description" content="AIを導入しても成果につながらない。属人化したAI活用を、組織で成果を出せる状態へ。業務改善と社内定着を重視した実践型のAI人材育成プログラム。まずは無料説明会へ。" />
+<meta name="twitter:image" content="https://example.com/ogp.png" />
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"企業向けAI人材育成プログラム","url":"https://example.com/","description":"AI活用推進・ITコンサルティング・教育支援。AI導入から人材育成、社内定着までを一貫して支援します。","areaServed":"JP"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"AI初心者の社員でも参加できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。基礎の理解から段階的に進める設計のため、これまでAIに触れたことがない社員の方でも安心して取り組めます。"}},{"@type":"Question","name":"中小企業でも導入できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。むしろ少人数だからこそ、現場の業務改善に直結した活用を組織全体へ広げやすい面があります。自社の状況に合わせて進め方をご相談いただけます。"}},{"@type":"Question","name":"ChatGPT以外のツールにも対応できますか？","acceptedAnswer":{"@type":"Answer","text":"特定のツールに限定した内容ではありません。考え方や業務への当てはめ方を中心に扱うため、さまざまなAIツールの活用に応用いただけます。"}},{"@type":"Question","name":"研修だけでなく社内定着まで相談できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。研修で終わらせず、活用ルールの整備や社内推進担当者の育成など、定着までを見据えてご相談いただけます。"}},{"@type":"Question","name":"個別相談では何を相談できますか？","acceptedAnswer":{"@type":"Answer","text":"自社の課題整理から、どこから着手すべきか、どのように社内へ広げるかまで、状況に応じて具体的にご相談いただけます。"}}]}</script>
+
+<!-- Google Analytics 4 (GA4) : 公開前に G-XXXXXXXXXX を実際の測定IDに置き換えてください -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#08111F;
+    --navy:#0A1628;
+    --navy-2:#102A47;
+    --navy-3:#1B3A5C;
+    --cyan:#06B6D4;
+    --cyan-bright:#22D3EE;
+    --cyan-soft:rgba(6,182,212,.12);
+    --cyan-ink:#0E7490;
+    --paper:#FFFFFF;
+    --mist:#F1F5F9;
+    --mist-2:#E8EEF4;
+    --line:#D8E2EC;
+    --line-dark:rgba(255,255,255,.12);
+    --text:#16222F;
+    --muted:#566676;
+    --muted-light:rgba(226,238,248,.72);
+    --radius:18px;
+    --radius-sm:12px;
+    --container:1160px;
+    --section-pad:clamp(72px,9vw,124px);
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Sans JP","Inter",system-ui,sans-serif;
+    color:var(--text);
+    background:var(--paper);
+    line-height:1.85;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--cyan);color:#fff}
+  .svgi{width:1em;height:1em;fill:currentColor;display:inline-block;vertical-align:-.125em;flex:none}
+
+  /* ---------- layout ---------- */
+  .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  section{position:relative}
+  .band{padding:var(--section-pad) 0;background:var(--paper);color:var(--text)}
+  .band--dark{background:var(--navy);color:#fff}
+  .band--ink{background:linear-gradient(165deg,var(--navy) 0%,var(--ink) 100%);color:#fff}
+  .band--mist{background:var(--mist)}
+  .dotgrid{
+    position:absolute;inset:0;
+    background-image:radial-gradient(rgba(34,211,238,.16) 1px,transparent 1.4px);
+    background-size:28px 28px;
+    -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,#000,transparent 78%);
+    mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,#000,transparent 78%);
+    pointer-events:none;opacity:.7;
+  }
+
+  /* ---------- eyebrow / headings ---------- */
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:"Inter",sans-serif;font-weight:600;font-size:12px;
+    letter-spacing:.22em;text-transform:uppercase;
+    color:var(--cyan-ink);margin-bottom:22px;
+  }
+  .band--dark .eyebrow,.band--ink .eyebrow,.final .eyebrow{color:var(--cyan-bright)}
+  .eyebrow::before{content:"";width:26px;height:2px;background:currentColor;display:inline-block}
+  .eyebrow .ja{font-family:"Noto Sans JP",sans-serif;letter-spacing:.08em;color:var(--muted);font-weight:700}
+  .band--dark .eyebrow .ja,.band--ink .eyebrow .ja{color:var(--muted-light)}
+
+  h2.title{
+    font-weight:900;line-height:1.4;letter-spacing:.01em;
+    font-size:clamp(26px,3.6vw,40px);
+  }
+  .lead{
+    margin-top:22px;max-width:760px;color:var(--muted);
+    font-size:clamp(15px,1.6vw,17px);
+  }
+  .band--dark .lead,.band--ink .lead{color:var(--muted-light)}
+  .section-head{margin-bottom:54px}
+  .section-head.center{text-align:center}
+  .section-head.center .eyebrow{justify-content:center}
+  .section-head.center .lead{margin-left:auto;margin-right:auto}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:11px;
+    font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:15.5px;
+    padding:17px 30px;border-radius:999px;cursor:pointer;border:none;
+    transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease);
+    line-height:1.2;text-align:center;
+  }
+  .btn .svgi{font-size:.95em}
+  .btn--primary{
+    background:linear-gradient(120deg,var(--cyan) 0%,#0891B2 100%);
+    color:#fff;box-shadow:0 14px 30px -12px rgba(6,182,212,.7);
+  }
+  .btn--primary:hover{transform:translateY(-3px);box-shadow:0 22px 44px -14px rgba(6,182,212,.8)}
+  .btn--ghost{
+    background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);
+  }
+  .btn--ghost:hover{background:rgba(255,255,255,.08);border-color:#fff;transform:translateY(-3px)}
+  .btn--ghost-dark{
+    background:transparent;color:var(--navy-2);border:1.5px solid var(--line);
+  }
+  .btn--ghost-dark:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-3px)}
+  .btn-row{display:flex;flex-wrap:wrap;gap:16px}
+  .btn-note{font-size:12.5px;color:var(--muted);margin-top:14px;letter-spacing:.02em}
+  .band--dark .btn-note,.band--ink .btn-note{color:var(--muted-light)}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(8,17,31,.82);
+    -webkit-backdrop-filter:saturate(160%) blur(14px);
+    backdrop-filter:saturate(160%) blur(14px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:11px;color:#fff;font-weight:700}
+  .brand .mark{
+    width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--cyan) 0%,#0E7490 100%);
+    box-shadow:0 6px 18px -6px rgba(6,182,212,.8);
+  }
+  .brand .mark .svgi{fill:#fff;font-size:15px}
+  .brand .name{font-size:15px;letter-spacing:.02em;line-height:1.3}
+  .brand .name small{display:block;font-family:"Inter";font-weight:500;font-size:10.5px;letter-spacing:.18em;color:var(--cyan-bright);text-transform:uppercase}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{color:var(--muted-light);font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:#fff}
+  .nav-cta{padding:11px 22px;font-size:13.5px}
+  .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:radial-gradient(120% 120% at 80% 0%,#143456 0%,var(--navy) 42%,var(--ink) 100%);
+    color:#fff;overflow:hidden;
+  }
+  .hero-inner{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+    padding-top:clamp(70px,9vw,112px);padding-bottom:clamp(80px,10vw,118px);
+  }
+  .hero-pill{
+    display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:999px;
+    background:var(--cyan-soft);border:1px solid rgba(34,211,238,.3);
+    font-size:12.5px;font-weight:700;color:var(--cyan-bright);letter-spacing:.04em;margin-bottom:26px;
+  }
+  .hero-pill .svgi{font-size:11px}
+  .hero h1{
+    font-weight:900;letter-spacing:.005em;
+    font-size:clamp(31px,5.1vw,56px);line-height:1.32;
+  }
+  .hero h1 .hl{
+    color:#fff;white-space:nowrap;padding:0 .04em;border-radius:3px;
+    background-image:linear-gradient(120deg,var(--cyan) 0%,rgba(6,182,212,.32) 100%);
+    background-repeat:no-repeat;background-position:0 92%;background-size:100% .30em;
+  }
+  .hero .sub{
+    margin-top:28px;font-size:clamp(15.5px,1.8vw,19px);font-weight:500;
+    color:#E7F1FA;line-height:1.95;max-width:560px;
+  }
+  .hero .sub b{color:var(--cyan-bright);font-weight:700}
+  .hero .desc{margin-top:18px;color:var(--muted-light);font-size:15px;max-width:540px}
+  .hero .btn-row{margin-top:38px}
+
+  /* hero network visual */
+  .hero-visual{position:relative;min-height:360px;display:grid;place-items:center}
+  .netcard{
+    position:relative;width:100%;max-width:430px;aspect-ratio:1/.92;
+    border-radius:24px;
+    background:linear-gradient(160deg,rgba(20,52,86,.55),rgba(8,17,31,.35));
+    border:1px solid rgba(34,211,238,.18);
+    box-shadow:0 40px 80px -40px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06);
+    overflow:hidden;
+  }
+  .netcard .label{
+    position:absolute;left:22px;top:20px;z-index:3;
+    font-family:"Inter";font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted-light);font-weight:600;
+  }
+  .netcard .label b{display:block;font-family:"Noto Sans JP";font-size:14px;letter-spacing:.04em;color:#fff;margin-top:4px}
+  .netcard svg{position:absolute;inset:0;width:100%;height:100%}
+  .net-line{stroke:rgba(34,211,238,.28);stroke-width:1}
+  .net-line.live{stroke:var(--cyan-bright);stroke-width:1.6}
+  .net-node{fill:rgba(180,205,225,.35)}
+  .net-node.live{fill:var(--cyan-bright)}
+  .net-pulse{fill:none;stroke:var(--cyan-bright);stroke-width:1.5;opacity:0;transform-origin:center}
+  .netcard .legend{
+    position:absolute;left:22px;bottom:18px;right:22px;z-index:3;display:flex;gap:18px;
+    font-size:11.5px;color:var(--muted-light);
+  }
+  .netcard .legend span{display:inline-flex;align-items:center;gap:7px}
+  .netcard .legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .dot-live{background:var(--cyan-bright);box-shadow:0 0 10px var(--cyan-bright)}
+  .dot-dim{background:rgba(180,205,225,.4)}
+
+  /* ---------- cards / grids ---------- */
+  .grid{display:grid;gap:22px}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px 28px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+    height:100%;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 24px 50px -26px rgba(16,42,71,.4);border-color:rgba(6,182,212,.5)}
+  .card .ic{
+    width:50px;height:50px;border-radius:13px;display:grid;place-items:center;margin-bottom:20px;
+    background:var(--cyan-soft);color:var(--cyan);font-size:20px;
+  }
+  .card h3{font-size:18px;font-weight:700;line-height:1.5;margin-bottom:10px}
+  .card p{font-size:14.5px;color:var(--muted);line-height:1.8}
+
+  /* fail cards have a number index */
+  .fail-card{position:relative;overflow:hidden}
+  .fail-card .num{
+    position:absolute;right:18px;top:14px;font-family:"Inter";font-weight:800;font-size:46px;
+    color:var(--mist-2);line-height:1;letter-spacing:-.02em;
+  }
+  .fail-card .ic{background:rgba(225,90,90,.1);color:#D9534F}
+
+  /* ---------- reasons (dark, split) ---------- */
+  .reason-list{display:grid;gap:0}
+  .reason-row{
+    display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;
+    padding:26px 0;border-bottom:1px solid var(--line-dark);
+  }
+  .reason-row:last-child{border-bottom:none}
+  .reason-row .rno{
+    font-family:"Inter";font-weight:700;font-size:14px;color:var(--cyan-bright);
+    border:1px solid rgba(34,211,238,.4);border-radius:9px;width:42px;height:42px;
+    display:grid;place-items:center;flex:none;
+  }
+  .reason-row h3{font-size:17.5px;font-weight:700;color:#fff;margin-bottom:6px}
+  .reason-row p{color:var(--muted-light);font-size:14.5px}
+
+  /* ---------- process (steps) ---------- */
+  .steps{position:relative;display:grid;gap:0;margin-top:10px}
+  .steps::before{
+    content:"";position:absolute;left:25px;top:30px;bottom:30px;width:2px;
+    background:linear-gradient(180deg,var(--cyan-bright),rgba(34,211,238,.12));
+  }
+  .step{display:grid;grid-template-columns:auto 1fr;gap:26px;padding:18px 0;position:relative;z-index:1}
+  .step .sdot{
+    width:52px;height:52px;border-radius:50%;flex:none;display:grid;place-items:center;
+    font-family:"Inter";font-weight:800;font-size:18px;color:var(--navy);
+    background:var(--cyan-bright);box-shadow:0 0 0 6px rgba(34,211,238,.14);
+  }
+  .step .sbody{padding-top:6px}
+  .step h3{font-size:19px;font-weight:700;color:#fff;margin-bottom:6px}
+  .step p{color:var(--muted-light);font-size:14.5px;max-width:560px}
+
+  /* ---------- levels ---------- */
+  .levels{display:grid;gap:16px}
+  .level{
+    display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 30px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+    position:relative;
+  }
+  .level:hover{transform:translateX(6px);border-color:rgba(6,182,212,.55);box-shadow:0 20px 44px -28px rgba(16,42,71,.4)}
+  .level .lv{
+    flex:none;text-align:center;font-family:"Inter";line-height:1;
+    width:78px;
+  }
+  .level .lv small{display:block;font-size:10px;letter-spacing:.18em;color:var(--cyan-ink);font-weight:700}
+  .level .lv b{display:block;font-size:34px;font-weight:800;color:var(--navy-2);margin-top:4px}
+  .level .lcontent h3{font-size:18px;font-weight:700;margin-bottom:6px}
+  .level .lcontent h3 .tag{
+    display:inline-block;margin-left:10px;font-size:12px;font-weight:700;color:var(--cyan-ink);
+    background:var(--cyan-soft);padding:3px 11px;border-radius:999px;vertical-align:middle;
+  }
+  .level .lcontent p{font-size:14.5px;color:var(--muted)}
+  .level::before{
+    content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0;
+    background:linear-gradient(180deg,var(--cyan-bright),var(--cyan));opacity:0;transition:opacity .3s;
+  }
+  .level:hover::before{opacity:1}
+
+  /* ---------- before / after ---------- */
+  .ba-wrap{display:grid;grid-template-columns:1fr auto 1fr;gap:30px;align-items:stretch}
+  .ba-col{border-radius:var(--radius);padding:34px 30px}
+  .ba-before{background:var(--mist);border:1px solid var(--line)}
+  .ba-after{
+    background:linear-gradient(165deg,var(--navy-2),var(--navy));color:#fff;
+    box-shadow:0 30px 60px -34px rgba(10,22,40,.6);
+  }
+  .ba-col .ba-head{display:flex;align-items:center;gap:12px;margin-bottom:22px;font-weight:700}
+  .ba-col .ba-head .chip{
+    font-family:"Inter";font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    padding:6px 13px;border-radius:999px;font-weight:700;
+  }
+  .ba-before .chip{background:#E3E9EF;color:var(--muted)}
+  .ba-after .chip{background:var(--cyan-soft);color:var(--cyan-bright);border:1px solid rgba(34,211,238,.4)}
+  .ba-before .ba-head span:last-child{color:var(--muted)}
+  .ba-list{list-style:none;display:grid;gap:15px}
+  .ba-list li{display:flex;gap:13px;font-size:14.5px;line-height:1.7}
+  .ba-list li .svgi{margin-top:5px;font-size:15px}
+  .ba-before .ba-list li{color:var(--muted)}
+  .ba-before .ba-list li .svgi{fill:#B7C2CD}
+  .ba-after .ba-list li{color:#EAF4FB}
+  .ba-after .ba-list li .svgi{fill:var(--cyan-bright)}
+  .ba-arrow{display:grid;place-items:center;color:var(--cyan);font-size:26px}
+
+  /* ---------- reasons-to-choose ---------- */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-dark);
+    border:1px solid var(--line-dark);border-radius:var(--radius);overflow:hidden}
+  .why-cell{background:var(--navy);padding:34px 30px}
+  .why-cell .ic{
+    width:48px;height:48px;border-radius:12px;display:grid;place-items:center;margin-bottom:18px;
+    background:var(--cyan-soft);color:var(--cyan-bright);font-size:19px;border:1px solid rgba(34,211,238,.22);
+  }
+  .why-cell h3{color:#fff;font-size:17px;font-weight:700;margin-bottom:9px}
+  .why-cell p{color:var(--muted-light);font-size:14px}
+
+  /* ---------- seminar ---------- */
+  .seminar-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:24px;
+    padding:clamp(34px,4.5vw,56px);box-shadow:0 30px 70px -40px rgba(16,42,71,.35);
+    display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;
+  }
+  .seminar-name{
+    font-size:12px;font-family:"Inter";letter-spacing:.16em;text-transform:uppercase;
+    color:var(--cyan-ink);font-weight:700;margin-bottom:16px;
+  }
+  .seminar-card h3{font-size:clamp(21px,2.6vw,28px);font-weight:900;line-height:1.5;margin-bottom:14px}
+  .seminar-card .stitle-sub{color:var(--muted);font-size:15px;margin-bottom:26px}
+  .get-list{list-style:none;display:grid;gap:14px}
+  .get-list li{display:flex;gap:13px;font-size:15px;font-weight:500;line-height:1.6}
+  .get-list li .svgi{fill:var(--cyan-ink);margin-top:4px}
+  .seminar-aside{
+    background:linear-gradient(165deg,var(--navy-2),var(--ink));border-radius:18px;
+    padding:38px 32px;color:#fff;text-align:center;
+  }
+  .seminar-aside .ic-big{
+    width:64px;height:64px;border-radius:16px;margin:0 auto 20px;display:grid;place-items:center;
+    background:var(--cyan-soft);border:1px solid rgba(34,211,238,.3);color:var(--cyan-bright);font-size:26px;
+  }
+  .seminar-aside p{color:var(--muted-light);font-size:14px;margin-bottom:26px}
+  .seminar-aside .btn{width:100%}
+
+  /* ---------- faq ---------- */
+  .faq{max-width:840px;margin:0 auto;display:grid;gap:14px}
+  .faq-item{border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--paper);overflow:hidden}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;cursor:pointer;
+    padding:24px 26px;display:flex;align-items:center;gap:16px;
+    font-family:inherit;font-size:16px;font-weight:700;color:var(--text);line-height:1.6;
+  }
+  .faq-q .qmark{
+    font-family:"Inter";font-weight:800;color:var(--cyan-ink);flex:none;font-size:17px;
+  }
+  .faq-q .chev{margin-left:auto;color:var(--muted);transition:transform .3s var(--ease);flex:none}
+  .faq-item.open .chev{transform:rotate(180deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
+  .faq-a-inner{padding:0 26px 26px 56px;color:var(--muted);font-size:14.5px;line-height:1.85}
+
+  /* ---------- final cta ---------- */
+  .final{background:radial-gradient(120% 130% at 50% 0%,#16395E 0%,var(--navy) 45%,var(--ink) 100%);color:#fff;text-align:center}
+  .final h2{font-size:clamp(25px,3.6vw,40px);font-weight:900;line-height:1.55;max-width:880px;margin:0 auto}
+  .final h2 .hl{color:var(--cyan-bright)}
+  .final p{color:var(--muted-light);margin:24px auto 0;max-width:600px;font-size:15.5px}
+  .final .btn-row{justify-content:center;margin-top:40px}
+
+  /* ---------- footer / operator ---------- */
+  footer{background:var(--ink);color:var(--muted-light);padding:56px 0 40px;border-top:1px solid rgba(255,255,255,.06)}
+  .foot-top{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:flex-start}
+  .operator{max-width:560px}
+  .operator .op-label{font-family:"Inter";font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan-bright);font-weight:700;margin-bottom:12px}
+  .operator p{font-size:13.5px;line-height:1.85}
+  .operator a{color:var(--cyan-bright);text-decoration:underline;text-underline-offset:3px}
+  .foot-brand{display:flex;align-items:center;gap:11px;color:#fff;font-weight:700}
+  .foot-bottom{margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07);font-size:12px;color:rgba(226,238,248,.5)}
+
+  /* ---------- reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.is-visible{opacity:1;transform:none}
+  .reveal[data-d="1"]{transition-delay:.08s}
+  .reveal[data-d="2"]{transition-delay:.16s}
+  .reveal[data-d="3"]{transition-delay:.24s}
+  .reveal[data-d="4"]{transition-delay:.32s}
+  .reveal[data-d="5"]{transition-delay:.4s}
+
+  :focus-visible{outline:3px solid var(--cyan-bright);outline-offset:3px;border-radius:4px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .hero-inner{grid-template-columns:1fr;gap:44px}
+    .hero-visual{order:-1;min-height:auto}
+    .netcard{max-width:380px}
+    .seminar-card{grid-template-columns:1fr;gap:34px}
+    .why-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:760px){
+    .nav-links{
+      position:fixed;inset:72px 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
+      background:rgba(8,17,31,.98);padding:10px 24px 24px;border-bottom:1px solid rgba(255,255,255,.1);
+      transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;
+    }
+    .nav-links.open{opacity:1;transform:none;pointer-events:auto}
+    .nav-links a{padding:15px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav-links .nav-cta{margin-top:14px;text-align:center}
+    .nav-toggle{display:block}
+    .grid-3,.grid-2{grid-template-columns:1fr}
+    .ba-wrap{grid-template-columns:1fr}
+    .ba-arrow{transform:rotate(90deg)}
+    .why-grid{grid-template-columns:1fr}
+    .level{grid-template-columns:auto 1fr;gap:18px;padding:22px}
+    .level .lv{width:58px}
+    .level .lv b{font-size:26px}
+    .step{gap:18px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+    .net-pulse{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="container nav">
+    <a href="#top" class="brand" aria-label="トップへ">
+      <span class="mark"><svg class="svgi" viewBox="0 0 576 512" aria-hidden="true"><path d="M0 80C0 53.5 21.5 32 48 32h96c26.5 0 48 21.5 48 48V96H384V80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H432c-26.5 0-48-21.5-48-48V160H192v16c0 1.7-.1 3.4-.3 5L272 288h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H272c-26.5 0-48-21.5-48-48V336c0-1.7 .1-3.4 .3-5L144 224H48c-26.5 0-48-21.5-48-48V80z"/></svg></span>
+      <span class="name">AI人材育成プログラム<small>For Organizations</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#failures">よくある失敗</a>
+      <a href="#solution">解決策</a>
+      <a href="#program">プログラム</a>
+      <a href="#seminar">無料説明会</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn--primary nav-cta" href="https://ex-pa.jp/item/60927?code_seminar=AG933927NLYD8071" target="_blank" rel="noopener noreferrer">無料説明会に申し込む</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false"><svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></button>
+  </div>
+</header>
+
+<!-- ===================== 1. HERO ===================== -->
+<section class="hero" id="top">
+  <div class="dotgrid" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="hero-pill reveal"><svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></svg> 「使える社員」で終わらせない</span>
+      <h1 class="reveal" data-d="1">AIを導入したのに、<br><span class="hl">成果が出ていませんか？</span></h1>
+      <p class="sub reveal" data-d="2">AIを<b>使える</b>社員ではなく、AIで<b>成果を出せる</b>社員を育てる。<br>一部の詳しい人に頼る属人化した状態から、組織で活用できる状態へ。</p>
+      <p class="desc reveal" data-d="3">ツールの操作を教えるだけの研修では、現場は変わりません。業務改善と社内定着までを見据えた、実践型のAI人材育成プログラムです。</p>
+      <div class="btn-row reveal" data-d="4">
+        <a class="btn btn--primary" href="https://ex-pa.jp/item/60927?code_seminar=AG933927NLYD8071" target="_blank" rel="noopener noreferrer">無料説明会に申し込む <svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
+        <a class="btn btn--ghost" href="#contact">個別相談を申し込む</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal" data-d="2">
+      <div class="netcard" role="img" aria-label="一部の社員だけがAIを活用している属人化の状態を表した概念図">
+        <span class="label">Current State<b>属人化したAI活用</b></span>
+        <svg viewBox="0 0 400 360" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g class="lines">
+            <line class="net-line live" x1="200" y1="180" x2="120" y2="110"/>
+            <line class="net-line live" x1="200" y1="180" x2="285" y2="120"/>
+            <line class="net-line" x1="120" y1="110" x2="70" y2="200"/>
+            <line class="net-line" x1="285" y1="120" x2="330" y2="215"/>
+            <line class="net-line" x1="200" y1="180" x2="150" y2="265"/>
+            <line class="net-line" x1="200" y1="180" x2="260" y2="270"/>
+            <line class="net-line" x1="70" y1="200" x2="150" y2="265"/>
+            <line class="net-line" x1="330" y1="215" x2="260" y2="270"/>
+            <line class="net-line" x1="120" y1="110" x2="90" y2="80"/>
+            <line class="net-line" x1="285" y1="120" x2="320" y2="90"/>
+          </g>
+          <g>
+            <circle class="net-pulse" cx="200" cy="180" r="14"/>
+            <circle class="net-node live" cx="200" cy="180" r="11"/>
+            <circle class="net-node live" cx="120" cy="110" r="8"/>
+            <circle class="net-node live" cx="285" cy="120" r="8"/>
+            <circle class="net-node" cx="70" cy="200" r="6"/>
+            <circle class="net-node" cx="330" cy="215" r="6"/>
+            <circle class="net-node" cx="150" cy="265" r="6"/>
+            <circle class="net-node" cx="260" cy="270" r="6"/>
+            <circle class="net-node" cx="90" cy="80" r="5"/>
+            <circle class="net-node" cx="320" cy="90" r="5"/>
+          </g>
+        </svg>
+        <div class="legend">
+          <span><i class="dot-live"></i>活用できている人</span>
+          <span><i class="dot-dim"></i>使えていない人</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2. よくある失敗 ===================== -->
+<section class="band band--mist" id="failures">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Common Failures <span class="ja">よくある失敗</span></span>
+      <h2 class="title">AIを導入したものの、<br>こんな状態になっていませんか。</h2>
+      <p class="lead">多くの企業がツールの導入には成功しても、その先でつまずきます。心当たりのある状態を選んでみてください。</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card fail-card reveal" data-d="1">
+        <span class="num">01</span>
+        <div class="ic"><svg class="svgi" viewBox="0 0 640 512" aria-hidden="true"><path d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6v167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5v-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128h2.2z"/></svg></div>
+        <h3>導入しただけで終わる</h3>
+        <p>契約や環境整備は進んだのに、実際の業務での活用にはつながっていない。</p>
+      </div>
+      <div class="card fail-card reveal" data-d="2">
+        <span class="num">02</span>
+        <div class="ic"><svg class="svgi" viewBox="0 0 640 512" aria-hidden="true"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H392.6c-5.4-9.4-8.6-20.3-8.6-32V352c0-2.1 .1-4.2 .3-6.3c-31-26-71-41.7-114.6-41.7H178.3zM528 240c17.7 0 32 14.3 32 32v48H496V272c0-17.7 14.3-32 32-32zm-80 32v48c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32V272c0-44.2-35.8-80-80-80s-80 35.8-80 80z"/></svg></div>
+        <h3>一部の人しか使わない</h3>
+        <p>関心の高い社員だけが使いこなし、ほかのメンバーには広がらない。</p>
+      </div>
+      <div class="card fail-card reveal" data-d="3">
+        <span class="num">03</span>
+        <div class="ic"><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 96c38.4 0 73.7 13.5 101.3 36.1l-32.6 32.6c-4.6 4.6-5.9 11.5-3.5 17.4s8.3 9.9 14.8 9.9H448c8.8 0 16-7.2 16-16V64c0-6.5-3.9-12.3-9.9-14.8s-12.9-1.1-17.4 3.5l-34 34C363.4 52.6 312.1 32 256 32c-10.9 0-21.5 .8-32 2.3V99.2c10.3-2.1 21-3.2 32-3.2zM132.1 154.7l32.6 32.6c4.6 4.6 11.5 5.9 17.4 3.5s9.9-8.3 9.9-14.8V64c0-8.8-7.2-16-16-16H64c-6.5 0-12.3 3.9-14.8 9.9s-1.1 12.9 3.5 17.4l34 34C52.6 148.6 32 199.9 32 256c0 10.9 .8 21.5 2.3 32H99.2c-2.1-10.3-3.2-21-3.2-32c0-38.4 13.5-73.7 36.1-101.3zM477.7 224H412.8c2.1 10.3 3.2 21 3.2 32c0 38.4-13.5 73.7-36.1 101.3l-32.6-32.6c-4.6-4.6-11.5-5.9-17.4-3.5s-9.9 8.3-9.9 14.8V448c0 8.8 7.2 16 16 16H448c6.5 0 12.3-3.9 14.8-9.9s1.1-12.9-3.5-17.4l-34-34C459.4 363.4 480 312.1 480 256c0-10.9-.8-21.5-2.3-32zM256 416c-38.4 0-73.7-13.5-101.3-36.1l32.6-32.6c4.6-4.6 5.9-11.5 3.5-17.4s-8.3-9.9-14.8-9.9H64c-8.8 0-16 7.2-16 16l0 112c0 6.5 3.9 12.3 9.9 14.8s12.9 1.1 17.4-3.5l34-34C148.6 459.4 199.9 480 256 480c10.9 0 21.5-.8 32-2.3V412.8c-10.3 2.1-21 3.2-32 3.2z"/></svg></div>
+        <h3>現場が変わらない</h3>
+        <p>新しいツールが増えただけで、日々の業務の進め方そのものは変わらない。</p>
+      </div>
+      <div class="card fail-card reveal" data-d="1">
+        <span class="num">04</span>
+        <div class="ic"><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg></div>
+        <h3>成果が見えない</h3>
+        <p>「便利になった気がする」で止まり、業務改善の手応えが共有されない。</p>
+      </div>
+      <div class="card fail-card reveal" data-d="2">
+        <span class="num">05</span>
+        <div class="ic"><svg class="svgi" viewBox="0 0 384 512" aria-hidden="true"><path d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM96 75V64H288V75c0 25.5-10.1 49.9-28.1 67.9L192 210.7l-67.9-67.9C106.1 124.9 96 100.4 96 75z"/></svg></div>
+        <h3>研修後に使われなくなる</h3>
+        <p>研修直後は盛り上がっても、現場に戻ると元のやり方に戻ってしまう。</p>
+      </div>
+      <div class="card fail-card reveal" data-d="3" style="display:flex;flex-direction:column;justify-content:center;background:var(--navy);border-color:transparent">
+        <div class="ic" style="background:rgba(34,211,238,.14);color:var(--cyan-bright)"><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM169.8 165.3c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg></div>
+        <h3 style="color:#fff">どれも、ツールの問題ではありません</h3>
+        <p style="color:var(--muted-light)">原因は「使い方」ではなく、活用が定着する仕組みの不在にあります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3. 定着しない理由 ===================== -->
+<section class="band band--dark" id="why-not">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why It Doesn't Stick <span class="ja">定着しない理由</span></span>
+      <h2 class="title">なぜ、AI活用は<br>社内に定着しないのか。</h2>
+      <p class="lead">うまくいかない理由は、社員のやる気やツールの性能ではありません。多くの場合、次の5つに集約されます。</p>
+    </div>
+    <div class="reason-list">
+      <div class="reason-row reveal">
+        <span class="rno">01</span>
+        <div><h3>ツールの使い方だけを学んでいる</h3><p>操作は覚えても、自分の仕事のどこに使うかが結びつかず、知識が眠ってしまう。</p></div>
+      </div>
+      <div class="reason-row reveal">
+        <span class="rno">02</span>
+        <div><h3>業務課題と結びついていない</h3><p>「解決したい課題」が起点になっていないため、活用が一時的な試用で終わる。</p></div>
+      </div>
+      <div class="reason-row reveal">
+        <span class="rno">03</span>
+        <div><h3>現場に合わせた活用方法がない</h3><p>一般的な事例の紹介だけで、自社の業務や役割に落とし込めていない。</p></div>
+      </div>
+      <div class="reason-row reveal">
+        <span class="rno">04</span>
+        <div><h3>社内で展開する仕組みがない</h3><p>使える人の工夫が個人の中に閉じ、チームや組織へ共有・横展開されない。</p></div>
+      </div>
+      <div class="reason-row reveal">
+        <span class="rno">05</span>
+        <div><h3>成果指標が曖昧</h3><p>何をもって成果とするかが定まらず、改善のサイクルが回らない。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 4. 解決策 ===================== -->
+<section class="band band--ink" id="solution">
+  <div class="dotgrid" aria-hidden="true" style="opacity:.4"></div>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Approach <span class="ja">解決策</span></span>
+      <h2 class="title">AIを「教える」のではなく、<br>活用が定着する流れをつくる。</h2>
+      <p class="lead">単発の研修では定着しません。理解から社内展開まで、成果につながる一連のサイクルとして設計します。</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="sdot">1</span><div class="sbody"><h3>理解する</h3><p>AIに何ができて何が苦手かを正しく押さえ、過度な期待でも過度な不安でもない前提を共有します。</p></div></div>
+      <div class="step reveal"><span class="sdot">2</span><div class="sbody"><h3>試す</h3><p>身近な業務で小さく使ってみることで、「自分の仕事に使える」という実感を持ってもらいます。</p></div></div>
+      <div class="step reveal"><span class="sdot">3</span><div class="sbody"><h3>業務に当てはめる</h3><p>自社の課題やワークフローに沿って、成果につながる具体的な活用テーマへ落とし込みます。</p></div></div>
+      <div class="step reveal"><span class="sdot">4</span><div class="sbody"><h3>改善する</h3><p>やってみた結果を振り返り、使い方と業務プロセスの両方を継続的に磨き込んでいきます。</p></div></div>
+      <div class="step reveal"><span class="sdot">5</span><div class="sbody"><h3>社内に広げる</h3><p>個人の工夫をナレッジとして共有し、属人化させずに組織全体へ展開する土台をつくります。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 5. プログラム例 ===================== -->
+<section class="band band--mist" id="program">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Program <span class="ja">プログラム例</span></span>
+      <h2 class="title">リテラシーから社内展開まで、<br>段階的に育てる5つのレベル。</h2>
+      <p class="lead">習熟度や役割に応じて、無理のないステップで進めます。一部の社員だけでなく、組織で活用できる状態を目指します。</p>
+    </div>
+    <div class="levels">
+      <div class="level reveal" data-d="1">
+        <div class="lv"><small>Level</small><b>1</b></div>
+        <div class="lcontent"><h3>AIリテラシー<span class="tag">基礎</span></h3><p>AIの基本、できること・できないこと、業務で使う上でのリスクと注意点を理解します。</p></div>
+      </div>
+      <div class="level reveal" data-d="1">
+        <div class="lv"><small>Level</small><b>2</b></div>
+        <div class="lcontent"><h3>プロンプト活用<span class="tag">実務</span></h3><p>実務で使える指示の出し方を身につけ、文書作成・要約・分析補助などに活かします。</p></div>
+      </div>
+      <div class="level reveal" data-d="2">
+        <div class="lv"><small>Level</small><b>3</b></div>
+        <div class="lcontent"><h3>業務改善<span class="tag">応用</span></h3><p>自社業務の棚卸しを通じてAI活用テーマを見つけ、具体的な改善案を作成します。</p></div>
+      </div>
+      <div class="level reveal" data-d="2">
+        <div class="lv"><small>Level</small><b>4</b></div>
+        <div class="lcontent"><h3>AIエージェント活用<span class="tag">自動化</span></h3><p>定型業務の自動化や業務フロー改善、ツール連携の考え方を学びます。</p></div>
+      </div>
+      <div class="level reveal" data-d="3">
+        <div class="lv"><small>Level</small><b>5</b></div>
+        <div class="lcontent"><h3>社内展開<span class="tag">定着</span></h3><p>活用ルールの整備やナレッジ共有、社内推進担当者の育成まで踏み込みます。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 6. 受講後の変化 ===================== -->
+<section class="band" id="change">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Before / After <span class="ja">受講後の変化</span></span>
+      <h2 class="title">「使えない」から「成果を出せる」へ。</h2>
+    </div>
+    <div class="ba-wrap reveal" data-d="1">
+      <div class="ba-col ba-before">
+        <div class="ba-head"><span class="chip">Before</span><span>受講前の状態</span></div>
+        <ul class="ba-list">
+          <li><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/></svg>何に使えばいいかわからない</li>
+          <li><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/></svg>一部の人しか使わない</li>
+          <li><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/></svg>研修を受けても現場で使われない</li>
+          <li><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/></svg>AI活用が個人任せになっている</li>
+        </ul>
+      </div>
+      <div class="ba-arrow" aria-hidden="true"><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg></div>
+      <div class="ba-col ba-after">
+        <div class="ba-head"><span class="chip">After</span><span>受講後の変化</span></div>
+        <ul class="ba-list">
+          <li><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>自分の業務でAI活用テーマを見つけられる</li>
+          <li><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>AIを使った業務改善案を作れる</li>
+          <li><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>チーム内で活用事例を共有できる</li>
+          <li><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>社内展開の土台ができる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 7. 選ばれる理由 ===================== -->
+<section class="band band--dark" id="reasons">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Us <span class="ja">選ばれる理由</span></span>
+      <h2 class="title">複数の視点を組み合わせ、<br>「現場で定着する」までを設計する。</h2>
+      <p class="lead">操作を教えるだけにとどまらず、推進・コンサルティング・教育・業務改善の視点を掛け合わせて伴走します。</p>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-cell"><div class="ic"><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M352 96c0 14.3-3.1 27.9-8.8 40.2L396 227.4c-23.7 25.3-54.2 44.1-88.5 53.6L256 192h0 0l-68 117.5c21.5 6.8 44.3 10.5 68.1 10.5c70.7 0 133.8-32.7 174.9-84c11.1-13.8 31.2-16 45-5s16 31.2 5 45C428.1 341.8 347 384 256 384c-35.4 0-69.4-6.4-100.7-18.1L98.7 463.7C94 471.8 87 478.4 78.6 482.6L23.2 510.3c-5 2.5-10.9 2.2-15.6-.7S0 501.5 0 496V440.6c0-8.4 2.2-16.7 6.5-24.1l60-103.7C53.7 301.6 41.8 289.3 31.2 276c-11.1-13.8-8.8-33.9 5-45s33.9-8.8 45 5c5.7 7.1 11.8 13.8 18.2 20.1l69.4-119.9c-5.6-12.2-8.8-25.8-8.8-40.2c0-53 43-96 96-96s96 43 96 96zm21 297.9c32.6-12.8 62.5-30.8 88.9-52.9l43.7 75.5c4.2 7.3 6.5 15.6 6.5 24.1V496c0 5.5-2.9 10.7-7.6 13.6s-10.6 3.2-15.6 .7l-55.4-27.7c-8.4-4.2-15.4-10.8-20.1-18.9L373 393.9zM256 128a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg></div><h3>AI活用推進の視点</h3><p>導入で終わらせず、組織として使い続けられる状態づくりを重視します。</p></div>
+      <div class="why-cell"><div class="ic"><svg class="svgi" viewBox="0 0 576 512" aria-hidden="true"><path d="M208 80c0-26.5 21.5-48 48-48h64c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48h-8v40H464c30.9 0 56 25.1 56 56v32h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H464c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V288c0-4.4-3.6-8-8-8H312v40h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H256c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V280H112c-4.4 0-8 3.6-8 8v32h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V288c0-30.9 25.1-56 56-56H264V192h-8c-26.5 0-48-21.5-48-48V80z"/></svg></div><h3>ITコンサルティングの視点</h3><p>業務やシステムの全体像を踏まえ、現実的な活用の道筋を描きます。</p></div>
+      <div class="why-cell"><div class="ic"><svg class="svgi" viewBox="0 0 640 512" aria-hidden="true"><path d="M320 32c-8.1 0-16.1 1.4-23.7 4.1L15.8 137.4C6.3 140.9 0 149.9 0 160s6.3 19.1 15.8 22.6l57.9 20.9C57.3 229.3 48 259.8 48 291.9v28.1c0 28.4-10.8 57.7-22.3 80.8c-6.5 13-13.9 25.8-22.5 37.6C0 442.7-.9 448.3 .9 453.4s6 8.9 11.2 10.2l64 16c4.2 1.1 8.7 .3 12.4-2s6.3-6.1 7.1-10.4c8.6-42.8 4.3-81.2-2.1-108.7C90.3 344.3 86 329.8 80 316.5V291.9c0-30.2 10.2-58.7 27.9-81.5c12.9-15.5 29.6-28 49.2-35.7l157-61.7c8.2-3.2 17.5 .8 20.7 9s-.8 17.5-9 20.7l-157 61.7c-12.4 4.9-23.3 12.4-32.2 21.6l159.6 57.6c7.6 2.7 15.6 4.1 23.7 4.1s16.1-1.4 23.7-4.1L624.2 182.6c9.5-3.4 15.8-12.5 15.8-22.6s-6.3-19.1-15.8-22.6L343.7 36.1C336.1 33.4 328.1 32 320 32zM128 408c0 35.3 86 72 192 72s192-36.7 192-72L496.7 262.6 354.5 314c-11.1 4-22.8 6-34.5 6s-23.5-2-34.5-6L143.3 262.6 128 408z"/></svg></div><h3>教育設計の視点</h3><p>習熟度や役割に応じて、無理なく身につくステップを設計します。</p></div>
+      <div class="why-cell"><div class="ic"><svg class="svgi" viewBox="0 0 512 512" aria-hidden="true"><path d="M78.6 5C69.1-2.4 55.6-1.5 47 7L7 47c-8.5 8.5-9.4 22-2.1 31.6l80 104c4.5 5.9 11.6 9.4 19 9.4h54.1l109 109c-14.7 29-10 65.4 14.3 89.6l112 112c12.5 12.5 32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3l-112-112c-24.2-24.2-60.6-29-89.6-14.3l-109-109V104c0-7.5-3.5-14.5-9.4-19L78.6 5zM19.9 396.1C7.2 408.8 0 426.1 0 444.1C0 481.6 30.4 512 67.9 512c18 0 35.3-7.2 48-19.9L233.7 374.3c-7.8-20.9-9-43.6-3.6-65.1l-61.7-61.7L19.9 396.1zM512 144c0-10.5-1.1-20.7-3.2-30.5c-2.4-11.2-16.1-14.1-24.2-6l-63.9 63.9c-3 3-7.1 4.7-11.3 4.7H352c-8.8 0-16-7.2-16-16V102.6c0-4.2 1.7-8.3 4.7-11.3l63.9-63.9c8.1-8.1 5.2-21.8-6-24.2C388.7 1.1 378.5 0 368 0C288.5 0 224 64.5 224 144l0 .8 85.3 85.3c36-9.1 75.8 .5 104 28.7L429 274.5c49-23 83-72.8 83-130.5zM56 432a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></svg></div><h3>業務改善の視点</h3><p>ツールありきではなく、解決したい課題を起点に活用テーマを定めます。</p></div>
+      <div class="why-cell"><div class="ic"><svg class="svgi" viewBox="0 0 640 512" aria-hidden="true"><path d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3V245.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5V416c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V389.2C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112h32c24 0 46.2 7.5 64.4 20.3zM448 416V394.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176h32c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2V416c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3V261.7c-10 11.3-16 26.1-16 42.3zm144-42.3v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2V448c0 17.7-14.3 32-32 32H288c-17.7 0-32-14.3-32-32V405.2c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112h32c61.9 0 112 50.1 112 112z"/></svg></div><h3>現場定着を重視した設計</h3><p>研修後に使われ続けるよう、社内展開の仕組みまで見据えます。</p></div>
+      <div class="why-cell" style="display:flex;flex-direction:column;justify-content:center">
+        <h3 style="font-size:19px">一部の人の力に、<br>頼り続けないために。</h3>
+        <p style="margin-top:8px">属人化を前提にせず、組織全体でAIを活かせる状態を目指します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 8. 無料説明会 ===================== -->
+<section class="band band--mist" id="seminar">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Free Seminar <span class="ja">無料説明会</span></span>
+      <h2 class="title">ChatGPT導入で終わらせない、<br>実務に活きるAI活用の始め方。</h2>
+    </div>
+    <div class="seminar-card reveal" data-d="1">
+      <div>
+        <div class="seminar-name">無料説明会で得られること</div>
+        <h3>AI活用が定着しない本当の理由と、成果を出す企業の考え方。</h3>
+        <p class="stitle-sub">自社で何から始めればよいのか。説明会の中で、その手がかりを持ち帰っていただけます。</p>
+        <ul class="get-list">
+          <li><svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>AI導入で失敗する企業の共通点</li>
+          <li><svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>AI活用を現場に定着させる考え方</li>
+          <li><svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>社員教育で最初に設計すべきこと</li>
+          <li><svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>AI人材育成の進め方</li>
+          <li><svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>自社で始めるための具体的なステップ</li>
+        </ul>
+      </div>
+      <div class="seminar-aside">
+        <div class="ic-big"><svg class="svgi" viewBox="0 0 640 512" aria-hidden="true"><path d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H336.8c-11.8-25.5-29.9-47.5-52.4-64H384V320c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v32h64V64L224 64v49.1C205.2 102.2 183.3 96 160 96V64zm0 64a96 96 0 1 1 0 192 96 96 0 1 1 0-192zM133.3 352h53.3C260.3 352 320 411.7 320 485.3c0 14.7-11.9 26.7-26.7 26.7H26.7C11.9 512 0 500.1 0 485.3C0 411.7 59.7 352 133.3 352z"/></svg></div>
+        <p>AI活用に課題を感じている経営者・人事・DX推進・現場管理職の方へ。まずは気軽にご参加ください。</p>
+        <a class="btn btn--primary" href="https://ex-pa.jp/item/60927?code_seminar=AG933927NLYD8071" target="_blank" rel="noopener noreferrer">無料説明会に申し込む <svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
+        <p class="btn-note" style="margin-top:14px;margin-bottom:0">個別相談をご希望の方は<a href="#contact" style="color:var(--cyan-bright);text-decoration:underline">こちら</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 9. FAQ ===================== -->
+<section class="band" id="faq">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">FAQ <span class="ja">よくあるご質問</span></span>
+      <h2 class="title">よくあるご質問</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item">
+        <button class="faq-q"><span class="qmark">Q</span>AI初心者の社員でも参加できますか？<svg class="svgi chev" viewBox="0 0 512 512" aria-hidden="true"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">はい。基礎の理解から段階的に進める設計のため、これまでAIに触れたことがない社員の方でも安心して取り組めます。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="qmark">Q</span>中小企業でも導入できますか？<svg class="svgi chev" viewBox="0 0 512 512" aria-hidden="true"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">はい。むしろ少人数だからこそ、現場の業務改善に直結した活用を組織全体へ広げやすい面があります。自社の状況に合わせて進め方をご相談いただけます。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="qmark">Q</span>ChatGPT以外のツールにも対応できますか？<svg class="svgi chev" viewBox="0 0 512 512" aria-hidden="true"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">特定のツールに限定した内容ではありません。考え方や業務への当てはめ方を中心に扱うため、さまざまなAIツールの活用に応用いただけます。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="qmark">Q</span>研修だけでなく社内定着まで相談できますか？<svg class="svgi chev" viewBox="0 0 512 512" aria-hidden="true"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">はい。研修で終わらせず、活用ルールの整備や社内推進担当者の育成など、定着までを見据えてご相談いただけます。</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span class="qmark">Q</span>個別相談では何を相談できますか？<svg class="svgi chev" viewBox="0 0 512 512" aria-hidden="true"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">自社の課題整理から、どこから着手すべきか、どのように社内へ広げるかまで、状況に応じて具体的にご相談いただけます。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 10. 最終CTA ===================== -->
+<section class="band final" id="contact">
+  <div class="dotgrid" aria-hidden="true" style="opacity:.45"></div>
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow" style="justify-content:center;display:flex">Get Started <span class="ja">まずは課題の整理から</span></span>
+      <h2>まずは<span class="hl">無料説明会</span>で、<br>自社のAI活用の“次の一歩”が見えてきます。</h2>
+      <p>「うちでも始められるのか」を判断するための材料を持ち帰っていただけます。検討中の段階でも、お気軽にご参加ください。</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="https://ex-pa.jp/item/60927?code_seminar=AG933927NLYD8071" target="_blank" rel="noopener noreferrer">無料説明会に申し込む <svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
+        <a class="btn btn--ghost" href="#contact">個別相談を申し込む</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 11. 運営者情報 / FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="foot-top">
+      <div class="operator">
+        <div class="op-label">運営者情報</div>
+        <p>AI活用推進・ITコンサルティング・教育支援を行っています。企業のAI導入から人材育成、社内定着までを一貫して支援しています。<br><a href="#">詳しいプロフィールはこちら</a></p>
+      </div>
+      <div class="foot-brand">
+        <span class="mark" style="width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),#0E7490)"><svg class="svgi" viewBox="0 0 576 512" aria-hidden="true"><path d="M0 80C0 53.5 21.5 32 48 32h96c26.5 0 48 21.5 48 48V96H384V80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H432c-26.5 0-48-21.5-48-48V160H192v16c0 1.7-.1 3.4-.3 5L272 288h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H272c-26.5 0-48-21.5-48-48V336c0-1.7 .1-3.4 .3-5L144 224H48c-26.5 0-48-21.5-48-48V80z"/></svg></span>
+        AI人材育成プログラム
+      </div>
+    </div>
+    <div class="foot-bottom">© <span id="yr"></span> AI人材育成プログラム. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    // mobile nav
+    var toggle=document.getElementById('navToggle');
+    var links=document.getElementById('navLinks');
+    if(toggle){
+      toggle.addEventListener('click',function(){
+        var open=links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded',open?'true':'false');
+        toggle.innerHTML=open?'<svg class="svgi" viewBox="0 0 384 512" aria-hidden="true"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>':'<svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>';
+      });
+      links.querySelectorAll('a').forEach(function(a){
+        a.addEventListener('click',function(){
+          links.classList.remove('open');
+          toggle.setAttribute('aria-expanded','false');
+          toggle.innerHTML='<svg class="svgi" viewBox="0 0 448 512" aria-hidden="true"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>';
+        });
+      });
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(function(item){
+      var q=item.querySelector('.faq-q');
+      var a=item.querySelector('.faq-a');
+      q.addEventListener('click',function(){
+        var isOpen=item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function(o){
+          o.classList.remove('open');
+          o.querySelector('.faq-a').style.maxHeight=null;
+        });
+        if(!isOpen){
+          item.classList.add('open');
+          a.style.maxHeight=a.scrollHeight+'px';
+        }
+      });
+    });
+
+    // scroll reveal
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var reveals=document.querySelectorAll('.reveal');
+    if(reduce||!('IntersectionObserver'in window)){
+      reveals.forEach(function(el){el.classList.add('is-visible')});
+    }else{
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}
+        });
+      },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+      reveals.forEach(function(el){io.observe(el);});
+    }
+
+    // node pulse (only if motion allowed)
+    if(!reduce){
+      var pulse=document.querySelector('.net-pulse');
+      if(pulse){
+        var t=0;
+        setInterval(function(){
+          t=(t+1)%100;
+          var p=t/100;
+          pulse.setAttribute('r',(11+ p*18).toFixed(1));
+          pulse.style.opacity=(0.55*(1-p)).toFixed(2);
+        },28);
+      }
+    }
+
+    // GA4: CTAクリックを計測（申込みフォームは外部のため、クリックを成果の代理指標として送信）
+    document.querySelectorAll('a[href*="ex-pa.jp"]').forEach(function(a){
+      a.addEventListener('click',function(){
+        if(typeof gtag==='function'){gtag('event','seminar_apply_click',{event_category:'CTA',event_label:'無料説明会'});}
+      });
+    });
+    document.querySelectorAll('a[href="#contact"]').forEach(function(a){
+      a.addEventListener('click',function(){
+        if(typeof gtag==='function'){gtag('event','consult_click',{event_category:'CTA',event_label:'個別相談'});}
+      });
+    });
+
+    document.getElementById('yr').textContent=new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
