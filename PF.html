@@ -195,10 +195,7 @@ section{padding-block:var(--gap)}
 .hero-meta .nm{font-family:var(--latin);font-weight:500;font-size:20px;letter-spacing:.18em}
 .hero-meta .role{font-size:13px;color:var(--ink-mute);letter-spacing:.06em}
 .scroll-cue{
-  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
-  font-family:var(--latin);font-size:10px;letter-spacing:.32em;
-  text-transform:uppercase;color:var(--ink-mute);
-  display:flex;flex-direction:column;align-items:center;gap:10px;z-index:1;
+  display:none;
 }
 .scroll-cue::after{content:"";width:1px;height:42px;background:linear-gradient(var(--line-strong),transparent);animation:cue 2.4s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:scaleY(.5);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
