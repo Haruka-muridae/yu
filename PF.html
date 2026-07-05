@@ -557,6 +557,21 @@ section{padding-block:var(--gap)}
   font-family:var(--mincho);font-weight:600;font-size:clamp(18px,2.2vw,22px);
   letter-spacing:.02em;line-height:1.6;transition:color .3s;
 }
+.btn-note {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: #000;      /* noteのブランドカラー */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.btn-note:hover {
+  background: #333;
+}
 .contact-mail:hover{color:var(--ai)}
 .contact-social{display:flex;gap:24px;flex-wrap:wrap}
 .contact-social a{
@@ -1073,11 +1088,18 @@ section{padding-block:var(--gap)}
           <a href="mailto:architect@potenitas.com" class="contact-mail">architect@potenitas.com</a>
         </div>
         <div class="aside-block">
+          <p class="aside-label">note</p>
+          <a href="https://note.com/potenitas"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-note">人柄を知ってみたい</a>
+          <p class="aside-note">日々考えたこと、気が付いたこと、気になったことを簡単に綴っています。</p>
+         </div>        
+         <div class="aside-block">
           <p class="aside-label">Social</p>
           <div class="contact-social">
             <a href="https://x.com/haruka_muridae" target="_blank" rel="noopener noreferrer" title="@haruka_muridae">X</a>
             <a href="https://www.instagram.com/mash.haru" target="_blank" rel="noopener noreferrer" title="@mash.haru">Instagram</a>
-            <a href="https://note.com/koto_haruka" target="_blank" rel="noopener noreferrer" title="note：世の役に立つ記事を書いています">Note</a>
             <a href="https://ncode.syosetu.com/s9629j/" target="_blank" rel="noopener noreferrer" title="小説家になろうで公開中">Novel</a>
           </div>
         </div>
