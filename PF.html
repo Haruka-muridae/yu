@@ -504,8 +504,8 @@ section{padding-block:var(--gap)}
 /* ============================================================
    結（Contact）
    ============================================================ */
-.contact-layout{display:grid;grid-template-columns:1.3fr 0.85fr;gap:clamp(40px,6vw,84px);align-items:start}
-@media(max-width:820px){.contact-layout{grid-template-columns:1fr;gap:52px}}
+.contact-layout{display:flex;flex-direction:column;gap:clamp(44px,6vw,72px);align-items:stretch}
+@media(max-width:820px){.contact-layout{gap:48px}}
 .contact-form{display:flex;flex-direction:column;gap:clamp(18px,2.4vw,24px)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,24px)}
 @media(max-width:560px){.form-row{grid-template-columns:1fr}}
@@ -539,7 +539,14 @@ section{padding-block:var(--gap)}
 .form-status.err{color:var(--shu)}
 .form-status a{color:inherit;border-bottom:1px solid currentColor}
 
-.contact-aside{display:flex;flex-direction:column;gap:32px;padding-top:6px}
+.contact-aside{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:clamp(28px,4vw,44px);
+  align-items:start;
+  padding-top:0;
+}
+@media(max-width:520px){.contact-aside{grid-template-columns:1fr;gap:30px}}
 .aside-label{
   font-family:var(--mincho);font-weight:600;
   font-size:12px;letter-spacing:.3em;color:var(--sumi-mute);margin-bottom:12px;
@@ -552,6 +559,14 @@ section{padding-block:var(--gap)}
 }
 .btn-line::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;opacity:.9}
 .btn-line:hover{background:#05A847}
+.btn-cal{
+  display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+  font-family:var(--gothic);font-size:14px;font-weight:500;letter-spacing:.06em;color:#fff;
+  background:var(--ai);border:1px solid var(--ai);
+  padding:13px 30px;transition:background .3s;
+}
+.btn-cal::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;opacity:.9}
+.btn-cal:hover{background:var(--sumi)}
 .aside-note{margin-top:10px;font-size:12px;color:var(--sumi-mute);letter-spacing:.03em;line-height:1.9}
 .contact-mail{
   font-family:var(--mincho);font-weight:600;font-size:clamp(18px,2.2vw,22px);
@@ -611,7 +626,7 @@ section{padding-block:var(--gap)}
     <a href="#services">仕事</a>
     <a href="#history">経歴</a>
     <a href="#achievements">実績</a>
-    <a class="nav-cta" href="#contact">相談する</a>
+    <a class="nav-cta" href="https://calendar.app.google/q6VegrRA9teBVZK6A" target="_blank" rel="noopener noreferrer">相談する</a>
   </div>
 </nav>
 
@@ -1040,9 +1055,43 @@ section{padding-block:var(--gap)}
   <div class="wrap">
     <div class="chapter"><span class="ch-kanji">結</span></div>
     <h2 class="sec-title">対話から、はじめましょう。</h2>
-    <p class="sec-lead">ご依頼・ご相談・お問い合わせは、フォームから。内容はそのまま届きます。お急ぎの場合は、LINEやメールでもかまいません。</p>
+    <p class="sec-lead">ご依頼・ご相談は、ご都合のよい方法で。予約・note・LINE・メール・フォーム——どれでも、そのまま私に届きます。</p>
     <div class="contact-layout">
-      <!-- form -->
+      <!-- 連絡方法（上に配置：予約→note→LINE→Direct Mail→Social） -->
+      <aside class="contact-aside">
+        <div class="aside-block">
+          <p class="aside-label">日程を予約</p>
+          <a href="https://calendar.app.google/q6VegrRA9teBVZK6A" target="_blank" rel="noopener noreferrer" class="btn-cal">空いている日時から予約する</a>
+          <p class="aside-note">オンラインでの無料相談を承っています。カレンダーからご都合のよい日時をお選びください。</p>
+        </div>
+        <div class="aside-block">
+          <p class="aside-label">note</p>
+          <a href="https://note.com/potenitas"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-note">人柄を知ってみたい</a>
+          <p class="aside-note">日々考えたこと、気が付いたこと、気になったことを簡単に綴っています。</p>
+        </div>
+        <div class="aside-block">
+          <p class="aside-label">LINE</p>
+          <a href="https://line.me/ti/p/bivqtgD_6a" target="_blank" rel="noopener noreferrer" class="btn-line">友だち追加して相談する</a>
+          <p class="aside-note">メールより気軽に。「何から相談すればいいか分からない」の一言でもかまいません。</p>
+        </div>
+        <div class="aside-block">
+          <p class="aside-label">Direct Mail</p>
+          <a href="mailto:architect@potenitas.com" class="contact-mail">architect@potenitas.com</a>
+        </div>
+        <div class="aside-block">
+          <p class="aside-label">Social</p>
+          <div class="contact-social">
+            <a href="https://x.com/haruka_muridae" target="_blank" rel="noopener noreferrer" title="@haruka_muridae">X</a>
+            <a href="https://www.instagram.com/mash.haru" target="_blank" rel="noopener noreferrer" title="@mash.haru">Instagram</a>
+            <a href="https://ncode.syosetu.com/s9629j/" target="_blank" rel="noopener noreferrer" title="小説家になろうで公開中">Novel</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 問い合わせフォーム（結の最下部） -->
       <form class="contact-form" id="contactForm" novalidate>
         <div class="form-row">
           <div class="field">
@@ -1075,36 +1124,6 @@ section{padding-block:var(--gap)}
         <p class="form-note">通常、2営業日以内にご返信します。</p>
         <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
       </form>
-
-      <!-- aside -->
-      <aside class="contact-aside">
-        <div class="aside-block">
-          <p class="aside-label">LINE</p>
-          <a href="https://line.me/ti/p/bivqtgD_6a" target="_blank" rel="noopener noreferrer" class="btn-line">友だち追加して相談する</a>
-          <p class="aside-note">メールより気軽に。「何から相談すればいいか分からない」の一言でもかまいません。</p>
-        </div>
-        <div class="aside-block">
-          <p class="aside-label">Direct Mail</p>
-          <a href="mailto:architect@potenitas.com" class="contact-mail">architect@potenitas.com</a>
-        </div>
-        <div class="aside-block">
-          <p class="aside-label">note</p>
-          <a href="https://note.com/potenitas"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-note">人柄を知ってみたい</a>
-          <p class="aside-note">日々考えたこと、気が付いたこと、気になったことを簡単に綴っています。</p>
-         </div>
-         <!-- ============変更箇所============ -->
-         <div class="aside-block">
-          <p class="aside-label">Social</p>
-          <div class="contact-social">
-            <a href="https://x.com/haruka_muridae" target="_blank" rel="noopener noreferrer" title="@haruka_muridae">X</a>
-            <a href="https://www.instagram.com/mash.haru" target="_blank" rel="noopener noreferrer" title="@mash.haru">Instagram</a>
-            <a href="https://ncode.syosetu.com/s9629j/" target="_blank" rel="noopener noreferrer" title="小説家になろうで公開中">Novel</a>
-          </div>
-        </div>
-      </aside>
     </div>
     <div class="foot">
       <span>© 2026 YUKI SAITO</span>
